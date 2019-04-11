@@ -2,6 +2,11 @@
 
 A flashcard app built as a term project for CSC690
 
+## Team members:
+
+- Eric Groom (Developer)
+- Tommy Lik (Reviewer)
+
 ## Proposal
 
 Vocabuleasy is an app to help language-learners learn vocabulary in their target language in a quick and efficient manner, while minimizing the time it takes to create flashcards by hand.
