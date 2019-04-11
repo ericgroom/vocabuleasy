@@ -23,14 +23,21 @@ Vocabuleasy is an app to help language-learners learn vocabulary in their target
 ## Wireframes
 
 **Reviewing Cards**
-![reviewing the front of a flashcard](milestone1-wireframes/review-front.jpeg)
-![reviewing the back of a flashcard](milestone1-wireframes/review-back.jpeg)
+
+<img src="milestone1-wireframes/review-front.jpeg" alt="reviewing the front of a flashcard" width="300px"/>
+<img src="milestone1-wireframes/review-back.jpeg" alt="reviewing the back of a flashcard" width="300px"/>
+
 **Creating New Cards**
-![creating a new flashcard](milestone1-wireframes/create-card.jpeg)
+
+<img src="milestone1-wireframes/create-card.jpeg" alt="creating a new flashcard" width="300px" />
+
 **List of Flashcard Decks**
-![list of all flashcard decks](milestone1-wireframes/deck-list.jpeg)
+
+<img src="milestone1-wireframes/deck-list.jpeg" alt="list of all flashcard decks" width="300px" />
+
 **Flashcard Deck Detail**
-![flashcard deck detail](milestone1-wireframes/deck-detail.jpeg)
+
+<img src="milestone1-wireframes/deck-detail.jpeg" alt="flashcard deck detail" width="300px" />
 
 ## Glossary
 
