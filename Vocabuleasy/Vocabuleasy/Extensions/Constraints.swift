@@ -12,6 +12,10 @@ enum Mode {
     case equal, greaterOrEqual, lessOrEqual
 }
 
+enum Axis {
+    case x, y, both
+}
+
 extension UIView {
     
     // - MARK: fills
@@ -100,9 +104,33 @@ extension UIView {
     
     // - MARK: align
     
-    func center(on parent: UIView) {
+    func center(on parent: UIView, axis: Axis = .both) {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.centerXAnchor.constraint(greaterThanOrEqualTo: parent.centerXAnchor).isActive = true
-        self.centerYAnchor.constraint(greaterThanOrEqualTo: parent.centerYAnchor).isActive = true
+        if axis == .x || axis == .both {
+            self.centerXAnchor.constraint(greaterThanOrEqualTo: parent.centerXAnchor).isActive = true
+        }
+        if axis == .y || axis == .both {
+            self.centerYAnchor.constraint(greaterThanOrEqualTo: parent.centerYAnchor).isActive = true
+        }
+    }
+    
+    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.topAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+    }
+    
+    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.bottomAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+    }
+    
+    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.leadingAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+    }
+    
+    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.trailingAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
     }
 }
