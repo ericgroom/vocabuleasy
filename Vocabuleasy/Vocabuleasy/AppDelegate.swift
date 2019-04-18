@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         if let window = window {
             window.rootViewController = RedViewController()
-            window.backgroundColor = UIColor.white
+            window.backgroundColor = Theme.green
             window.makeKeyAndVisible()
         }
         return true

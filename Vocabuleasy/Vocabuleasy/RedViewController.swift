@@ -13,7 +13,7 @@ class RedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor(hue: 0.5, saturation: 1, brightness: 1, alpha: 1)
+        self.view.backgroundColor = .clear
     }
     
 
