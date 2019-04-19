@@ -44,6 +44,21 @@ Vocabuleasy is an app to help language-learners learn vocabulary in their target
 
 <img src="milestone1-wireframes/deck-detail.jpeg" alt="flashcard deck detail" width="300px" />
 
+## Mockups
+
+**Reviewing Cards**
+
+<img src="milestone2-mockups/ReviewFront.png" alt="reviewing the front of a flashcard" width="300px"/>
+<img src="milestone2-mockups/ReviewBack.png" alt="reviewing the back of a flashcard" width="300px"/>
+
+**Creating New Cards**
+
+<img src="milestone2-mockups/AddNew.png" alt="creating a new flashcard" width="300px" />
+
+**List of Flashcard Decks**
+
+<img src="milestone2-mockups/Decks.png" alt="list of all flashcard decks" width="300px" />
+
 ## Glossary
 
 - **Flashcard or Card**: A set of fields with two-sides that can be made of images, audio or text. The user creates them and uses them to quiz themself on their target langauge.
