@@ -31,9 +31,17 @@ class CardViewController: UIViewController {
         frontLabel.text = "front"
         front.addArrangedSubview(frontLabel)
         
-        let backLabel = UILabel()
-        backLabel.text = "back"
-        back.addArrangedSubview(backLabel)
+        makeLabels(count: 50).forEach {
+            back.addArrangedSubview($0)
+        }
+    }
+    
+    private func makeLabels(count: Int) -> [UILabel] {
+        return (0...count).map { i in
+            let label = UILabel()
+            label.text = "Label \(i)"
+            return label
+        }
     }
     
     func flipCard() {

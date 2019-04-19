@@ -11,7 +11,6 @@
 		BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */; };
 		BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467C2269174F0037EE57 /* CardViewController.swift */; };
 		BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467E226926A30037EE57 /* ReviewViewController.swift */; };
-		BA5A468122692C680037EE57 /* DeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A468022692C680037EE57 /* DeckViewController.swift */; };
 		BA8B201422693B480032892A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA8B201322693B480032892A /* Main.storyboard */; };
 		BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */; };
 		BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC652268D9E700163D2C /* Vocabuleasy.xcdatamodeld */; };
@@ -44,7 +43,6 @@
 		BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		BA5A467C2269174F0037EE57 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		BA5A467E226926A30037EE57 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
-		BA5A468022692C680037EE57 /* DeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckViewController.swift; sourceTree = "<group>"; };
 		BA8B201322693B480032892A /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BAF4AC5B2268D9E700163D2C /* Vocabuleasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabuleasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 				BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */,
 				BA5A467C2269174F0037EE57 /* CardViewController.swift */,
 				BA5A467E226926A30037EE57 /* ReviewViewController.swift */,
-				BA5A468022692C680037EE57 /* DeckViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,7 +329,6 @@
 				BAF4AC8A2268E18500163D2C /* RootViewController.swift in Sources */,
 				BAF4AC8F2268E28B00163D2C /* Constraints.swift in Sources */,
 				BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */,
-				BA5A468122692C680037EE57 /* DeckViewController.swift in Sources */,
 				BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */,
 				BAF4AC852268DD6900163D2C /* Theme.swift in Sources */,
 				BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */,
