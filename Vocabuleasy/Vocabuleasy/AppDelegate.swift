@@ -16,12 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        if let window = window {
-            window.rootViewController = RootViewController()
-            window.backgroundColor = Theme.green
-            window.makeKeyAndVisible()
-        }
         return true
     }
 

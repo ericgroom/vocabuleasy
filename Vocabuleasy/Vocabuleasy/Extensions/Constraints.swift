@@ -76,30 +76,37 @@ extension UIView {
         
     }
     
-    func width(_ mode: Mode = .equal, to constant: CGFloat) {
+    @discardableResult
+    func width(_ mode: Mode = .equal, to constant: CGFloat) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
+        let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            self.widthAnchor.constraint(equalToConstant: constant).isActive = true
+            c = self.widthAnchor.constraint(equalToConstant: constant)
         case .greaterOrEqual:
-            self.widthAnchor.constraint(greaterThanOrEqualToConstant: constant).isActive = true
+            c = self.widthAnchor.constraint(greaterThanOrEqualToConstant: constant)
         case .lessOrEqual:
-            self.widthAnchor.constraint(lessThanOrEqualToConstant: constant).isActive = true
+            c = self.widthAnchor.constraint(lessThanOrEqualToConstant: constant)
         }
+        c.isActive = true
+        return c
         
     }
     
-    func height(_ mode: Mode = .equal, to constant: CGFloat) {
+    @discardableResult
+    func height(_ mode: Mode = .equal, to constant: CGFloat) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
+        let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            self.heightAnchor.constraint(equalToConstant: constant).isActive = true
+            c = self.heightAnchor.constraint(equalToConstant: constant)
         case .greaterOrEqual:
-            self.heightAnchor.constraint(greaterThanOrEqualToConstant: constant).isActive = true
+            c = self.heightAnchor.constraint(greaterThanOrEqualToConstant: constant)
         case .lessOrEqual:
-            self.heightAnchor.constraint(lessThanOrEqualToConstant: constant).isActive = true
+            c = self.heightAnchor.constraint(lessThanOrEqualToConstant: constant)
         }
-        
+        c.isActive = true
+        return c
     }
     
     // - MARK: align
@@ -114,23 +121,35 @@ extension UIView {
         }
     }
     
-    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0) {
+    @discardableResult
+    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.topAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+        let constraint = self.topAnchor.constraint(equalTo: anchor, constant: offset)
+        constraint.isActive = true
+        return constraint
     }
     
-    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0) {
+    @discardableResult
+    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0)  -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.bottomAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+        let constraint =  self.bottomAnchor.constraint(equalTo: anchor, constant: offset)
+        constraint.isActive = true
+        return constraint
     }
     
-    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) {
+    @discardableResult
+    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.leadingAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+        let constraint =  self.leadingAnchor.constraint(equalTo: anchor, constant: offset)
+        constraint.isActive = true
+        return constraint
     }
     
-    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) {
+    @discardableResult
+    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.trailingAnchor.constraint(equalTo: anchor, constant: offset).isActive = true
+        let constraint =  self.trailingAnchor.constraint(equalTo: anchor, constant: offset)
+        constraint.isActive = true
+        return constraint
     }
 }
