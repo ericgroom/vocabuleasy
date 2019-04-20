@@ -75,11 +75,9 @@ class ReviewViewController: UIViewController {
             return
         }
         if traitCollection.verticalSizeClass == .compact && previousTraitCollection?.verticalSizeClass != .compact {
-            print("changing constraints")
             NSLayoutConstraint.deactivate(regularConstraints)
             NSLayoutConstraint.activate(compactConstraints)
         } else {
-            print("changing constraints")
             NSLayoutConstraint.deactivate(compactConstraints)
             NSLayoutConstraint.activate(regularConstraints)
         }
