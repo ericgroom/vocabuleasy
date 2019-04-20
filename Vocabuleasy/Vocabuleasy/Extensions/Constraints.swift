@@ -63,19 +63,6 @@ extension UIView {
         
     }
     
-    func height(_ mode: Mode = .equal, to parent: UIView) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        switch mode {
-        case .equal:
-            self.heightAnchor.constraint(equalTo: parent.heightAnchor).isActive = true
-        case .greaterOrEqual:
-            self.heightAnchor.constraint(greaterThanOrEqualTo: parent.heightAnchor).isActive = true
-        case .lessOrEqual:
-            self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor).isActive = true
-        }
-        
-    }
-    
     @discardableResult
     func width(_ mode: Mode = .equal, to constant: CGFloat) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -93,6 +80,19 @@ extension UIView {
         
     }
     
+    func height(_ mode: Mode = .equal, to parent: UIView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        switch mode {
+        case .equal:
+            self.heightAnchor.constraint(equalTo: parent.heightAnchor).isActive = true
+        case .greaterOrEqual:
+            self.heightAnchor.constraint(greaterThanOrEqualTo: parent.heightAnchor).isActive = true
+        case .lessOrEqual:
+            self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor).isActive = true
+        }
+        
+    }
+    
     @discardableResult
     func height(_ mode: Mode = .equal, to constant: CGFloat) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -104,6 +104,22 @@ extension UIView {
             c = self.heightAnchor.constraint(greaterThanOrEqualToConstant: constant)
         case .lessOrEqual:
             c = self.heightAnchor.constraint(lessThanOrEqualToConstant: constant)
+        }
+        c.isActive = true
+        return c
+    }
+    
+    @discardableResult
+    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat) -> NSLayoutConstraint {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let c: NSLayoutConstraint
+        switch mode {
+        case .equal:
+            c = self.heightAnchor.constraint(equalTo: dimension, multiplier: multiplier)
+        case .greaterOrEqual:
+            c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
+        case .lessOrEqual:
+            c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
         }
         c.isActive = true
         return c
@@ -132,7 +148,7 @@ extension UIView {
     @discardableResult
     func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0)  -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint =  self.bottomAnchor.constraint(equalTo: anchor, constant: offset)
+        let constraint =  self.bottomAnchor.constraint(equalTo: anchor, constant: -offset)
         constraint.isActive = true
         return constraint
     }
@@ -148,7 +164,7 @@ extension UIView {
     @discardableResult
     func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint =  self.trailingAnchor.constraint(equalTo: anchor, constant: offset)
+        let constraint =  self.trailingAnchor.constraint(equalTo: anchor, constant: -offset)
         constraint.isActive = true
         return constraint
     }

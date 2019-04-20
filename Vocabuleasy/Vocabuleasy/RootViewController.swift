@@ -10,18 +10,12 @@ import UIKit
 
 class RootViewController: UIViewController {
     
-    var reviewVC: ReviewViewController?
-    private let reviewSegueId = "RootReviewEmbed"
+    var reviewVC = ReviewViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
+        embed(reviewVC)
+        reviewVC.view.fill(parent: view)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == reviewSegueId {
-            self.reviewVC = segue.destination as! ReviewViewController
-        }
-    }
-
 }
