@@ -11,6 +11,7 @@ import UIKit
 class ReviewViewController: UIViewController {
     
     private var cardController = CardViewController()
+    
     private var flipButton: UIButton = {
         let flipButton = UIButton()
         flipButton.setTitle("flip", for: .normal)
@@ -21,26 +22,67 @@ class ReviewViewController: UIViewController {
         return flipButton
     }()
     
+    @objc func flipButtonPressed() {
+        cardController.flipCard()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
         
         embed(cardController)
-        cardController.view.top(to: view.topAnchor, withOffset: 64)
-        cardController.view.leading(to: view.leadingAnchor, withOffset: 16)
-        cardController.view.trailing(to: view.trailingAnchor, withOffset: 16)
-        cardController.view.height(to: cardController.view.widthAnchor, withMultiplier: 1/1.618)
-        
         view.addSubview(flipButton)
-        flipButton.width(to: cardController.view)
-        flipButton.top(to: cardController.view.bottomAnchor, withOffset: 16)
-        flipButton.center(on: view, axis: .x)
+        
+        setupConstraints()
     }
     
+    // MARK: - Autolayout
     
+    private var regularConstraints: [NSLayoutConstraint] = []
+    private var compactConstraints: [NSLayoutConstraint] = []
     
-    @objc func flipButtonPressed() {
-        cardController.flipCard()
+    private func setupConstraints() {
+        // universal
+        cardController.view.leading(to: view.leadingAnchor, withOffset: Layout.Spacing.standard)
+        cardController.view.height(to: cardController.view.widthAnchor, withMultiplier: 1/Layout.goldenRatio)
+        
+        // regular constraints
+        let cardTopRegular = cardController.view.top(to: view.topAnchor, withOffset: 64, activate: false)
+        let cardTrailingRegular = cardController.view.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        
+        let buttonWidthRegular = flipButton.width(to: cardController.view, activate: false)
+        let buttonTopRegular = flipButton.top(to: cardController.view.bottomAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let buttonCenter = flipButton.center(on: view, axis: .x, activate: false)
+        regularConstraints = [cardTopRegular, cardTrailingRegular, buttonTopRegular, buttonWidthRegular]
+        regularConstraints.append(contentsOf: buttonCenter)
+        
+        // compact constraints
+        let cardTopCompact = cardController.view.top(to: view.topAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let cardTrailingCompact = cardController.view.trailing(to: flipButton.leadingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let cardBottomCompact = cardController.view.bottom(to: view.bottomAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        
+        let buttonCenterCompact = flipButton.center(on: view, axis: .y, activate: false)
+        let buttonLeadingCompact = flipButton.leading(to: cardController.view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let buttonTrailingCompact = flipButton.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        
+        compactConstraints = [cardTopCompact, cardTrailingCompact, cardBottomCompact, buttonLeadingCompact, buttonTrailingCompact]
+        compactConstraints.append(contentsOf: buttonCenterCompact)
     }
-
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let previous = previousTraitCollection, previous.verticalSizeClass == traitCollection.verticalSizeClass {
+            return
+        }
+        if traitCollection.verticalSizeClass == .compact && previousTraitCollection?.verticalSizeClass != .compact {
+            print("changing constraints")
+            NSLayoutConstraint.deactivate(regularConstraints)
+            NSLayoutConstraint.activate(compactConstraints)
+        } else {
+            print("changing constraints")
+            NSLayoutConstraint.deactivate(compactConstraints)
+            NSLayoutConstraint.activate(regularConstraints)
+        }
+        view.layoutIfNeeded()
+    }
 }

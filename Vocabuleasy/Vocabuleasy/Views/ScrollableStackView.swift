@@ -15,7 +15,7 @@ class ScrollableStackView: UIView {
         stackView.axis = .vertical
         stackView.alignment = UIStackView.Alignment.center
         stackView.distribution = UIStackView.Distribution.fill
-        stackView.spacing = 8.0
+        stackView.spacing = Layout.Spacing.small
         return stackView
     }()
     

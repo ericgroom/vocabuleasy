@@ -31,7 +31,7 @@ class CardBackgroundView: UIView {
         layer.shadowOpacity = 0.5
         
         addSubview(stackView)
-        stackView.fill(parent: self, withOffset: 8.0)
+        stackView.fill(parent: self, withOffset: Layout.Spacing.small)
     }
     
     override init(frame: CGRect) {

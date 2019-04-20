@@ -50,21 +50,26 @@ extension UIView {
     
     // - MARK: size
     
-    func width(_ mode: Mode = .equal, to parent: UIView) {
+    @discardableResult
+    func width(_ mode: Mode = .equal, to parent: UIView, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
+        let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            self.widthAnchor.constraint(equalTo: parent.widthAnchor).isActive = true
+            c = self.widthAnchor.constraint(equalTo: parent.widthAnchor)
         case .greaterOrEqual:
-            self.widthAnchor.constraint(greaterThanOrEqualTo: parent.widthAnchor).isActive = true
+            c = self.widthAnchor.constraint(greaterThanOrEqualTo: parent.widthAnchor)
         case .lessOrEqual:
-            self.widthAnchor.constraint(lessThanOrEqualTo: parent.widthAnchor).isActive = true
+            c = self.widthAnchor.constraint(lessThanOrEqualTo: parent.widthAnchor)
         }
-        
+        if activate {
+            c.isActive = true
+        }
+        return c
     }
     
     @discardableResult
-    func width(_ mode: Mode = .equal, to constant: CGFloat) -> NSLayoutConstraint {
+    func width(_ mode: Mode = .equal, to constant: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -75,26 +80,52 @@ extension UIView {
         case .lessOrEqual:
             c = self.widthAnchor.constraint(lessThanOrEqualToConstant: constant)
         }
-        c.isActive = true
+        if activate {
+            c.isActive = true
+        }
         return c
         
     }
     
-    func height(_ mode: Mode = .equal, to parent: UIView) {
+    @discardableResult
+    func width(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
+        let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            self.heightAnchor.constraint(equalTo: parent.heightAnchor).isActive = true
+            c = self.widthAnchor.constraint(equalTo: dimension, multiplier: multiplier)
         case .greaterOrEqual:
-            self.heightAnchor.constraint(greaterThanOrEqualTo: parent.heightAnchor).isActive = true
+            c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
         case .lessOrEqual:
-            self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor).isActive = true
+            c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
         }
-        
+        if activate {
+            c.isActive = true
+        }
+        return c
+    }
+    
+    
+    @discardableResult
+    func height(_ mode: Mode = .equal, to parent: UIView, activate: Bool = true) -> NSLayoutConstraint {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let c: NSLayoutConstraint
+        switch mode {
+        case .equal:
+            c = self.heightAnchor.constraint(equalTo: parent.heightAnchor)
+        case .greaterOrEqual:
+            c = self.heightAnchor.constraint(greaterThanOrEqualTo: parent.heightAnchor)
+        case .lessOrEqual:
+            c = self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor)
+        }
+        if activate {
+            c.isActive = true
+        }
+        return c
     }
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to constant: CGFloat) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to constant: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -105,12 +136,14 @@ extension UIView {
         case .lessOrEqual:
             c = self.heightAnchor.constraint(lessThanOrEqualToConstant: constant)
         }
-        c.isActive = true
+        if activate {
+            c.isActive = true
+        }
         return c
     }
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -121,51 +154,69 @@ extension UIView {
         case .lessOrEqual:
             c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
         }
-        c.isActive = true
+        if activate {
+            c.isActive = true
+        }
         return c
     }
     
     // - MARK: align
     
-    func center(on parent: UIView, axis: Axis = .both) {
+    @discardableResult
+    func center(on parent: UIView, axis: Axis = .both, activate: Bool = true) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
+        var constraints: [NSLayoutConstraint] = []
         if axis == .x || axis == .both {
-            self.centerXAnchor.constraint(greaterThanOrEqualTo: parent.centerXAnchor).isActive = true
+            let c = self.centerXAnchor.constraint(greaterThanOrEqualTo: parent.centerXAnchor)
+            constraints.append(c)
         }
         if axis == .y || axis == .both {
-            self.centerYAnchor.constraint(greaterThanOrEqualTo: parent.centerYAnchor).isActive = true
+            let c = self.centerYAnchor.constraint(greaterThanOrEqualTo: parent.centerYAnchor)
+            constraints.append(c)
         }
+        if activate {
+            NSLayoutConstraint.activate(constraints)
+        }
+        return constraints
     }
     
     @discardableResult
-    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
+    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = self.topAnchor.constraint(equalTo: anchor, constant: offset)
-        constraint.isActive = true
+        if activate {
+            constraint.isActive = true
+        }
         return constraint
     }
     
     @discardableResult
-    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0)  -> NSLayoutConstraint {
+    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true)  -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint =  self.bottomAnchor.constraint(equalTo: anchor, constant: -offset)
-        constraint.isActive = true
+        if activate {
+            constraint.isActive = true
+        }
         return constraint
     }
     
     @discardableResult
-    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
+    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint =  self.leadingAnchor.constraint(equalTo: anchor, constant: offset)
-        constraint.isActive = true
+        if activate {
+            constraint.isActive = true
+        }
         return constraint
     }
     
     @discardableResult
-    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0) -> NSLayoutConstraint {
+    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint =  self.trailingAnchor.constraint(equalTo: anchor, constant: -offset)
-        constraint.isActive = true
+        if activate {
+            constraint.isActive = true
+        }
         return constraint
     }
 }
