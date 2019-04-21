@@ -20,32 +20,18 @@ extension UIView {
     
     // - MARK: fills
     
-    func fill(parent: UIView, withOffset offset: CGFloat = 0.0) {
+    @discardableResult
+    func fill(parent: UIView, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.topAnchor.constraint(equalTo: parent.topAnchor, constant: offset).isActive = true
-        self.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: offset).isActive = true
-        self.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -offset).isActive = true
-        self.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -offset).isActive = true
-    }
-    
-    func fillIfNeeded(parent: UIView, withOffset offset: CGFloat = 0.0) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.topAnchor.constraint(lessThanOrEqualTo: parent.topAnchor, constant: offset).isActive = true
-        self.leadingAnchor.constraint(lessThanOrEqualTo: parent.leadingAnchor, constant: offset).isActive = true
-        self.bottomAnchor.constraint(lessThanOrEqualTo: parent.bottomAnchor, constant: -offset).isActive = true
-        self.trailingAnchor.constraint(lessThanOrEqualTo: parent.trailingAnchor, constant: -offset).isActive = true
-        self.centerXAnchor.constraint(equalTo: parent.centerXAnchor).isActive = true
-        self.centerYAnchor.constraint(equalTo: parent.centerYAnchor).isActive = true
-    }
-    
-    func fillOrExtend(parent: UIView, withOffset offset: CGFloat = 0.0) {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.topAnchor.constraint(greaterThanOrEqualTo: parent.topAnchor, constant: offset).isActive = true
-        self.leadingAnchor.constraint(greaterThanOrEqualTo: parent.leadingAnchor, constant: offset).isActive = true
-        self.bottomAnchor.constraint(greaterThanOrEqualTo: parent.bottomAnchor, constant: -offset).isActive = true
-        self.trailingAnchor.constraint(greaterThanOrEqualTo: parent.trailingAnchor, constant: -offset).isActive = true
-        self.centerXAnchor.constraint(equalTo: parent.centerXAnchor).isActive = true
-        self.centerYAnchor.constraint(equalTo: parent.centerYAnchor).isActive = true
+        let top = self.topAnchor.constraint(equalTo: parent.topAnchor, constant: offset)
+        let leading = self.leadingAnchor.constraint(equalTo: parent.leadingAnchor, constant: offset)
+        let bottom = self.bottomAnchor.constraint(equalTo: parent.bottomAnchor, constant: -offset)
+        let trailing = self.trailingAnchor.constraint(equalTo: parent.trailingAnchor, constant: -offset)
+        let constraints = [top, leading, bottom, trailing]
+        if activate {
+            NSLayoutConstraint.activate(constraints)
+        }
+        return constraints
     }
     
     // - MARK: size
