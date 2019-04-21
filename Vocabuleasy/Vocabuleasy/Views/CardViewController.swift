@@ -13,6 +13,14 @@ class CardViewController: UIViewController {
     let front = CardBackgroundView()
     let back = CardBackgroundView()
     
+    var cardFields: CardFields? {
+        didSet {
+            guard let fields = cardFields else { return }
+            fields.frontFields.forEach { front.addArrangedSubview($0) }
+            fields.backFields.forEach { back.addArrangedSubview($0) }
+        }
+    }
+    
     private var showingFront = true
     private var animating = false
 
@@ -26,22 +34,6 @@ class CardViewController: UIViewController {
         
         front.fill(parent: view)
         back.fill(parent: view)
-        
-        let frontLabel = UILabel()
-        frontLabel.text = "front"
-        front.addArrangedSubview(frontLabel)
-        
-        makeLabels(count: 50).forEach {
-            back.addArrangedSubview($0)
-        }
-    }
-    
-    private func makeLabels(count: Int) -> [UILabel] {
-        return (0...count).map { i in
-            let label = UILabel()
-            label.text = "Label \(i)"
-            return label
-        }
     }
     
     func flipCard() {
