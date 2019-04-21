@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Hero
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootVC = RootViewController()
         window?.rootViewController = rootVC
         window?.makeKeyAndVisible()
+        
+        Hero.shared.containerColor = .clear
+
         return true
     }
 
