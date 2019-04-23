@@ -52,6 +52,7 @@ class ReviewViewController: UIViewController {
         view.backgroundColor = Theme.green
         
         embed(cardController)
+        cardController.view.setContentHuggingPriority(.defaultLow, for: .horizontal)
         view.addSubview(stackView)
         stackView.addArrangedSubview(flipButton)
         stackView.addArrangedSubview(nextButton)
@@ -79,17 +80,17 @@ class ReviewViewController: UIViewController {
         regularConstraints = [cardTopRegular, cardTrailingRegular, buttonTopRegular, buttonWidthRegular]
         regularConstraints.append(contentsOf: buttonCenter)
         
-        // compact constraints
-        let cardTopCompact = cardController.view.top(to: view.topAnchor, withOffset: Layout.Spacing.standard, activate: false)
         let cardTrailingCompact = cardController.view.trailing(to: stackView.leadingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let cardBottomCompact = cardController.view.bottom(to: view.bottomAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let cardCenterCompact = cardController.view.center(on: view, axis: .y, activate: false)
         
         let buttonCenterCompact = stackView.center(on: view, axis: .y, activate: false)
         let buttonLeadingCompact = stackView.leading(to: cardController.view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
         let buttonTrailingCompact = stackView.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let buttonWidthCompact = stackView.width(to: 200, activate: false)
         
-        compactConstraints = [cardTopCompact, cardTrailingCompact, cardBottomCompact, buttonLeadingCompact, buttonTrailingCompact]
+        compactConstraints = [cardTrailingCompact, buttonLeadingCompact, buttonTrailingCompact, buttonWidthCompact]
         compactConstraints.append(contentsOf: buttonCenterCompact)
+        compactConstraints.append(contentsOf: cardCenterCompact)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
