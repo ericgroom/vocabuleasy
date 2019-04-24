@@ -68,6 +68,7 @@ class ReviewRatingViewController: UIViewController {
     
     private func makeImageButton(image: UIImage, backgroundColor: UIColor, _ selector: Selector) -> UIButton {
         let button = RatingButton()
+        let shadowDistance: CGFloat = 4.0
         
         button.layer.cornerRadius = 8.0
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
@@ -75,14 +76,17 @@ class ReviewRatingViewController: UIViewController {
         button.setTitle(nil, for: .normal)
         button.backgroundColor = backgroundColor
         if let shadowColor = backgroundColor.darkened(by: 0.9) {
-            button.layer.shadowColor = shadowColor.cgColor
+            button.clipsToBounds = false
+            button.enabledShadowColor = shadowColor
             button.layer.shadowOpacity = 1.0
             button.layer.shadowRadius = 0.0
-            button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
-            button.clipsToBounds = false
+            button.layer.shadowOffset = CGSize(width: shadowDistance, height: shadowDistance)
+            button.adjustsImageWhenHighlighted = false
+            button.pressTransform = CGAffineTransform(translationX: shadowDistance, y: shadowDistance)
         }
        
         button.disabledBackgroundColor = .darkGray
+        button.disabledShadowColor = UIColor.darkGray.darkened(by: 0.5)
         
         let normalImage = image.withRenderingMode(.alwaysTemplate)
         
