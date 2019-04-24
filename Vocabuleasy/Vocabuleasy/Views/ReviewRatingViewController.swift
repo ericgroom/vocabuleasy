@@ -20,9 +20,9 @@ class ReviewRatingViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var wrongButton: UIButton = makeImageButton(image: #imageLiteral(resourceName: "cross"), #selector(wrongPressed))
-    private lazy var mehButton = makeImageButton(image: #imageLiteral(resourceName: "Tilde"), #selector(mehPressed))
-    private lazy var correctButton = makeImageButton(image: #imageLiteral(resourceName: "Check"), #selector(correctPressed))
+    private lazy var wrongButton: UIButton = makeImageButton(image: #imageLiteral(resourceName: "cross"), backgroundColor: Theme.Ratings.bad, #selector(wrongPressed))
+    private lazy var mehButton = makeImageButton(image: #imageLiteral(resourceName: "Tilde"), backgroundColor: Theme.Ratings.warning, #selector(mehPressed))
+    private lazy var correctButton = makeImageButton(image: #imageLiteral(resourceName: "Check"), backgroundColor: Theme.Ratings.good, #selector(correctPressed))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +66,22 @@ class ReviewRatingViewController: UIViewController {
         return button
     }
     
-    private func makeImageButton(image: UIImage, _ selector: Selector) -> UIButton {
+    private func makeImageButton(image: UIImage, backgroundColor: UIColor, _ selector: Selector) -> UIButton {
         let button = RatingButton()
         
         button.layer.cornerRadius = 8.0
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         button.addTarget(self, action: #selector(correctPressed), for: .touchUpInside)
         button.setTitle(nil, for: .normal)
-        button.backgroundColor = Theme.purple
+        button.backgroundColor = backgroundColor
+        if let shadowColor = backgroundColor.darkened(by: 0.9) {
+            button.layer.shadowColor = shadowColor.cgColor
+            button.layer.shadowOpacity = 1.0
+            button.layer.shadowRadius = 0.0
+            button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
+            button.clipsToBounds = false
+        }
+       
         button.disabledBackgroundColor = .darkGray
         
         let normalImage = image.withRenderingMode(.alwaysTemplate)
@@ -116,8 +124,8 @@ extension ReviewRatingViewController: Disableable {
     }
     
     func disable() {
-        wrongButton.isEnabled = false
-        mehButton.isEnabled = false
-        correctButton.isEnabled = false
+//        wrongButton.isEnabled = false
+//        mehButton.isEnabled = false
+//        correctButton.isEnabled = false
     }
 }
