@@ -69,13 +69,14 @@ class ReviewRatingViewController: UIViewController {
     private func makeImageButton(image: UIImage, backgroundColor: UIColor, _ selector: Selector) -> UIButton {
         let button = RatingButton()
         let shadowDistance: CGFloat = 4.0
+        let darkeningFactor: CGFloat = 0.9
         
         button.layer.cornerRadius = 8.0
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         button.addTarget(self, action: #selector(correctPressed), for: .touchUpInside)
         button.setTitle(nil, for: .normal)
-        button.backgroundColor = backgroundColor
-        if let shadowColor = backgroundColor.darkened(by: 0.9) {
+        button.enabledBackgroundColor = backgroundColor
+        if let shadowColor = backgroundColor.darkened(by: darkeningFactor) {
             button.clipsToBounds = false
             button.enabledShadowColor = shadowColor
             button.layer.shadowOpacity = 1.0
@@ -86,7 +87,7 @@ class ReviewRatingViewController: UIViewController {
         }
        
         button.disabledBackgroundColor = .darkGray
-        button.disabledShadowColor = UIColor.darkGray.darkened(by: 0.5)
+        button.disabledShadowColor = UIColor.darkGray.darkened(by: darkeningFactor)
         
         let normalImage = image.withRenderingMode(.alwaysTemplate)
         
@@ -128,8 +129,8 @@ extension ReviewRatingViewController: Disableable {
     }
     
     func disable() {
-//        wrongButton.isEnabled = false
-//        mehButton.isEnabled = false
-//        correctButton.isEnabled = false
+        wrongButton.isEnabled = false
+        mehButton.isEnabled = false
+        correctButton.isEnabled = false
     }
 }

@@ -16,12 +16,17 @@ class ReviewViewController: UIViewController {
     private var cardView: UIView { return cardController.view }
     private var controls: UIView { return controlsController.view }
     
+    private var cardGestureRecognizer: CardGestureRecognizer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
         
         cardController.delegate = self
         controlsController.delegate = self
+        
+        cardGestureRecognizer = CardGestureRecognizer(cardView: cardView)
+        cardGestureRecognizer?.delegate = self
         
         embed(cardController)
         embed(controlsController)

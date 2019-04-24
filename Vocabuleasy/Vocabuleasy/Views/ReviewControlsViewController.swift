@@ -85,11 +85,8 @@ class ReviewControlsViewController: UIViewController {
     }
 }
 
-protocol ReviewControlsDelegate: class {
-    func flip()
-    func next()
-    func previous()
-    func ratedCard(withRating rating: Rating)
+protocol ReviewControlsDelegate: ReviewSequenceDelegate, ReviewRatingDelegate {
+
 }
 
 protocol Disableable {

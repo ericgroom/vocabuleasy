@@ -12,12 +12,13 @@ class RatingButton: UIButton {
 
     var symbolImage: UIImage?
     
-    override var backgroundColor: UIColor? {
+    var enabledBackgroundColor: UIColor? {
         didSet {
-            _backgroundColor = backgroundColor
+            if isEnabled {
+                backgroundColor = enabledBackgroundColor
+            }
         }
     }
-    private var _backgroundColor: UIColor?
     
     var disabledBackgroundColor: UIColor? {
         didSet {
@@ -29,33 +30,31 @@ class RatingButton: UIButton {
     
     var enabledShadowColor: UIColor? {
         didSet {
-            guard let shadowColor = enabledShadowColor else { return }
             if isEnabled {
-                layer.shadowColor = shadowColor.cgColor
+                layer.shadowColor = enabledShadowColor?.cgColor
             }
         }
     }
     var disabledShadowColor: UIColor? {
         didSet {
-            guard let shadowColor = disabledShadowColor else { return }
             if !isEnabled {
-                layer.shadowColor = shadowColor.cgColor
+                layer.shadowColor = disabledShadowColor?.cgColor
             }
         }
     }
     
     override var isEnabled: Bool {
         didSet {
-            if let disabledColor = disabledBackgroundColor, !isEnabled {
-                backgroundColor = disabledColor
-            } else {
-                backgroundColor = _backgroundColor
-            }
-            
-            if let disabledColor = disabledShadowColor, !isEnabled {
-                layer.shadowColor = disabledColor.cgColor
-            } else {
-                layer.shadowColor = enabledShadowColor?.cgColor
+            let enabled = isEnabled
+            UIView.animate(withDuration: 0.15) { [weak self] in
+                guard let self = self else { return }
+                if enabled {
+                    self.backgroundColor = self.enabledBackgroundColor
+                    self.layer.shadowColor = self.enabledShadowColor?.cgColor
+                } else {
+                    self.backgroundColor = self.disabledBackgroundColor
+                    self.layer.shadowColor = self.disabledShadowColor?.cgColor
+                }
             }
         }
     }

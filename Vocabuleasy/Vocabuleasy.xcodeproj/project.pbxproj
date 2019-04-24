@@ -16,6 +16,7 @@
 		BA39F465226FED9200B5931D /* SymbolViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F464226FED9200B5931D /* SymbolViewProtocol.swift */; };
 		BA39F469226FFA4F00B5931D /* CheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F468226FFA4F00B5931D /* CheckmarkView.swift */; };
 		BA39F46D227018EA00B5931D /* RatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46C227018EA00B5931D /* RatingButton.swift */; };
+		BA39F46F22711AA400B5931D /* CardGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */; };
 		BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */; };
 		BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467C2269174F0037EE57 /* CardViewController.swift */; };
 		BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467E226926A30037EE57 /* ReviewViewController.swift */; };
@@ -60,6 +61,7 @@
 		BA39F464226FED9200B5931D /* SymbolViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolViewProtocol.swift; sourceTree = "<group>"; };
 		BA39F468226FFA4F00B5931D /* CheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkView.swift; sourceTree = "<group>"; };
 		BA39F46C227018EA00B5931D /* RatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingButton.swift; sourceTree = "<group>"; };
+		BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGestureRecognizer.swift; sourceTree = "<group>"; };
 		BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		BA5A467C2269174F0037EE57 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		BA5A467E226926A30037EE57 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				BA39F459226E910F00B5931D /* ReviewControlsViewController.swift */,
 				BA39F45B226E962F00B5931D /* ReviewSequenceViewController.swift */,
 				BA39F46C227018EA00B5931D /* RatingButton.swift */,
+				BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				BA39F465226FED9200B5931D /* SymbolViewProtocol.swift in Sources */,
 				BA39F463226FED5800B5931D /* TildeView.swift in Sources */,
 				BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */,
+				BA39F46F22711AA400B5931D /* CardGestureRecognizer.swift in Sources */,
 				BA39F45C226E962F00B5931D /* ReviewSequenceViewController.swift in Sources */,
 				BA39F45A226E910F00B5931D /* ReviewControlsViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
