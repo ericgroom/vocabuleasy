@@ -21,6 +21,8 @@ class CardViewController: UIViewController {
         }
     }
     
+    var flipDuration: TimeInterval = 0.4
+    
     private(set) var showingFront = true
     private(set) var animating = false
 
@@ -39,12 +41,12 @@ class CardViewController: UIViewController {
     func flipCard() {
         if showingFront {
             animating = true
-            UIView.transition(from: front, to: back, duration: 1.0, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
+            UIView.transition(from: front, to: back, duration: flipDuration, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
                 self?.animating = false
             })
         } else {
             animating = true
-            UIView.transition(from: back, to: front, duration: 1.0, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
+            UIView.transition(from: back, to: front, duration: flipDuration, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
                 self?.animating = false
             })
         }
