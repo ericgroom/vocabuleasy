@@ -11,52 +11,20 @@ import UIKit
 class ReviewViewController: UIViewController {
     
     private var cardController = ReviewDeckController()
-
-    private lazy var flipButton: UIButton = makeButton("flip", #selector(flipButtonPressed))
-    private lazy var nextButton: UIButton = makeButton("next", #selector(nextButtonPressed))
-    private lazy var prevButton: UIButton = makeButton("previous", #selector(prevButtonPressed))
-
-
-    private func makeButton(_ title: String, _ selector: Selector) -> UIButton {
-        let button = UIButton()
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = Theme.purple
-        button.tintColor = .white
-        button.layer.cornerRadius = 8.0
-        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        return button
-    }
+    private var controlsController = ReviewControlsViewController()
     
-    private var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = Layout.Spacing.small
-        return stackView
-    }()
-    
-    @objc func flipButtonPressed() {
-        cardController.flipCurrentCard()
-    }
-    
-    @objc func nextButtonPressed() {
-        cardController.nextCard()
-    }
-    
-    @objc func prevButtonPressed() {
-        cardController.previousCard()
-    }
+    private var cardView: UIView { return cardController.view }
+    private var controls: UIView { return controlsController.view }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
         
+        cardController.delegate = self
+        controlsController.delegate = self
+        
         embed(cardController)
-        cardController.view.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        view.addSubview(stackView)
-        stackView.addArrangedSubview(flipButton)
-        stackView.addArrangedSubview(nextButton)
-        stackView.addArrangedSubview(prevButton)
+        embed(controlsController)
         setupConstraints()
     }
     
@@ -67,26 +35,26 @@ class ReviewViewController: UIViewController {
     
     private func setupConstraints() {
         // universal
-        cardController.view.leading(to: view.leadingAnchor, withOffset: Layout.Spacing.standard)
-        cardController.view.height(to: cardController.view.widthAnchor, withMultiplier: 1/Layout.goldenRatio)
+        cardView.leading(to: view.leadingAnchor, withOffset: Layout.Spacing.standard)
+        cardView.height(to: cardView.widthAnchor, withMultiplier: 1/Layout.goldenRatio)
         
         // regular constraints
-        let cardTopRegular = cardController.view.top(to: view.topAnchor, withOffset: 64, activate: false)
-        let cardTrailingRegular = cardController.view.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let cardTopRegular = cardView.top(to: view.topAnchor, withOffset: 64, activate: false)
+        let cardTrailingRegular = cardView.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
         
-        let buttonWidthRegular = stackView.width(to: cardController.view, activate: false)
-        let buttonTopRegular = stackView.top(to: cardController.view.bottomAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let buttonCenter = stackView.center(on: view, axis: .x, activate: false)
+        let buttonWidthRegular = controls.width(to: cardView, activate: false)
+        let buttonTopRegular = controls.top(to: cardView.bottomAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let buttonCenter = controls.center(on: view, axis: .x, activate: false)
         regularConstraints = [cardTopRegular, cardTrailingRegular, buttonTopRegular, buttonWidthRegular]
         regularConstraints.append(contentsOf: buttonCenter)
         
-        let cardTrailingCompact = cardController.view.trailing(to: stackView.leadingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let cardCenterCompact = cardController.view.center(on: view, axis: .y, activate: false)
+        let cardTrailingCompact = cardView.trailing(to: controls.leadingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let cardCenterCompact = cardView.center(on: view, axis: .y, activate: false)
         
-        let buttonCenterCompact = stackView.center(on: view, axis: .y, activate: false)
-        let buttonLeadingCompact = stackView.leading(to: cardController.view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let buttonTrailingCompact = stackView.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let buttonWidthCompact = stackView.width(to: 200, activate: false)
+        let buttonCenterCompact = controls.center(on: view, axis: .y, activate: false)
+        let buttonLeadingCompact = controls.leading(to: cardView.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let buttonTrailingCompact = controls.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
+        let buttonWidthCompact = controls.width(to: 200, activate: false)
         
         compactConstraints = [cardTrailingCompact, buttonLeadingCompact, buttonTrailingCompact, buttonWidthCompact]
         compactConstraints.append(contentsOf: buttonCenterCompact)
@@ -107,5 +75,35 @@ class ReviewViewController: UIViewController {
             NSLayoutConstraint.activate(regularConstraints)
         }
         view.layoutIfNeeded()
+    }
+}
+
+// MARK: - delegates
+
+extension ReviewViewController: ReviewControlsDelegate {
+    func flip() {
+        cardController.flipCurrentCard()
+    }
+    
+    func next() {
+        cardController.nextCard()
+    }
+    
+    func previous() {
+        cardController.previousCard()
+    }
+    
+    func ratedCard(withRating rating: Rating) {
+        cardController.nextCard()
+    }
+}
+
+extension ReviewViewController: ReviewDeckDelegate {
+    func displayedCardUpdated(showingFront: Bool) {
+        if showingFront {
+            controlsController.disable()
+        } else {
+            controlsController.enable()
+        }
     }
 }

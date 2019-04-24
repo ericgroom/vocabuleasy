@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A9AE851A66B4C8A82AD47E17 /* Pods_Vocabuleasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F665677F1D4FF10E028AC972 /* Pods_Vocabuleasy.framework */; };
+		BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */; };
+		BA39F45A226E910F00B5931D /* ReviewControlsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F459226E910F00B5931D /* ReviewControlsViewController.swift */; };
+		BA39F45C226E962F00B5931D /* ReviewSequenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F45B226E962F00B5931D /* ReviewSequenceViewController.swift */; };
+		BA39F45E226FE60E00B5931D /* RatingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F45D226FE60E00B5931D /* RatingButton.swift */; };
+		BA39F461226FE8AB00B5931D /* CrossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F460226FE8AB00B5931D /* CrossView.swift */; };
 		BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */; };
 		BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467C2269174F0037EE57 /* CardViewController.swift */; };
 		BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467E226926A30037EE57 /* ReviewViewController.swift */; };
@@ -44,6 +49,11 @@
 		33485D05581F4117A95FF0DE /* Pods-Vocabuleasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.debug.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.debug.xcconfig"; sourceTree = "<group>"; };
 		8836164974147DCF5AFCE490 /* Pods-Vocabuleasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.release.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.release.xcconfig"; sourceTree = "<group>"; };
 		B2ACA136365AF45A45370C29 /* Pods_VocabuleasyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VocabuleasyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRatingViewController.swift; sourceTree = "<group>"; };
+		BA39F459226E910F00B5931D /* ReviewControlsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewControlsViewController.swift; sourceTree = "<group>"; };
+		BA39F45B226E962F00B5931D /* ReviewSequenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSequenceViewController.swift; sourceTree = "<group>"; };
+		BA39F45D226FE60E00B5931D /* RatingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingButton.swift; sourceTree = "<group>"; };
+		BA39F460226FE8AB00B5931D /* CrossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossView.swift; sourceTree = "<group>"; };
 		BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		BA5A467C2269174F0037EE57 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		BA5A467E226926A30037EE57 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +109,14 @@
 				DEA39B53398684573B934365 /* Pods-VocabuleasyTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BA39F45F226FE89300B5931D /* Symbols */ = {
+			isa = PBXGroup;
+			children = (
+				BA39F460226FE8AB00B5931D /* CrossView.swift */,
+			);
+			path = Symbols;
 			sourceTree = "<group>";
 		};
 		BA5E8437226BA5B100D5B6ED /* Model */ = {
@@ -176,6 +194,7 @@
 		BAF4AC8B2268E19800163D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA39F45F226FE89300B5931D /* Symbols */,
 				BAF4AC8C2268E1B100163D2C /* CardBackgroundView.swift */,
 				BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */,
 				BA5A467C2269174F0037EE57 /* CardViewController.swift */,
@@ -183,6 +202,10 @@
 				BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */,
 				BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */,
 				BA67403F226C273900762C79 /* CardFieldBuilder.swift */,
+				BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */,
+				BA39F459226E910F00B5931D /* ReviewControlsViewController.swift */,
+				BA39F45B226E962F00B5931D /* ReviewSequenceViewController.swift */,
+				BA39F45D226FE60E00B5931D /* RatingButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -368,8 +391,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA39F45E226FE60E00B5931D /* RatingButton.swift in Sources */,
 				BAF4AC8A2268E18500163D2C /* RootViewController.swift in Sources */,
 				BAF4AC8F2268E28B00163D2C /* Constraints.swift in Sources */,
+				BA39F461226FE8AB00B5931D /* CrossView.swift in Sources */,
 				BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */,
 				BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */,
 				BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */,
@@ -377,7 +402,10 @@
 				BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */,
 				BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */,
 				BAF4AC852268DD6900163D2C /* Theme.swift in Sources */,
+				BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */,
 				BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */,
+				BA39F45C226E962F00B5931D /* ReviewSequenceViewController.swift in Sources */,
+				BA39F45A226E910F00B5931D /* ReviewControlsViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
 				BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */,

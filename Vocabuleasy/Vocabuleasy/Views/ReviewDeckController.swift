@@ -11,13 +11,20 @@ import Hero
 
 class ReviewDeckController: UIViewController {
     
-    var cards: [CardViewController] = []
+    weak var delegate: ReviewDeckDelegate?
+    
+    private var cards: [CardViewController] = []
     
     var currentIndex: Int?
     
     var currentView: UIView? {
         guard let i = currentIndex else { return nil }
         return cards[i].view
+    }
+    
+    var showingFront: Bool? {
+        guard let i = currentIndex else { return nil }
+        return cards[i].showingFront
     }
     
     override func viewDidLoad() {
@@ -30,6 +37,7 @@ class ReviewDeckController: UIViewController {
             currentIndex = 0
             embed(cards[currentIndex!])
             cards[currentIndex!].view.fill(parent: view)
+            delegate?.displayedCardUpdated(showingFront: true)
         }
     }
     
@@ -57,6 +65,7 @@ class ReviewDeckController: UIViewController {
         guard let index = currentIndex else { return }
         let current = cards[index]
         current.flipCard()
+        delegate?.displayedCardUpdated(showingFront: current.showingFront)
     }
     
     // MARK: - Animations
@@ -78,6 +87,7 @@ class ReviewDeckController: UIViewController {
         next.hero.modalAnimationType = .zoomSlide(direction: direction)
         Hero.shared.transition(from: current, to: next, in: view) { [weak self] completed in
             self?.currentIndex = nextIndex
+            self?.delegate?.displayedCardUpdated(showingFront: next.showingFront)
         }
     }
     
@@ -98,4 +108,8 @@ class ReviewDeckController: UIViewController {
         }
     }
 
+}
+
+protocol ReviewDeckDelegate: class {
+    func displayedCardUpdated(showingFront: Bool)
 }

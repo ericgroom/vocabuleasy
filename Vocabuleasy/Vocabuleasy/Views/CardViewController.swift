@@ -10,8 +10,8 @@ import UIKit
 
 class CardViewController: UIViewController {
     
-    let front = CardBackgroundView()
-    let back = CardBackgroundView()
+    private let front = CardBackgroundView()
+    private let back = CardBackgroundView()
     
     var cardFields: CardFields? {
         didSet {
@@ -21,8 +21,8 @@ class CardViewController: UIViewController {
         }
     }
     
-    private var showingFront = true
-    private var animating = false
+    private(set) var showingFront = true
+    private(set) var animating = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
