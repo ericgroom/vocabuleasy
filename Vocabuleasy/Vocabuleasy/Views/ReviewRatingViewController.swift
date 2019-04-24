@@ -16,19 +16,21 @@ class ReviewRatingViewController: UIViewController {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
+        stackView.spacing = Layout.Spacing.standard
         return stackView
     }()
     
-    private lazy var wrongButton = makeButton("Wrong", #selector(wrongPressed))
-    private lazy var mehButton = makeButton("Meh", #selector(mehPressed))
-    private lazy var correctButton = makeButton("Right", #selector(correctPressed))
+    private lazy var wrongButton: UIButton = makeImageButton(image: #imageLiteral(resourceName: "cross"), #selector(wrongPressed))
+    private lazy var mehButton = makeImageButton(image: #imageLiteral(resourceName: "Tilde"), #selector(mehPressed))
+    private lazy var correctButton = makeImageButton(image: #imageLiteral(resourceName: "Check"), #selector(correctPressed))
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        stackView.addArrangedSubview(wrongButton)
-        stackView.addArrangedSubview(mehButton)
-        stackView.addArrangedSubview(correctButton)
+        for button in [wrongButton, mehButton, correctButton] {
+            button.width(to: button.heightAnchor, withMultiplier: 1.0)
+            stackView.addArrangedSubview(button)
+        }
         view.addSubview(stackView)
         stackView.fill(parent: view)
     }
@@ -42,6 +44,45 @@ class ReviewRatingViewController: UIViewController {
         button.layer.cornerRadius = 8.0
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
         button.addTarget(self, action: selector, for: .touchUpInside)
+        return button
+    }
+    
+    private func makeSymbolButton(symbol: SymbolView.Type, _ selector: Selector) -> UIButton {
+        let button = UIButton()
+        
+        button.layer.cornerRadius = 8.0
+        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        button.setTitle(nil, for: .normal)
+        button.backgroundColor = Theme.purple
+        
+        let symbolView = symbol.init()
+        button.addSubview(symbolView)
+        symbolView.color = .white
+        symbolView.backgroundColor = .clear
+        symbolView.fill(parent: button, withOffset: Layout.Spacing.standard)
+        symbolView.width(to: symbolView.heightAnchor, withMultiplier: 1.0).priority = .defaultHigh
+        symbolView.lineWidth = 15
+        return button
+    }
+    
+    private func makeImageButton(image: UIImage, _ selector: Selector) -> UIButton {
+        let button = RatingButton()
+        
+        button.layer.cornerRadius = 8.0
+        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
+        button.addTarget(self, action: #selector(correctPressed), for: .touchUpInside)
+        button.setTitle(nil, for: .normal)
+        button.backgroundColor = Theme.purple
+        button.disabledBackgroundColor = .darkGray
+        
+        let normalImage = image.withRenderingMode(.alwaysTemplate)
+        
+        button.setImage(normalImage, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.alpha = 1.0
+        button.imageView?.alpha = 1.0
+        button.tintColor = .white
         return button
     }
     
