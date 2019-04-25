@@ -35,39 +35,8 @@ class ReviewRatingViewController: UIViewController {
         stackView.fill(parent: view)
     }
     
-    private func makeButton(_ title: String, _ selector: Selector) -> UIButton {
-        let button = UIButton()
-        button.setTitle(title, for: .normal)
-        button.backgroundColor = Theme.purple
-        button.tintColor = .white
-        button.setTitleColor(.darkGray, for: .disabled)
-        button.layer.cornerRadius = 8.0
-        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        return button
-    }
-    
-    private func makeSymbolButton(symbol: SymbolView.Type, _ selector: Selector) -> UIButton {
-        let button = UIButton()
-        
-        button.layer.cornerRadius = 8.0
-        button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        button.setTitle(nil, for: .normal)
-        button.backgroundColor = Theme.purple
-        
-        let symbolView = symbol.init()
-        button.addSubview(symbolView)
-        symbolView.color = .white
-        symbolView.backgroundColor = .clear
-        symbolView.fill(parent: button, withOffset: Layout.Spacing.standard)
-        symbolView.width(to: symbolView.heightAnchor, withMultiplier: 1.0).priority = .defaultHigh
-        symbolView.lineWidth = 15
-        return button
-    }
-    
     private func makeImageButton(image: UIImage, backgroundColor: UIColor, _ selector: Selector) -> UIButton {
-        let button = RatingButton()
+        let button = ThreeDPressButton()
         let shadowDistance: CGFloat = 4.0
         let darkeningFactor: CGFloat = 0.9
         
@@ -89,9 +58,9 @@ class ReviewRatingViewController: UIViewController {
         button.disabledBackgroundColor = .darkGray
         button.disabledShadowColor = UIColor.darkGray.darkened(by: darkeningFactor)
         
-        let normalImage = image.withRenderingMode(.alwaysTemplate)
+        let templateImage = image.withRenderingMode(.alwaysTemplate)
         
-        button.setImage(normalImage, for: .normal)
+        button.setImage(templateImage, for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
         button.alpha = 1.0
         button.imageView?.alpha = 1.0

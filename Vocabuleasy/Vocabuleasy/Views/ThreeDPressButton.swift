@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RatingButton: UIButton {
+class ThreeDPressButton: UIButton {
 
     var symbolImage: UIImage?
     
