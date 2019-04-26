@@ -32,6 +32,19 @@ class CardBackgroundView: UIView {
         
         addSubview(stackView)
         stackView.fill(parent: self, withOffset: Layout.Spacing.small)
+        
+        let delta = 10
+        let horizontalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.x", type: .tiltAlongHorizontalAxis)
+        horizontalMotionEffect.minimumRelativeValue = -delta
+        horizontalMotionEffect.maximumRelativeValue = delta
+        let verticalMotionEffect = UIInterpolatingMotionEffect(keyPath: "center.y", type: .tiltAlongVerticalAxis)
+        verticalMotionEffect.minimumRelativeValue = -delta
+        verticalMotionEffect.maximumRelativeValue = delta
+        
+        let effectGroup = UIMotionEffectGroup()
+        effectGroup.motionEffects = [horizontalMotionEffect, verticalMotionEffect]
+        
+        self.addMotionEffect(effectGroup)
     }
     
     override init(frame: CGRect) {

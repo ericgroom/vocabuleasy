@@ -11,7 +11,9 @@ import Hero
 
 class ReviewDeckController: UIViewController {
     
-    let cards = [CardViewController(), CardViewController(), CardViewController()]
+    weak var delegate: ReviewDeckDelegate?
+    
+    private var cards: [CardViewController] = []
     
     var currentIndex: Int?
     
@@ -20,14 +22,22 @@ class ReviewDeckController: UIViewController {
         return cards[i].view
     }
     
+    var showingFront: Bool? {
+        guard let i = currentIndex else { return nil }
+        return cards[i].showingFront
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hero.isEnabled = true
+        
+        generateTestCards()
         
         if cards.count > 0 {
             currentIndex = 0
             embed(cards[currentIndex!])
             cards[currentIndex!].view.fill(parent: view)
+            delegate?.displayedCardUpdated(showingFront: true)
         }
     }
     
@@ -55,6 +65,7 @@ class ReviewDeckController: UIViewController {
         guard let index = currentIndex else { return }
         let current = cards[index]
         current.flipCard()
+        delegate?.displayedCardUpdated(showingFront: current.showingFront)
     }
     
     // MARK: - Animations
@@ -76,7 +87,29 @@ class ReviewDeckController: UIViewController {
         next.hero.modalAnimationType = .zoomSlide(direction: direction)
         Hero.shared.transition(from: current, to: next, in: view) { [weak self] completed in
             self?.currentIndex = nextIndex
+            self?.delegate?.displayedCardUpdated(showingFront: next.showingFront)
+        }
+    }
+    
+    // MARK: - Mock data
+    func generateTestCards() {
+        for i in 0...4 {
+            let cardController = CardViewController()
+            let frontLabel = UILabel()
+            frontLabel.text = "front \(i)"
+            let backLabel = UILabel()
+            backLabel.text = "back \(i)"
+            let cardFields = CardFieldBuilder()
+                .addFront(view: frontLabel)
+                .addBack(view: backLabel)
+                .build()
+            cardController.cardFields = cardFields
+            cards.append(cardController)
         }
     }
 
+}
+
+protocol ReviewDeckDelegate: class {
+    func displayedCardUpdated(showingFront: Bool)
 }

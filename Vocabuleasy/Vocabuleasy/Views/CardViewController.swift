@@ -10,11 +10,21 @@ import UIKit
 
 class CardViewController: UIViewController {
     
-    let front = CardBackgroundView()
-    let back = CardBackgroundView()
+    private let front = CardBackgroundView()
+    private let back = CardBackgroundView()
     
-    private var showingFront = true
-    private var animating = false
+    var cardFields: CardFields? {
+        didSet {
+            guard let fields = cardFields else { return }
+            fields.frontFields.forEach { front.addArrangedSubview($0) }
+            fields.backFields.forEach { back.addArrangedSubview($0) }
+        }
+    }
+    
+    var flipDuration: TimeInterval = 0.4
+    
+    private(set) var showingFront = true
+    private(set) var animating = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,33 +36,17 @@ class CardViewController: UIViewController {
         
         front.fill(parent: view)
         back.fill(parent: view)
-        
-        let frontLabel = UILabel()
-        frontLabel.text = "front"
-        front.addArrangedSubview(frontLabel)
-        
-        makeLabels(count: 50).forEach {
-            back.addArrangedSubview($0)
-        }
-    }
-    
-    private func makeLabels(count: Int) -> [UILabel] {
-        return (0...count).map { i in
-            let label = UILabel()
-            label.text = "Label \(i)"
-            return label
-        }
     }
     
     func flipCard() {
         if showingFront {
             animating = true
-            UIView.transition(from: front, to: back, duration: 1.0, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
+            UIView.transition(from: front, to: back, duration: flipDuration, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
                 self?.animating = false
             })
         } else {
             animating = true
-            UIView.transition(from: back, to: front, duration: 1.0, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
+            UIView.transition(from: back, to: front, duration: flipDuration, options: [.transitionFlipFromLeft, .showHideTransitionViews, .preferredFramesPerSecond60, .curveEaseInOut, .beginFromCurrentState], completion: { [weak self] completed in
                 self?.animating = false
             })
         }
