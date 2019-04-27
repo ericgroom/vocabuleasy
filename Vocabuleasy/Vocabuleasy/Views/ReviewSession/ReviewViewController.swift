@@ -23,6 +23,8 @@ class ReviewViewController: UIViewController {
         view.backgroundColor = Theme.green
         navigationItem.title = "Review"
         
+        hero.isEnabled = true
+        
         cardController.delegate = self
         controlsController.delegate = self
         
@@ -32,6 +34,8 @@ class ReviewViewController: UIViewController {
         embed(cardController)
         embed(controlsController)
         setupConstraints()
+        
+        cardView.hero.id = "cardBackground"
     }
     
     // MARK: - Autolayout

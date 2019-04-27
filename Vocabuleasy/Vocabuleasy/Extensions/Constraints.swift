@@ -37,16 +37,16 @@ extension UIView {
     // - MARK: size
     
     @discardableResult
-    func width(_ mode: Mode = .equal, to parent: UIView, activate: Bool = true) -> NSLayoutConstraint {
+    func width(_ mode: Mode = .equal, to parent: UIView, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            c = self.widthAnchor.constraint(equalTo: parent.widthAnchor)
+            c = self.widthAnchor.constraint(equalTo: parent.widthAnchor, constant: offset)
         case .greaterOrEqual:
-            c = self.widthAnchor.constraint(greaterThanOrEqualTo: parent.widthAnchor)
+            c = self.widthAnchor.constraint(greaterThanOrEqualTo: parent.widthAnchor, constant: offset)
         case .lessOrEqual:
-            c = self.widthAnchor.constraint(lessThanOrEqualTo: parent.widthAnchor)
+            c = self.widthAnchor.constraint(lessThanOrEqualTo: parent.widthAnchor, constant: offset)
         }
         if activate {
             c.isActive = true
@@ -74,16 +74,16 @@ extension UIView {
     }
     
     @discardableResult
-    func width(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
+    func width(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            c = self.widthAnchor.constraint(equalTo: dimension, multiplier: multiplier)
+            c = self.widthAnchor.constraint(equalTo: dimension, multiplier: multiplier, constant: offset)
         case .greaterOrEqual:
-            c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
+            c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: offset)
         case .lessOrEqual:
-            c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
+            c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: offset)
         }
         if activate {
             c.isActive = true
@@ -93,16 +93,16 @@ extension UIView {
     
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to parent: UIView, activate: Bool = true) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to parent: UIView, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            c = self.heightAnchor.constraint(equalTo: parent.heightAnchor)
+            c = self.heightAnchor.constraint(equalTo: parent.heightAnchor, constant: offset)
         case .greaterOrEqual:
-            c = self.heightAnchor.constraint(greaterThanOrEqualTo: parent.heightAnchor)
+            c = self.heightAnchor.constraint(greaterThanOrEqualTo: parent.heightAnchor, constant: offset)
         case .lessOrEqual:
-            c = self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor)
+            c = self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor, constant: offset)
         }
         if activate {
             c.isActive = true
@@ -129,16 +129,16 @@ extension UIView {
     }
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
         case .equal:
-            c = self.heightAnchor.constraint(equalTo: dimension, multiplier: multiplier)
+            c = self.heightAnchor.constraint(equalTo: dimension, multiplier: multiplier, constant: offset)
         case .greaterOrEqual:
-            c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
+            c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: offset)
         case .lessOrEqual:
-            c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier)
+            c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: offset)
         }
         if activate {
             c.isActive = true
