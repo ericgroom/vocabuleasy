@@ -15,7 +15,15 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
-        embed(reviewVC)
-        reviewVC.view.fill(parent: view)
+        setupNavbar()
+        navigationController?.pushViewController(reviewVC, animated: false)
+    }
+    
+    func setupNavbar() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = Theme.green
+        navigationController?.navigationBar.tintColor = Theme.white
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: Theme.white]
     }
 }

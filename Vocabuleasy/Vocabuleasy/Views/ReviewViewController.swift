@@ -21,6 +21,7 @@ class ReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
+        navigationItem.title = "Review"
         
         cardController.delegate = self
         controlsController.delegate = self
@@ -44,7 +45,7 @@ class ReviewViewController: UIViewController {
         cardView.height(to: cardView.widthAnchor, withMultiplier: 1/Layout.goldenRatio)
         
         // regular constraints
-        let cardTopRegular = cardView.top(to: view.topAnchor, withOffset: 64, activate: false)
+        let cardTopRegular = cardView.top(to: view.topAnchor, withOffset: Layout.Spacing.standard, activate: false)
         let cardTrailingRegular = cardView.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
         
         let buttonWidthRegular = controls.width(to: cardView, activate: false)
