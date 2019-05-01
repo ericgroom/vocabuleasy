@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Hero
 
 class DeckDetailViewController: UIViewController {
     
@@ -34,8 +33,6 @@ class DeckDetailViewController: UIViewController {
         navigationItem.title = "Deck Detail" // TODO update with deck name
         setupNavbar()
         
-        hero.isEnabled = true
-        
         view.addSubview(card)
         card.center(on: view)
         card.leading(to: view.leadingAnchor, withOffset: Layout.Spacing.standard)
@@ -54,8 +51,6 @@ class DeckDetailViewController: UIViewController {
     }
     
     private func setupNavbar() {
-        navigationController?.hero.isEnabled = true
-        navigationController?.hero.navigationAnimationType = .selectBy(presenting: .slide(direction: .left), dismissing: .slide(direction: .right))
         NavigationStyler.applyTheme(to: navigationController)
     }
 
