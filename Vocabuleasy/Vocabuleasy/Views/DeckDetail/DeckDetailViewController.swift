@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Hero
 
 class DeckDetailViewController: UIViewController {
     
@@ -30,7 +31,7 @@ class DeckDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
-        navigationItem.title = "Deck Detail"
+        navigationItem.title = "Deck Detail" // TODO update with deck name
         setupNavbar()
         
         hero.isEnabled = true
@@ -57,6 +58,7 @@ class DeckDetailViewController: UIViewController {
         navigationController?.hero.navigationAnimationType = .selectBy(presenting: .slide(direction: .left), dismissing: .slide(direction: .right))
         NavigationStyler.applyTheme(to: navigationController)
     }
+
     
 
 }
