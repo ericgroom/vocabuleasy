@@ -19,6 +19,7 @@
 		BA5B33472274CB6400E06E81 /* DeckDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B33462274CB6400E06E81 /* DeckDetailViewController.swift */; };
 		BA5B334C2274F2C600E06E81 /* NavigationStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334B2274F2C600E06E81 /* NavigationStyler.swift */; };
 		BA5B334E2274F6BE00E06E81 /* ButtonStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334D2274F6BE00E06E81 /* ButtonStyler.swift */; };
+		BA5B33502274FA4D00E06E81 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */; };
 		BA5E8432226B8A3000D5B6ED /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8431226B8A3000D5B6ED /* UIViewController.swift */; };
 		BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8433226B90DC00D5B6ED /* Layout.swift */; };
 		BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */; };
@@ -63,6 +64,7 @@
 		BA5B33462274CB6400E06E81 /* DeckDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckDetailViewController.swift; sourceTree = "<group>"; };
 		BA5B334B2274F2C600E06E81 /* NavigationStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStyler.swift; sourceTree = "<group>"; };
 		BA5B334D2274F6BE00E06E81 /* ButtonStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyler.swift; sourceTree = "<group>"; };
+		BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		BA5E8431226B8A3000D5B6ED /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BA5E8433226B90DC00D5B6ED /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeckController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 			path = DeckDetail;
 			sourceTree = "<group>";
 		};
+		BA5B33512274FA5000E06E81 /* AddCard */ = {
+			isa = PBXGroup;
+			children = (
+				BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */,
+			);
+			path = AddCard;
+			sourceTree = "<group>";
+		};
 		BA5E8437226BA5B100D5B6ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +238,7 @@
 		BAF4AC8B2268E19800163D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA5B33512274FA5000E06E81 /* AddCard */,
 				BA5B334A2274F29C00E06E81 /* DeckDetail */,
 				BA5B33492274F23F00E06E81 /* Shared */,
 				BA5B33482274F22C00E06E81 /* ReviewSession */,
@@ -424,6 +435,7 @@
 				BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */,
 				BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */,
 				BA5E8432226B8A3000D5B6ED /* UIViewController.swift in Sources */,
+				BA5B33502274FA4D00E06E81 /* AddCardViewController.swift in Sources */,
 				BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */,
 				BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */,
 				BAF4AC852268DD6900163D2C /* Theme.swift in Sources */,

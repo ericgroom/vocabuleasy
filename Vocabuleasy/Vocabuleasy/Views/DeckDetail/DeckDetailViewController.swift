@@ -22,6 +22,7 @@ class DeckDetailViewController: UIViewController {
         let button = UIButton()
         ButtonStyler.outline(button, foreground: Theme.purple)
         button.setTitle("Add New", for: .normal)
+        button.addTarget(self, action: #selector(addNewButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -50,10 +51,13 @@ class DeckDetailViewController: UIViewController {
         navigationController?.pushViewController(reviewVC, animated: true)
     }
     
+    @objc func addNewButtonPressed() {
+        let addNewVc = AddCardViewController()
+        navigationController?.pushViewController(addNewVc, animated: true)
+    }
+    
     private func setupNavbar() {
         NavigationStyler.applyTheme(to: navigationController)
     }
-
-    
 
 }
