@@ -97,13 +97,13 @@ class ReviewDeckController: UIViewController {
             let cardController = CardViewController()
             let frontLabel = UILabel()
             frontLabel.text = "front \(i)"
+            frontLabel.textAlignment = .center
             let backLabel = UILabel()
             backLabel.text = "back \(i)"
-            let cardFields = CardFieldBuilder()
-                .addFront(view: frontLabel)
-                .addBack(view: backLabel)
-                .build()
-            cardController.cardFields = cardFields
+            backLabel.textAlignment = .center
+            let frontFields = CardFieldBuilder().addField(view: frontLabel).build()
+            let backFields = CardFieldBuilder().addField(view: backLabel).build()
+            cardController.cardFields = CardFields(frontFields: frontFields, backFields: backFields)
             cards.append(cardController)
         }
     }

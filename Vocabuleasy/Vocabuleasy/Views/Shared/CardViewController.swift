@@ -16,8 +16,16 @@ class CardViewController: UIViewController {
     var cardFields: CardFields? {
         didSet {
             guard let fields = cardFields else { return }
-            fields.frontFields.forEach { front.addArrangedSubview($0) }
-            fields.backFields.forEach { back.addArrangedSubview($0) }
+            fields.frontFields.forEach {
+                front.addArrangedSubview($0)
+                $0.width(to: front, withOffset: -Layout.Spacing.standard*2)
+                $0.center(on: front, axis: .x)
+            }
+            fields.backFields.forEach {
+                back.addArrangedSubview($0)
+                $0.width(to: back, withOffset: -Layout.Spacing.standard*2)
+                $0.center(on: back, axis: .x)
+            }
         }
     }
     
