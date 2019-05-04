@@ -30,6 +30,10 @@
 		BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */; };
 		BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403F226C273900762C79 /* CardFieldBuilder.swift */; };
 		BAC5F728227A4EC800C5B2CD /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */; };
+		BAD9C589227DFED800F1415D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C588227DFED800F1415D /* Card.swift */; };
+		BAD9C58B227DFF1700F1415D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58A227DFF1700F1415D /* Deck.swift */; };
+		BAD9C58D227DFFED00F1415D /* ReviewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58C227DFFED00F1415D /* ReviewSession.swift */; };
+		BAD9C58F227E009A00F1415D /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58E227E009A00F1415D /* Rating.swift */; };
 		BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */; };
 		BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC652268D9E700163D2C /* Vocabuleasy.xcdatamodeld */; };
 		BAF4AC692268D9E700163D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC682268D9E700163D2C /* Assets.xcassets */; };
@@ -80,6 +84,10 @@
 		BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimationController.swift; sourceTree = "<group>"; };
 		BA67403F226C273900762C79 /* CardFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldBuilder.swift; sourceTree = "<group>"; };
 		BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
+		BAD9C588227DFED800F1415D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Vocabuleasy/Card.swift; sourceTree = SOURCE_ROOT; };
+		BAD9C58A227DFF1700F1415D /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		BAD9C58C227DFFED00F1415D /* ReviewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSession.swift; sourceTree = "<group>"; };
+		BAD9C58E227E009A00F1415D /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
 		BAF4AC5B2268D9E700163D2C /* Vocabuleasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabuleasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF4AC662268D9E700163D2C /* Vocabuleasy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vocabuleasy.xcdatamodel; sourceTree = "<group>"; };
@@ -189,6 +197,10 @@
 		BA5E8437226BA5B100D5B6ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BAD9C588227DFED800F1415D /* Card.swift */,
+				BAD9C58A227DFF1700F1415D /* Deck.swift */,
+				BAD9C58C227DFFED00F1415D /* ReviewSession.swift */,
+				BAD9C58E227E009A00F1415D /* Rating.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -460,11 +472,14 @@
 				BAF4AC8A2268E18500163D2C /* RootViewController.swift in Sources */,
 				BAF4AC8F2268E28B00163D2C /* Constraints.swift in Sources */,
 				BA5B334C2274F2C600E06E81 /* NavigationStyler.swift in Sources */,
+				BAD9C58D227DFFED00F1415D /* ReviewSession.swift in Sources */,
 				BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */,
 				BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */,
 				BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */,
+				BAD9C589227DFED800F1415D /* Card.swift in Sources */,
 				BA5E8432226B8A3000D5B6ED /* UIViewController.swift in Sources */,
 				BA5B33502274FA4D00E06E81 /* AddCardViewController.swift in Sources */,
+				BAD9C58B227DFF1700F1415D /* Deck.swift in Sources */,
 				BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */,
 				BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */,
 				BAF4AC852268DD6900163D2C /* Theme.swift in Sources */,
@@ -480,6 +495,7 @@
 				BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
+				BAD9C58F227E009A00F1415D /* Rating.swift in Sources */,
 				BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */,
 				BAF4AC8D2268E1B100163D2C /* CardBackgroundView.swift in Sources */,
 				BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */,

@@ -10,6 +10,12 @@ import UIKit
 
 class ReviewViewController: UIViewController {
     
+    var reviewSession: ReviewSession? {
+        didSet {
+            cardController.reviewSession = reviewSession
+        }
+    }
+    
     private var cardController = ReviewDeckController()
     private var controlsController = ReviewControlsViewController()
     

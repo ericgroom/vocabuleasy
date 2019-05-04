@@ -82,10 +82,6 @@ class ReviewRatingViewController: UIViewController {
 
 }
 
-enum Rating {
-    case correct, meh, wrong
-}
-
 protocol ReviewRatingDelegate: class {
     func ratedCard(withRating rating: Rating)
 }

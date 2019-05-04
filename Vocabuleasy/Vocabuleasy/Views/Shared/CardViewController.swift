@@ -10,24 +10,20 @@ import UIKit
 
 class CardViewController: UIViewController {
     
-    private let front = CardBackgroundView()
-    private let back = CardBackgroundView()
-    
-    var cardFields: CardFields? {
+    var model: Card? {
         didSet {
-            guard let fields = cardFields else { return }
-            fields.frontFields.forEach {
-                front.addArrangedSubview($0)
-                $0.width(to: front, withOffset: -Layout.Spacing.standard*2)
-                $0.center(on: front, axis: .x)
-            }
-            fields.backFields.forEach {
-                back.addArrangedSubview($0)
-                $0.width(to: back, withOffset: -Layout.Spacing.standard*2)
-                $0.center(on: back, axis: .x)
-            }
+            guard let model = model else { return }
+            let frontLabel = UILabel()
+            frontLabel.text = model.front
+            front.addArrangedSubview(frontLabel)
+            let backLabel = UILabel()
+            backLabel.text = model.back
+            back.addArrangedSubview(backLabel)
         }
     }
+    
+    private let front = CardBackgroundView()
+    private let back = CardBackgroundView()
     
     var flipDuration: TimeInterval = 0.4
     
