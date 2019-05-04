@@ -9,6 +9,9 @@
 import UIKit
 
 class ShakeAnimationController {
+    
+    private init() {}
+    
     static func shake(_ view: UIView, maxAngleInRadians maxAngle: CGFloat, duration: TimeInterval) {
         let shakeDuration: TimeInterval = 0.2
         var multiplier: CGFloat = 1
