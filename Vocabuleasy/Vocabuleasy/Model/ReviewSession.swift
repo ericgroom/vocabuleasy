@@ -54,7 +54,7 @@ class ReviewSession {
         return currentIndex-1 >= 0
     }
     
-    func previousCard() -> Card? {
+    func goBack() -> Card? {
         if canGoBack {
             currentIndex -= 1
             return get(atIndex: currentIndex)

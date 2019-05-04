@@ -34,6 +34,7 @@
 		BAD9C58B227DFF1700F1415D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58A227DFF1700F1415D /* Deck.swift */; };
 		BAD9C58D227DFFED00F1415D /* ReviewSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58C227DFFED00F1415D /* ReviewSession.swift */; };
 		BAD9C58F227E009A00F1415D /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58E227E009A00F1415D /* Rating.swift */; };
+		BAD9C593227E35EB00F1415D /* ReviewSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C592227E35EB00F1415D /* ReviewSessionTests.swift */; };
 		BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */; };
 		BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC652268D9E700163D2C /* Vocabuleasy.xcdatamodeld */; };
 		BAF4AC692268D9E700163D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC682268D9E700163D2C /* Assets.xcassets */; };
@@ -88,6 +89,7 @@
 		BAD9C58A227DFF1700F1415D /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		BAD9C58C227DFFED00F1415D /* ReviewSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSession.swift; sourceTree = "<group>"; };
 		BAD9C58E227E009A00F1415D /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		BAD9C592227E35EB00F1415D /* ReviewSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionTests.swift; sourceTree = "<group>"; };
 		BAF4AC5B2268D9E700163D2C /* Vocabuleasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabuleasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF4AC662268D9E700163D2C /* Vocabuleasy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vocabuleasy.xcdatamodel; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 		BAF4AC752268D9E800163D2C /* VocabuleasyTests */ = {
 			isa = PBXGroup;
 			children = (
+				BAD9C592227E35EB00F1415D /* ReviewSessionTests.swift */,
 				BAF4AC762268D9E800163D2C /* VocabuleasyTests.swift */,
 				BAF4AC782268D9E800163D2C /* Info.plist */,
 			);
@@ -508,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAD9C593227E35EB00F1415D /* ReviewSessionTests.swift in Sources */,
 				BAF4AC772268D9E800163D2C /* VocabuleasyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

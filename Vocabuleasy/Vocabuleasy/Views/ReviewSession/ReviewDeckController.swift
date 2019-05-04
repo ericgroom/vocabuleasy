@@ -60,7 +60,7 @@ class ReviewDeckController: UIViewController {
     
     func previousCard() {
         guard let session = reviewSession else { return }
-        let prev = session.previousCard()
+        let prev = session.goBack()
         if let card = prev {
             transition(to: card, direction: .backward)
         } else {
