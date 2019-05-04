@@ -7,48 +7,64 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class AddCardViewController: KeyboardViewController {
+    
+    weak var delegate: AddCardDelegate?
 
-    private let card = CardViewController()
     private var cardBottomConstraint: NSLayoutConstraint?
+    private let formVC = AddCardFormViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveCard))
 
-        embed(card)
-        card.view.top(to: view.topAnchor, withOffset: Layout.Spacing.standard)
-        card.view.leading(to: view.leadingAnchor, withOffset: Layout.Spacing.standard)
-        card.view.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard)
-        cardBottomConstraint = card.view.bottom(to: view.bottomAnchor, withOffset: Layout.Spacing.standard)
+        embed(formVC)
+        formVC.view.top(to: view.topAnchor)
+        formVC.view.leading(to: view.leadingAnchor)
+        formVC.view.trailing(to: view.trailingAnchor)
+        cardBottomConstraint = formVC.view.bottom(to: view.bottomAnchor)
         
-        let front = CardInputFieldBuilder().addTextInputField(called: "test").addTextInputField(called: "test2").build()
-        card.cardFields = CardFields(frontFields: front, backFields: [])
         configureKeyboardListeners()
     }
     
-    func configureKeyboardListeners() {
+    @objc func saveCard() {
+        delegate?.addCard(withFrontText: formVC.frontText, andBackText: formVC.backText)
+        let banner = NotificationBanner(title: "Saved Card!", style: .success)
+        banner.duration = 1.0
+        banner.applyStyling(cornerRadius: 8.0)
+        banner.show()
+        formVC.clear()
+    }
+    
+    
+    // - MARK: Resizing view for keyboard
+    
+    private func configureKeyboardListeners() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(sender: Notification) {
+    @objc private func keyboardWillShow(sender: Notification) {
         guard let info = sender.userInfo, let keyboardRect = info["UIKeyboardFrameBeginUserInfoKey"] as? CGRect else { return }
-        cardBottomConstraint?.constant = -keyboardRect.height - Layout.Spacing.standard
+        cardBottomConstraint?.constant = -keyboardRect.height
         if let animationDuration = info["UIKeyboardAnimationDurationUserInfoKey"] as? TimeInterval {
             UIView.animate(withDuration: animationDuration) { self.view.layoutIfNeeded() }
         }
     }
     
-    @objc func keyboardWillHide(sender: Notification) {
+    @objc private func keyboardWillHide(sender: Notification) {
         guard let info = sender.userInfo else { return }
-        cardBottomConstraint?.constant = -Layout.Spacing.standard
+        cardBottomConstraint?.constant = 0
         if let animationDuration = info["UIKeyboardAnimationDurationUserInfoKey"] as? TimeInterval {
             UIView.animate(withDuration: animationDuration) { self.view.layoutIfNeeded() }
         }
     }
-    
+}
 
-
+// - MARK: delegate
+protocol AddCardDelegate: class {
+    func addCard(withFrontText frontText: String?, andBackText backText: String?)
 }

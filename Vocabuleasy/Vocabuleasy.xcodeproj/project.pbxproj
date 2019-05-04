@@ -20,9 +20,10 @@
 		BA5B334C2274F2C600E06E81 /* NavigationStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334B2274F2C600E06E81 /* NavigationStyler.swift */; };
 		BA5B334E2274F6BE00E06E81 /* ButtonStyler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334D2274F6BE00E06E81 /* ButtonStyler.swift */; };
 		BA5B33502274FA4D00E06E81 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */; };
-		BA5B3353227A477D00E06E81 /* CardInputFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3352227A477D00E06E81 /* CardInputFieldBuilder.swift */; };
 		BA5D5577227BD2C70024567A /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5576227BD2C70024567A /* KeyboardViewController.swift */; };
 		BA5D5579227BDBF10024567A /* TagTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5578227BDBF10024567A /* TagTextViewDelegate.swift */; };
+		BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5581227DEB770024567A /* AddCardFormViewController.swift */; };
+		BA5D5584227DEBD60024567A /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5583227DEBD60024567A /* LabeledTextField.swift */; };
 		BA5E8432226B8A3000D5B6ED /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8431226B8A3000D5B6ED /* UIViewController.swift */; };
 		BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8433226B90DC00D5B6ED /* Layout.swift */; };
 		BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */; };
@@ -69,9 +70,10 @@
 		BA5B334B2274F2C600E06E81 /* NavigationStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationStyler.swift; sourceTree = "<group>"; };
 		BA5B334D2274F6BE00E06E81 /* ButtonStyler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyler.swift; sourceTree = "<group>"; };
 		BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
-		BA5B3352227A477D00E06E81 /* CardInputFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInputFieldBuilder.swift; sourceTree = "<group>"; };
 		BA5D5576227BD2C70024567A /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		BA5D5578227BDBF10024567A /* TagTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTextViewDelegate.swift; sourceTree = "<group>"; };
+		BA5D5581227DEB770024567A /* AddCardFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardFormViewController.swift; sourceTree = "<group>"; };
+		BA5D5583227DEBD60024567A /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		BA5E8431226B8A3000D5B6ED /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BA5E8433226B90DC00D5B6ED /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeckController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */,
+				BA5D5581227DEB770024567A /* AddCardFormViewController.swift */,
+				BA5D5583227DEBD60024567A /* LabeledTextField.swift */,
 			);
 			path = AddCard;
 			sourceTree = "<group>";
@@ -178,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				BA67403F226C273900762C79 /* CardFieldBuilder.swift */,
-				BA5B3352227A477D00E06E81 /* CardInputFieldBuilder.swift */,
 			);
 			path = FieldBuilder;
 			sourceTree = "<group>";
@@ -428,12 +431,18 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -459,7 +468,6 @@
 				BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */,
 				BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */,
 				BAF4AC852268DD6900163D2C /* Theme.swift in Sources */,
-				BA5B3353227A477D00E06E81 /* CardInputFieldBuilder.swift in Sources */,
 				BA5D5577227BD2C70024567A /* KeyboardViewController.swift in Sources */,
 				BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */,
 				BA5D5579227BDBF10024567A /* TagTextViewDelegate.swift in Sources */,
@@ -469,12 +477,14 @@
 				BAC5F728227A4EC800C5B2CD /* PaddedTextField.swift in Sources */,
 				BA5B33472274CB6400E06E81 /* DeckDetailViewController.swift in Sources */,
 				BA39F45A226E910F00B5931D /* ReviewControlsViewController.swift in Sources */,
+				BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
 				BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */,
 				BAF4AC8D2268E1B100163D2C /* CardBackgroundView.swift in Sources */,
 				BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */,
 				BAF4AC882268DE4100163D2C /* UIColor.swift in Sources */,
+				BA5D5584227DEBD60024567A /* LabeledTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
