@@ -61,23 +61,43 @@ class ThreeDPressButton: UIButton {
     
     var pressTransform: CGAffineTransform?
     
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                layer.borderColor = UIColor.white.cgColor
+                layer.borderWidth = 2.0
+            } else {
+                layer.borderColor = UIColor.clear.cgColor
+                layer.borderWidth = 0.0
+            }
+        }
+    }
+    
+    private func press() {
+        guard let transform = pressTransform else { return }
+        self.transform = transform
+        self.layer.shadowOpacity = 0.0
+    }
+    
+    private func depress() {
+        self.transform = CGAffineTransform.identity
+        self.layer.shadowOpacity = 1.0
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        if isEnabled && isTouchInside, let transform = pressTransform {
-            self.transform = transform
-            self.layer.shadowOpacity = 0.0
+        if isEnabled && isTouchInside {
+            press()
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        self.transform = CGAffineTransform.identity
-        self.layer.shadowOpacity = 1.0
+        depress()
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        self.transform = CGAffineTransform.identity
-        self.layer.shadowOpacity = 1.0
+        depress()
     }
 }

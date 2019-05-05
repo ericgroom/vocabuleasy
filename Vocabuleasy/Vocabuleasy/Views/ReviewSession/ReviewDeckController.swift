@@ -39,7 +39,7 @@ class ReviewDeckController: UIViewController {
         if reviewSession.count > 0 {
             let card = reviewSession.get(atIndex: reviewSession.currentIndex)
             currentCard = CardViewController()
-            currentCard?.model = card
+            currentCard?.model = card?.card
             if let cardController = currentCard {
                 embed(cardController)
                 cardController.view.fill(parent: view)
@@ -50,6 +50,11 @@ class ReviewDeckController: UIViewController {
     
     func nextCard() {
         guard let session = reviewSession else { return }
+        if session.isCompleted {
+            let log = session.complete()
+            delegate?.reviewSessionShouldEnd(log)
+            return
+        }
         let next = session.advance()
         if let card = next {
             transition(to: card, direction: .forward)
@@ -94,10 +99,10 @@ class ReviewDeckController: UIViewController {
         }
     }
 
-    private func transition(to card: Card, direction: Direction) {
+    private func transition(to card: CardWithRating, direction: Direction) {
         guard let current = currentCard else { return }
         let next = CardViewController()
-        next.model = card
+        next.model = card.card
         embed(next)
         next.view.fill(parent: view)
     
@@ -113,4 +118,5 @@ class ReviewDeckController: UIViewController {
 
 protocol ReviewDeckDelegate: class {
     func displayedCardUpdated(showingFront: Bool)
+    func reviewSessionShouldEnd(_ log: ReviewSessionLog)
 }

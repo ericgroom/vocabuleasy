@@ -12,6 +12,21 @@ class ReviewRatingViewController: UIViewController {
     
     weak var delegate: ReviewRatingDelegate?
     
+    func setSelectedButton(rating: Rating?) {
+        wrongButton.isSelected = false
+        mehButton.isSelected = false
+        correctButton.isSelected = false
+        guard let rating = rating else { return }
+        switch rating {
+        case .correct:
+            correctButton.isSelected = true
+        case .meh:
+            mehButton.isSelected = true
+        case .wrong:
+            wrongButton.isSelected = true
+        }
+    }
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -84,6 +99,11 @@ class ReviewRatingViewController: UIViewController {
 
 protocol ReviewRatingDelegate: class {
     func ratedCard(withRating rating: Rating)
+}
+
+protocol Disableable {
+    func enable()
+    func disable()
 }
 
 extension ReviewRatingViewController: Disableable {

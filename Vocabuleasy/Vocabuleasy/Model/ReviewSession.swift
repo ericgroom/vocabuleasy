@@ -8,16 +8,16 @@
 
 import Foundation
 
+typealias CardWithRating = (card: Card, rating: Rating?)
+
+
 class ReviewSession {
-    private(set) var cards: [Card]
-    private(set) var currentIndex: Int {
-        didSet {
-            print(currentIndex)
-        }
-    }
+
+    private(set) var currentIndex: Int
+    private(set) var cards: [CardWithRating]
     
     init(cards: [Card], startAt index: Int = 0) {
-        self.cards = cards
+        self.cards = cards.map { (card: $0, rating: nil) }
         self.currentIndex = index
     }
     
@@ -25,13 +25,24 @@ class ReviewSession {
         return cards.count
     }
     
-    func cardRated(atIndex index: Int, withRating rating: Rating) {
-        let card = cards[index]
-        print("card: \(card) given rating: \(rating)")
+    var currentCard: CardWithRating? {
+        return get(atIndex: currentIndex)
     }
     
-    func get(atIndex index: Int) -> Card? {
-        if index >= 0 && index < count {
+    func cardRated(withRating rating: Rating) {
+        self.cardRated(atIndex: currentIndex, withRating: rating)
+    }
+    
+    func cardRated(atIndex index: Int, withRating rating: Rating) {
+        let card = cards[index]
+        if rating == .wrong {
+            cards.append(card)
+        }
+        cards[index].rating = rating
+    }
+    
+    func get(atIndex index: Int) -> CardWithRating? {
+        if index >= cards.startIndex && index < cards.endIndex {
             return cards[index]
         } else {
             return nil
@@ -39,10 +50,10 @@ class ReviewSession {
     }
     
     var canAdvance: Bool {
-        return currentIndex+1 < count
+        return currentIndex+1 < cards.endIndex && currentCard?.rating != nil
     }
     
-    func advance() -> Card? {
+    func advance() -> CardWithRating? {
         if canAdvance {
             currentIndex += 1
             return get(atIndex: currentIndex)
@@ -51,14 +62,23 @@ class ReviewSession {
     }
     
     var canGoBack: Bool {
-        return currentIndex-1 >= 0
+        return currentIndex-1 >= cards.startIndex
     }
     
-    func goBack() -> Card? {
+    
+    func goBack() -> CardWithRating? {
         if canGoBack {
             currentIndex -= 1
             return get(atIndex: currentIndex)
         }
         return nil
+    }
+    
+    var isCompleted: Bool {
+        return cards.isEmpty || (currentIndex >= cards.endIndex-1 && currentCard?.rating != nil)
+    }
+    
+    func complete() -> ReviewSessionLog {
+        return ReviewSessionLog(of: self)
     }
 }

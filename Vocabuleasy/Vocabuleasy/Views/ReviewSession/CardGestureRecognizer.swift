@@ -44,3 +44,9 @@ class CardGestureRecognizer {
         delegate?.previous()
     }
 }
+
+protocol ReviewSequenceDelegate: class {
+    func flip()
+    func next()
+    func previous()
+}
