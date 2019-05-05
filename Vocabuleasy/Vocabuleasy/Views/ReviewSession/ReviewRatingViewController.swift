@@ -42,7 +42,7 @@ class ReviewRatingViewController: UIViewController {
         
         button.layer.cornerRadius = 8.0
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        button.addTarget(self, action: #selector(correctPressed), for: .touchUpInside)
+        button.addTarget(self, action: selector, for: .touchUpInside)
         button.setTitle(nil, for: .normal)
         button.enabledBackgroundColor = backgroundColor
         if let shadowColor = backgroundColor.darkened(by: darkeningFactor) {

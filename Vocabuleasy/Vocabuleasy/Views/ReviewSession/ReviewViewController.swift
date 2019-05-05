@@ -33,6 +33,7 @@ class ReviewViewController: UIViewController {
         
         cardController.delegate = self
         controlsController.delegate = self
+        controlsController.disable()
         
         cardGestureRecognizer = CardGestureRecognizer(cardView: cardView)
         cardGestureRecognizer?.delegate = self
@@ -110,6 +111,7 @@ extension ReviewViewController: ReviewControlsDelegate {
     }
     
     func ratedCard(withRating rating: Rating) {
+        reviewSession?.cardRated(withRating: rating)
         cardController.nextCard()
     }
 }
