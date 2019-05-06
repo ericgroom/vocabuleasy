@@ -38,7 +38,6 @@
 		BAD9C59C227F8D8300F1415D /* RatedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C59B227F8D8300F1415D /* RatedCard.swift */; };
 		BAD9C59E227F8E1700F1415D /* ReviewSessionLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C59D227F8E1700F1415D /* ReviewSessionLog.swift */; };
 		BAD9C5A0227F936100F1415D /* ReviewControlsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C59F227F936100F1415D /* ReviewControlsDelegate.swift */; };
-		BAD9C5A2227F9D3100F1415D /* ReviewSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C5A1227F9D3100F1415D /* ReviewSchedulerTests.swift */; };
 		BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */; };
 		BAF4AC672268D9E700163D2C /* Vocabuleasy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC652268D9E700163D2C /* Vocabuleasy.xcdatamodeld */; };
 		BAF4AC692268D9E700163D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC682268D9E700163D2C /* Assets.xcassets */; };
@@ -97,7 +96,6 @@
 		BAD9C59B227F8D8300F1415D /* RatedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedCard.swift; sourceTree = "<group>"; };
 		BAD9C59D227F8E1700F1415D /* ReviewSessionLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionLog.swift; sourceTree = "<group>"; };
 		BAD9C59F227F936100F1415D /* ReviewControlsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewControlsDelegate.swift; sourceTree = "<group>"; };
-		BAD9C5A1227F9D3100F1415D /* ReviewSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSchedulerTests.swift; sourceTree = "<group>"; };
 		BAF4AC5B2268D9E700163D2C /* Vocabuleasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabuleasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF4AC662268D9E700163D2C /* Vocabuleasy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vocabuleasy.xcdatamodel; sourceTree = "<group>"; };
@@ -269,7 +267,6 @@
 				BAD9C592227E35EB00F1415D /* ReviewSessionTests.swift */,
 				BAF4AC762268D9E800163D2C /* VocabuleasyTests.swift */,
 				BAF4AC782268D9E800163D2C /* Info.plist */,
-				BAD9C5A1227F9D3100F1415D /* ReviewSchedulerTests.swift */,
 			);
 			path = VocabuleasyTests;
 			sourceTree = "<group>";
@@ -535,7 +532,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAD9C593227E35EB00F1415D /* ReviewSessionTests.swift in Sources */,
-				BAD9C5A2227F9D3100F1415D /* ReviewSchedulerTests.swift in Sources */,
 				BAF4AC772268D9E800163D2C /* VocabuleasyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

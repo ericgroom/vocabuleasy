@@ -133,5 +133,6 @@ extension ReviewViewController: ReviewDeckDelegate {
     func reviewSessionShouldEnd(_ log: ReviewSessionLog) {
         let notification = NotificationBanner(title: "session complete!")
         notification.show()
+        ShortReviewScheduler().schedule(session: log)
     }
 }
