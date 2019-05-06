@@ -67,7 +67,11 @@ class DeckDetailViewController: UIViewController {
 
 extension DeckDetailViewController: AddCardDelegate {
     func addCard(withFrontText frontText: String?, andBackText backText: String?) {
-        let card = Card(front: frontText ?? "", back: backText ?? "")
+        let context = ContainerService.shared.persistentContainer.viewContext
+        var card = Card(context: context)
+        card.front = frontText
+        card.back = backText
+        
         deck?.addCard(card: card)
     }
 }

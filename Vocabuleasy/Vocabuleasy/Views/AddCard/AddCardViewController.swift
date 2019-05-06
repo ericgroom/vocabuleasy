@@ -8,6 +8,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import CoreData
 
 class AddCardViewController: KeyboardViewController {
     
@@ -31,12 +32,37 @@ class AddCardViewController: KeyboardViewController {
     }
     
     @objc func saveCard() {
-        delegate?.addCard(withFrontText: formVC.frontText, andBackText: formVC.backText)
-        let banner = NotificationBanner(title: "Saved Card!", style: .success)
+        let context = ContainerService.shared.persistentContainer.viewContext
+        
+
+        let card = Card(context: context)
+        card.front = self.formVC.frontText
+        card.back = self.formVC.backText
+        card.id = UUID()
+        
+        do {
+            try context.save()
+            self.formVC.clear()
+            self.showSuccessBanner()
+        } catch let error {
+            print("Error saving card: \(error)")
+            self.showErrorBanner()
+        }
+        
+    }
+    
+    func showSuccessBanner() {
+        let banner = NotificationBanner(title: "Saved Card!")
         banner.duration = 1.0
         banner.applyStyling(cornerRadius: 8.0)
         banner.show()
-        formVC.clear()
+    }
+    
+    func showErrorBanner() {
+        let banner = NotificationBanner(title: "Error saving card", style: .danger)
+        banner.duration = 1.0
+        banner.applyStyling(cornerRadius: 8.0)
+        banner.show()
     }
     
     

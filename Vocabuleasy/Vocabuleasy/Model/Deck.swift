@@ -26,12 +26,4 @@ class Deck {
     func generateReviewSession() -> ReviewSession {
         return ReviewSession(cards: cards)
     }
-    
-    static func mockDeck() -> Deck {
-        let first = Card(front: "testing", back: "the thing")
-        let second = Card(front: "Naming things", back: "is hard")
-        let third = Card(front: "target language", back: "definition")
-        let fourth = Card(front: "y u no work", back: ":(")
-        return Deck(cards: [first, second, third, fourth])
-    }
 }

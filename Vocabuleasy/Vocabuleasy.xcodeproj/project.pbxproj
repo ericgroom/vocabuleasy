@@ -11,6 +11,7 @@
 		BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */; };
 		BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */; };
 		BA39F46F22711AA400B5931D /* CardGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */; };
+		BA557227227FB99C00343713 /* ContainerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA557226227FB99C00343713 /* ContainerService.swift */; };
 		BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */; };
 		BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467C2269174F0037EE57 /* CardViewController.swift */; };
 		BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467E226926A30037EE57 /* ReviewViewController.swift */; };
@@ -69,6 +70,7 @@
 		BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRatingViewController.swift; sourceTree = "<group>"; };
 		BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDPressButton.swift; sourceTree = "<group>"; };
 		BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGestureRecognizer.swift; sourceTree = "<group>"; };
+		BA557226227FB99C00343713 /* ContainerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerService.swift; sourceTree = "<group>"; };
 		BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		BA5A467C2269174F0037EE57 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		BA5A467E226926A30037EE57 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,14 @@
 				DEA39B53398684573B934365 /* Pods-VocabuleasyTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		BA557223227FB85A00343713 /* Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				BA557226227FB99C00343713 /* ContainerService.swift */,
+			);
+			path = "Data Persistence";
 			sourceTree = "<group>";
 		};
 		BA5B33482274F22C00E06E81 /* ReviewSession */ = {
@@ -247,6 +257,7 @@
 		BAF4AC5D2268D9E700163D2C /* Vocabuleasy */ = {
 			isa = PBXGroup;
 			children = (
+				BA557223227FB85A00343713 /* Data Persistence */,
 				BA5E8437226BA5B100D5B6ED /* Model */,
 				BAF4AC862268DE2F00163D2C /* Extensions */,
 				BAF4AC8B2268E19800163D2C /* Views */,
@@ -507,6 +518,7 @@
 				BAF4AC852268DD6900163D2C /* Theme.swift in Sources */,
 				BA5D5577227BD2C70024567A /* KeyboardViewController.swift in Sources */,
 				BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */,
+				BA557227227FB99C00343713 /* ContainerService.swift in Sources */,
 				BA5D5579227BDBF10024567A /* TagTextViewDelegate.swift in Sources */,
 				BAD9C5A0227F936100F1415D /* ReviewControlsDelegate.swift in Sources */,
 				BAD9C59E227F8E1700F1415D /* ReviewSessionLog.swift in Sources */,
