@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class ReviewViewController: UIViewController {
     
+    var reviewSession: ReviewSession? {
+        didSet {
+            cardController.reviewSession = reviewSession
+        }
+    }
+    
     private var cardController = ReviewDeckController()
-    private var controlsController = ReviewControlsViewController()
+    private var ratingController = ReviewRatingViewController()
     
     private var cardView: UIView { return cardController.view }
-    private var controls: UIView { return controlsController.view }
+    private var controls: UIView { return ratingController.view }
     
     private var cardGestureRecognizer: CardGestureRecognizer?
     
@@ -26,13 +33,14 @@ class ReviewViewController: UIViewController {
         hero.isEnabled = true
         
         cardController.delegate = self
-        controlsController.delegate = self
+        ratingController.delegate = self
+        ratingController.disable()
         
         cardGestureRecognizer = CardGestureRecognizer(cardView: cardView)
         cardGestureRecognizer?.delegate = self
         
         embed(cardController)
-        embed(controlsController)
+        embed(ratingController)
         setupConstraints()
         
         cardView.hero.id = "cardBackground"
@@ -104,16 +112,27 @@ extension ReviewViewController: ReviewControlsDelegate {
     }
     
     func ratedCard(withRating rating: Rating) {
+        reviewSession?.cardRated(withRating: rating)
         cardController.nextCard()
+        ratingController.setSelectedButton(rating: nil)
     }
 }
 
 extension ReviewViewController: ReviewDeckDelegate {
     func displayedCardUpdated(showingFront: Bool) {
         if showingFront {
-            controlsController.disable()
+            ratingController.disable()
         } else {
-            controlsController.enable()
+            ratingController.enable()
         }
+        if let card = reviewSession?.currentCard {
+            ratingController.setSelectedButton(rating: card.rating)
+        }
+    }
+    
+    func reviewSessionShouldEnd(_ log: ReviewSessionLog) {
+        let notification = NotificationBanner(title: "session complete!")
+        notification.show()
+        ShortReviewScheduler().schedule(session: log)
     }
 }

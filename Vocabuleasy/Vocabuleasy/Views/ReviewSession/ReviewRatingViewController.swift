@@ -12,6 +12,21 @@ class ReviewRatingViewController: UIViewController {
     
     weak var delegate: ReviewRatingDelegate?
     
+    func setSelectedButton(rating: Rating?) {
+        wrongButton.isSelected = false
+        mehButton.isSelected = false
+        correctButton.isSelected = false
+        guard let rating = rating else { return }
+        switch rating {
+        case .correct:
+            correctButton.isSelected = true
+        case .meh:
+            mehButton.isSelected = true
+        case .wrong:
+            wrongButton.isSelected = true
+        }
+    }
+    
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -42,7 +57,7 @@ class ReviewRatingViewController: UIViewController {
         
         button.layer.cornerRadius = 8.0
         button.contentEdgeInsets = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
-        button.addTarget(self, action: #selector(correctPressed), for: .touchUpInside)
+        button.addTarget(self, action: selector, for: .touchUpInside)
         button.setTitle(nil, for: .normal)
         button.enabledBackgroundColor = backgroundColor
         if let shadowColor = backgroundColor.darkened(by: darkeningFactor) {
@@ -82,12 +97,13 @@ class ReviewRatingViewController: UIViewController {
 
 }
 
-enum Rating {
-    case correct, meh, wrong
-}
-
 protocol ReviewRatingDelegate: class {
     func ratedCard(withRating rating: Rating)
+}
+
+protocol Disableable {
+    func enable()
+    func disable()
 }
 
 extension ReviewRatingViewController: Disableable {

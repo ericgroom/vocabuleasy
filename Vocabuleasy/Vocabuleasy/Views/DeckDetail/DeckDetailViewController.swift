@@ -10,6 +10,8 @@ import UIKit
 
 class DeckDetailViewController: UIViewController {
     
+    var deck: Deck?
+    
     private let reviewButton: UIButton = {
         let button = UIButton()
         ButtonStyler.flat(button, foreground: Theme.white, background: Theme.purple)
@@ -48,16 +50,24 @@ class DeckDetailViewController: UIViewController {
     
     @objc func reviewButtonPressed() {
         let reviewVC = ReviewViewController()
+        reviewVC.reviewSession = deck?.generateReviewSession()
         navigationController?.pushViewController(reviewVC, animated: true)
     }
     
     @objc func addNewButtonPressed() {
         let addNewVc = AddCardViewController()
+        addNewVc.delegate = self
         navigationController?.pushViewController(addNewVc, animated: true)
     }
     
     private func setupNavbar() {
         NavigationStyler.applyTheme(to: navigationController)
     }
+}
 
+extension DeckDetailViewController: AddCardDelegate {
+    func addCard(withFrontText frontText: String?, andBackText backText: String?) {
+        let card = Card(front: frontText ?? "", back: backText ?? "")
+        deck?.addCard(card: card)
+    }
 }
