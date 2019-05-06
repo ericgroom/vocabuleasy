@@ -39,31 +39,20 @@ class AddCardViewController: KeyboardViewController {
         card.front = self.formVC.frontText
         card.back = self.formVC.backText
         card.id = UUID()
+        card.nextReview = Date()
         
         do {
             try context.save()
             self.formVC.clear()
-            self.showSuccessBanner()
+            NotificationService.showSuccessBanner(withText: "Card Saved!")
         } catch let error {
             print("Error saving card: \(error)")
-            self.showErrorBanner()
+            NotificationService.showErrorBanner(withText: "Error saving card")
         }
         
     }
     
-    func showSuccessBanner() {
-        let banner = NotificationBanner(title: "Saved Card!")
-        banner.duration = 1.0
-        banner.applyStyling(cornerRadius: 8.0)
-        banner.show()
-    }
     
-    func showErrorBanner() {
-        let banner = NotificationBanner(title: "Error saving card", style: .danger)
-        banner.duration = 1.0
-        banner.applyStyling(cornerRadius: 8.0)
-        banner.show()
-    }
     
     
     // - MARK: Resizing view for keyboard

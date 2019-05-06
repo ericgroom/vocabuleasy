@@ -23,7 +23,7 @@ class Deck {
         self.cards.append(card)
     }
     
-    func generateReviewSession() -> ReviewSession {
+    func generateReviewSession(cards: [Card]) -> ReviewSession {
         return ReviewSession(cards: cards)
     }
 }

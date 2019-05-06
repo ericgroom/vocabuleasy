@@ -49,9 +49,19 @@ class DeckDetailViewController: UIViewController {
     }
     
     @objc func reviewButtonPressed() {
-        let reviewVC = ReviewViewController()
-        reviewVC.reviewSession = deck?.generateReviewSession()
-        navigationController?.pushViewController(reviewVC, animated: true)
+        let context = ContainerService.shared.persistentContainer.viewContext
+        let request = Card.fetchCardsToReview()
+        request.fetchLimit = 2
+        do {
+            let cards = try context.fetch(request)
+            let count = try context.count(for: request)
+            print("count: \(count)")
+            let reviewVC = ReviewViewController()
+            reviewVC.reviewSession = deck?.generateReviewSession(cards: cards)
+            navigationController?.pushViewController(reviewVC, animated: true)
+        } catch {
+            NotificationService.showErrorBanner(withText: "Error fetching cards")
+        }
     }
     
     @objc func addNewButtonPressed() {

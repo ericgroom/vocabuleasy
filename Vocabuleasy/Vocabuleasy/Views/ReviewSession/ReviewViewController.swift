@@ -134,5 +134,13 @@ extension ReviewViewController: ReviewDeckDelegate {
         let notification = NotificationBanner(title: "session complete!")
         notification.show()
         ShortReviewScheduler().schedule(session: log)
+        if let card = log.cardsReviewed.first, let context = card.card.managedObjectContext {
+            do {
+                try context.save()
+            } catch {
+                print(error)
+                NotificationService.showErrorBanner(withText: "Error saving review session")
+            }
+        }
     }
 }
