@@ -11,8 +11,6 @@ import NotificationBannerSwift
 import CoreData
 
 class AddCardViewController: KeyboardViewController {
-    
-    weak var delegate: AddCardDelegate?
 
     private var cardBottomConstraint: NSLayoutConstraint?
     private let formVC = AddCardFormViewController()
@@ -77,9 +75,4 @@ class AddCardViewController: KeyboardViewController {
             UIView.animate(withDuration: animationDuration) { self.view.layoutIfNeeded() }
         }
     }
-}
-
-// - MARK: delegate
-protocol AddCardDelegate: class {
-    func addCard(withFrontText frontText: String?, andBackText backText: String?)
 }

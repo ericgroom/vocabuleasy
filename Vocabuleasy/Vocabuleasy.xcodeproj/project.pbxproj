@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A9AE851A66B4C8A82AD47E17 /* Pods_Vocabuleasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F665677F1D4FF10E028AC972 /* Pods_Vocabuleasy.framework */; };
+		BA1A50492280AFBF003F82F0 /* DeckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */; };
 		BA24D196228098B20053A2A5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA24D195228098B20053A2A5 /* NotificationService.swift */; };
 		BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */; };
 		BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */; };
@@ -68,6 +69,7 @@
 		33485D05581F4117A95FF0DE /* Pods-Vocabuleasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.debug.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.debug.xcconfig"; sourceTree = "<group>"; };
 		8836164974147DCF5AFCE490 /* Pods-Vocabuleasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.release.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.release.xcconfig"; sourceTree = "<group>"; };
 		B2ACA136365AF45A45370C29 /* Pods_VocabuleasyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VocabuleasyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckInfoViewController.swift; sourceTree = "<group>"; };
 		BA24D195228098B20053A2A5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRatingViewController.swift; sourceTree = "<group>"; };
 		BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDPressButton.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				BA5B33462274CB6400E06E81 /* DeckDetailViewController.swift */,
+				BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */,
 			);
 			path = DeckDetail;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */,
 				BAD9C595227E3A1600F1415D /* ReviewScheduler.swift in Sources */,
 				BAD9C59C227F8D8300F1415D /* RatedCard.swift in Sources */,
+				BA1A50492280AFBF003F82F0 /* DeckInfoViewController.swift in Sources */,
 				BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */,
 				BAD9C589227DFED800F1415D /* Card.swift in Sources */,
 				BA5E8432226B8A3000D5B6ED /* UIViewController.swift in Sources */,

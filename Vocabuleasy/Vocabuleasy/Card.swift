@@ -11,7 +11,14 @@ import CoreData
 
 @objc(Card)
 class Card: NSManagedObject {
-    static func fetchCardsToReview() -> NSFetchRequest<Card> {
+    static func all() -> NSFetchRequest<Card> {
+        let request: NSFetchRequest<Card> = self.fetchRequest()
+        let sortDate = NSSortDescriptor(key: "nextReview", ascending: true)
+        request.sortDescriptors = [sortDate]
+        return request
+    }
+    
+    static func whereNeedsReview() -> NSFetchRequest<Card> {
         let request: NSFetchRequest<Card> = self.fetchRequest()
         let predicate = NSPredicate(format: "nextReview < %@", NSDate())
         let sortDate = NSSortDescriptor(key: "nextReview", ascending: true)
@@ -20,13 +27,3 @@ class Card: NSManagedObject {
         return request
     }
 }
-
-//extension Card: Hashable {
-//    static func == (lhs: Card, rhs: Card) -> Bool {
-//        return lhs.id == rhs.id
-//    }
-//
-//    func hash(into hasher: inout Hasher) {
-//        hasher.combine(id)
-//    }
-//}
