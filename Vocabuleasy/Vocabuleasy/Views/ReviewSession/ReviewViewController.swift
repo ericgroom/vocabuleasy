@@ -137,6 +137,9 @@ extension ReviewViewController: ReviewDeckDelegate {
         if let card = log.cardsReviewed.first, let context = card.card.managedObjectContext {
             do {
                 try context.save()
+                let vc = PostReviewViewController()
+                vc.state = .loaded(log: log)
+                hero.replaceViewController(with: vc)
             } catch {
                 print(error)
                 NotificationService.showErrorBanner(withText: "Error saving review session")

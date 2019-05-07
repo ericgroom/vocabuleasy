@@ -44,9 +44,14 @@ class DeckInfoViewController: UIViewController {
         update()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        update()
+    }
+    
     private func makeLabel() -> UILabel {
         let label = UILabel()
-        label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 18)
+        label.font = Theme.Fonts.bold
         label.textColor = Theme.white
         label.textAlignment = .center
         return label

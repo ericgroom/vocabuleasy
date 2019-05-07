@@ -30,6 +30,7 @@
 		BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */; };
 		BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */; };
 		BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403F226C273900762C79 /* CardFieldBuilder.swift */; };
+		BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */; };
 		BAC5F728227A4EC800C5B2CD /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */; };
 		BAD9C589227DFED800F1415D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C588227DFED800F1415D /* Card.swift */; };
 		BAD9C58B227DFF1700F1415D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58A227DFF1700F1415D /* Deck.swift */; };
@@ -91,6 +92,7 @@
 		BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeckController.swift; sourceTree = "<group>"; };
 		BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimationController.swift; sourceTree = "<group>"; };
 		BA67403F226C273900762C79 /* CardFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldBuilder.swift; sourceTree = "<group>"; };
+		BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReviewViewController.swift; sourceTree = "<group>"; };
 		BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		BAD9C588227DFED800F1415D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Vocabuleasy/Card.swift; sourceTree = SOURCE_ROOT; };
 		BAD9C58A227DFF1700F1415D /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -231,6 +233,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BA9DD15D2281DC2200F52057 /* PostReview */ = {
+			isa = PBXGroup;
+			children = (
+				BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */,
+			);
+			path = PostReview;
+			sourceTree = "<group>";
+		};
 		BAD9C596227E3ABD00F1415D /* ReviewScheduler */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +320,7 @@
 		BAF4AC8B2268E19800163D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA9DD15D2281DC2200F52057 /* PostReview */,
 				BA5B33512274FA5000E06E81 /* AddCard */,
 				BA5B334A2274F29C00E06E81 /* DeckDetail */,
 				BA5B33492274F23F00E06E81 /* Shared */,
@@ -537,6 +548,7 @@
 				BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
+				BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */,
 				BAD9C598227E3AD200F1415D /* ShortReviewScheduler.swift in Sources */,
 				BAD9C58F227E009A00F1415D /* Rating.swift in Sources */,
 				BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */,

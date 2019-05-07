@@ -19,4 +19,8 @@ struct Theme {
         static let warning = UIColor.sketch(h: 48, s: 100, b: 100)
         static let bad = UIColor.sketch(h: 3, s: 81, b: 100)
     }
+    
+    struct Fonts {
+        static let bold = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 18)
+    }
 }
