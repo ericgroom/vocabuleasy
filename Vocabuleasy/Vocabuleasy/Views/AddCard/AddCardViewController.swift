@@ -34,10 +34,14 @@ class AddCardViewController: KeyboardViewController {
         
 
         let card = Card(context: context)
-        card.front = self.formVC.frontText
-        card.back = self.formVC.backText
         card.id = UUID()
         card.nextReview = Date()
+        
+        let cardData = CardFieldData(context: context)
+        cardData.targetWord = formVC.frontText
+        cardData.translation = formVC.backText
+        card.data = cardData
+        
         
         do {
             try context.save()
