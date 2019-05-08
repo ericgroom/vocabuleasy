@@ -6,6 +6,7 @@
         <attribute name="nextReview" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timesCorrect" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="data" maxCount="1" deletionRule="Cascade" destinationEntity="CardFieldData" inverseName="card" inverseEntity="CardFieldData" syncable="YES"/>
+        <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck" syncable="YES"/>
     </entity>
     <entity name="CardFieldData" representedClassName="CardFieldData" syncable="YES" codeGenerationType="category">
         <attribute name="audio" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
@@ -15,8 +16,13 @@
         <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="card" maxCount="1" deletionRule="Cascade" destinationEntity="Card" inverseName="data" inverseEntity="Card" syncable="YES"/>
     </entity>
+    <entity name="Deck" representedClassName="Deck" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Card" positionX="264.23828125" positionY="40.203125" width="128" height="120"/>
-        <element name="CardFieldData" positionX="261" positionY="81" width="128" height="135"/>
+        <element name="Card" positionX="-77.35546875" positionY="-16.12890625" width="128" height="135"/>
+        <element name="CardFieldData" positionX="265.8359375" positionY="-64.69140625" width="128" height="135"/>
+        <element name="Deck" positionX="279" positionY="126" width="128" height="73"/>
     </elements>
 </model>

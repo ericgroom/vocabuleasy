@@ -11,6 +11,8 @@ import NotificationBannerSwift
 import CoreData
 
 class AddCardViewController: KeyboardViewController {
+    
+    var deck: Deck?
 
     private var cardBottomConstraint: NSLayoutConstraint?
     private let formVC = AddCardFormViewController()
@@ -30,6 +32,7 @@ class AddCardViewController: KeyboardViewController {
     }
     
     @objc func saveCard() {
+        guard let deck = deck else { return }
         let context = ContainerService.shared.persistentContainer.viewContext
         
 
@@ -42,7 +45,7 @@ class AddCardViewController: KeyboardViewController {
         cardData.translation = formVC.backText
         card.data = cardData
         
-        
+        deck.addToCards(card)
         do {
             try context.save()
             self.formVC.clear()

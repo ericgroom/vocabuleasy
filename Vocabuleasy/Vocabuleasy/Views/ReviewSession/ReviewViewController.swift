@@ -130,9 +130,11 @@ extension ReviewViewController: ReviewDeckDelegate {
         }
     }
     
-    func reviewSessionShouldEnd(_ log: ReviewSessionLog) {
+    func reviewSessionShouldEnd() {
+        guard let session = reviewSession else { return }
         let notification = NotificationBanner(title: "session complete!")
         notification.show()
+        let log = session.complete()
         ShortReviewScheduler().schedule(session: log)
         if let card = log.cardsReviewed.first, let context = card.card.managedObjectContext {
             do {

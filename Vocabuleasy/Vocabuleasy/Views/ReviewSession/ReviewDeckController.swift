@@ -51,8 +51,7 @@ class ReviewDeckController: UIViewController {
     func nextCard() {
         guard let session = reviewSession else { return }
         if session.isCompleted {
-            let log = session.complete()
-            delegate?.reviewSessionShouldEnd(log)
+            delegate?.reviewSessionShouldEnd()
             return
         }
         let next = session.advance()
@@ -118,5 +117,5 @@ class ReviewDeckController: UIViewController {
 
 protocol ReviewDeckDelegate: class {
     func displayedCardUpdated(showingFront: Bool)
-    func reviewSessionShouldEnd(_ log: ReviewSessionLog)
+    func reviewSessionShouldEnd()
 }

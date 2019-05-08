@@ -11,6 +11,8 @@ import CoreData
 
 class DeckInfoViewController: UIViewController {
     
+    var deck: Deck?
+    
     enum State {
         case empty
         case loaded(total: Int, upcoming: Int)
@@ -58,9 +60,10 @@ class DeckInfoViewController: UIViewController {
     }
     
     @objc private func update() {
+        guard let deck = deck else { return }
         let context = ContainerService.shared.persistentContainer.viewContext
-        let allRequest = Card.all()
-        let upcomingRequest = Card.whereNeedsReview()
+        let allRequest = deck.allCards()
+        let upcomingRequest = deck.whereNeedsReview()
         do {
             let allCount = try context.count(for: allRequest)
             let upcomingCount = try context.count(for: upcomingRequest)

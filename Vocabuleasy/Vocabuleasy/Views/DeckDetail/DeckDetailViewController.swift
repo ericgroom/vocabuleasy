@@ -10,7 +10,11 @@ import UIKit
 
 class DeckDetailViewController: UIViewController {
     
-    var deck: Deck?
+    var deck: Deck? {
+        didSet {
+            deckInfoVC.deck = deck
+        }
+    }
     
     private let reviewButton: UIButton = {
         let button = UIButton()
@@ -54,13 +58,14 @@ class DeckDetailViewController: UIViewController {
     }
     
     @objc func reviewButtonPressed() {
+        guard let deck = deck else { return }
         let context = ContainerService.shared.persistentContainer.viewContext
-        let request = Card.whereNeedsReview()
+        let request = deck.whereNeedsReview()
         request.fetchLimit = 5
         do {
             let cards = try context.fetch(request)
             let reviewVC = ReviewViewController()
-            reviewVC.reviewSession = deck?.generateReviewSession(cards: cards)
+            reviewVC.reviewSession = deck.generateReviewSession(cards: cards)
             navigationController?.pushViewController(reviewVC, animated: true)
         } catch {
             NotificationService.showErrorBanner(withText: "Error fetching cards")
@@ -68,7 +73,9 @@ class DeckDetailViewController: UIViewController {
     }
     
     @objc func addNewButtonPressed() {
+        guard let deck = deck else { return }
         let addNewVc = AddCardViewController()
+        addNewVc.deck = deck
         navigationController?.pushViewController(addNewVc, animated: true)
     }
     
