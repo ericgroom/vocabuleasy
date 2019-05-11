@@ -45,6 +45,7 @@
 		BAD9C5A0227F936100F1415D /* ReviewControlsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C59F227F936100F1415D /* ReviewControlsDelegate.swift */; };
 		BAE438BF22820EF3008F92DB /* Vocabuleasy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAE438BD22820EF3008F92DB /* Vocabuleasy.xcdatamodeld */; };
 		BAE438C822826472008F92DB /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE438C722826472008F92DB /* DeckListViewController.swift */; };
+		BAE438CC2286721D008F92DB /* ImageFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */; };
 		BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */; };
 		BAF4AC692268D9E700163D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC682268D9E700163D2C /* Assets.xcassets */; };
 		BAF4AC6C2268D9E700163D2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC6A2268D9E700163D2C /* LaunchScreen.storyboard */; };
@@ -110,6 +111,7 @@
 		BAE438BE22820EF3008F92DB /* Vocabuleasy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Vocabuleasy.xcdatamodel; sourceTree = "<group>"; };
 		BAE438C322825BA4008F92DB /* Vocabuleasy 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Vocabuleasy 2.xcdatamodel"; sourceTree = "<group>"; };
 		BAE438C722826472008F92DB /* DeckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
+		BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFieldViewController.swift; sourceTree = "<group>"; };
 		BAF4AC5B2268D9E700163D2C /* Vocabuleasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabuleasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF4AC682268D9E700163D2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */,
 				BA5D5581227DEB770024567A /* AddCardFormViewController.swift */,
 				BA5D5583227DEBD60024567A /* LabeledTextField.swift */,
+				BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */,
 			);
 			path = AddCard;
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				BAD9C58D227DFFED00F1415D /* ReviewSession.swift in Sources */,
 				BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */,
 				BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */,
+				BAE438CC2286721D008F92DB /* ImageFieldViewController.swift in Sources */,
 				BAD9C595227E3A1600F1415D /* ReviewScheduler.swift in Sources */,
 				BAD9C59C227F8D8300F1415D /* RatedCard.swift in Sources */,
 				BA1A50492280AFBF003F82F0 /* DeckInfoViewController.swift in Sources */,
