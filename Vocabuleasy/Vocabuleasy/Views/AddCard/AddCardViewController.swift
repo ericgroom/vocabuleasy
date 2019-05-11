@@ -8,10 +8,11 @@
 
 import UIKit
 import NotificationBannerSwift
+import CoreData
 
 class AddCardViewController: KeyboardViewController {
     
-    weak var delegate: AddCardDelegate?
+    var deck: Deck?
 
     private var cardBottomConstraint: NSLayoutConstraint?
     private let formVC = AddCardFormViewController()
@@ -31,13 +32,32 @@ class AddCardViewController: KeyboardViewController {
     }
     
     @objc func saveCard() {
-        delegate?.addCard(withFrontText: formVC.frontText, andBackText: formVC.backText)
-        let banner = NotificationBanner(title: "Saved Card!", style: .success)
-        banner.duration = 1.0
-        banner.applyStyling(cornerRadius: 8.0)
-        banner.show()
-        formVC.clear()
+        guard let deck = deck else { return }
+        let context = ContainerService.shared.persistentContainer.viewContext
+        
+
+        let card = Card(context: context)
+        card.id = UUID()
+        card.nextReview = Date()
+        
+        let cardData = CardFieldData(context: context)
+        cardData.targetWord = formVC.frontText
+        cardData.translation = formVC.backText
+        card.data = cardData
+        
+        deck.addToCards(card)
+        do {
+            try context.save()
+            self.formVC.clear()
+            NotificationService.showSuccessBanner(withText: "Card Saved!")
+        } catch let error {
+            print("Error saving card: \(error)")
+            NotificationService.showErrorBanner(withText: "Error saving card")
+        }
+        
     }
+    
+    
     
     
     // - MARK: Resizing view for keyboard
@@ -62,9 +82,4 @@ class AddCardViewController: KeyboardViewController {
             UIView.animate(withDuration: animationDuration) { self.view.layoutIfNeeded() }
         }
     }
-}
-
-// - MARK: delegate
-protocol AddCardDelegate: class {
-    func addCard(withFrontText frontText: String?, andBackText backText: String?)
 }

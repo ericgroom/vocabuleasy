@@ -10,7 +10,11 @@ import UIKit
 
 class DeckDetailViewController: UIViewController {
     
-    var deck: Deck?
+    var deck: Deck? {
+        didSet {
+            deckInfoVC.deck = deck
+        }
+    }
     
     private let reviewButton: UIButton = {
         let button = UIButton()
@@ -29,12 +33,12 @@ class DeckDetailViewController: UIViewController {
     }()
     
     private let card = CardBackgroundView()
+    private let deckInfoVC = DeckInfoViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
         navigationItem.title = "Deck Detail" // TODO update with deck name
-        setupNavbar()
         
         view.addSubview(card)
         card.center(on: view)
@@ -46,28 +50,31 @@ class DeckDetailViewController: UIViewController {
         reviewButton.width(to: card, withOffset: -Layout.Spacing.standard*2)
         card.addArrangedSubview(addButton)
         addButton.width(to: card, withOffset: -Layout.Spacing.standard*2)
+        
+        embed(deckInfoVC)
+        deckInfoVC.view.bottom(to: card.topAnchor, withOffset: Layout.Spacing.standard)
+        deckInfoVC.view.center(on: view, axis: .x)
     }
     
     @objc func reviewButtonPressed() {
-        let reviewVC = ReviewViewController()
-        reviewVC.reviewSession = deck?.generateReviewSession()
-        navigationController?.pushViewController(reviewVC, animated: true)
+        guard let deck = deck else { return }
+        let context = ContainerService.shared.persistentContainer.viewContext
+        let request = deck.whereNeedsReview()
+        request.fetchLimit = 5
+        do {
+            let cards = try context.fetch(request)
+            let reviewVC = ReviewViewController()
+            reviewVC.reviewSession = deck.generateReviewSession(cards: cards)
+            navigationController?.pushViewController(reviewVC, animated: true)
+        } catch {
+            NotificationService.showErrorBanner(withText: "Error fetching cards")
+        }
     }
     
     @objc func addNewButtonPressed() {
+        guard let deck = deck else { return }
         let addNewVc = AddCardViewController()
-        addNewVc.delegate = self
+        addNewVc.deck = deck
         navigationController?.pushViewController(addNewVc, animated: true)
-    }
-    
-    private func setupNavbar() {
-        NavigationStyler.applyTheme(to: navigationController)
-    }
-}
-
-extension DeckDetailViewController: AddCardDelegate {
-    func addCard(withFrontText frontText: String?, andBackText backText: String?) {
-        let card = Card(front: frontText ?? "", back: backText ?? "")
-        deck?.addCard(card: card)
     }
 }

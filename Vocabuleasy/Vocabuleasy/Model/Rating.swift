@@ -8,6 +8,6 @@
 
 import Foundation
 
-enum Rating {
+enum Rating: CaseIterable {
     case correct, meh, wrong
 }

@@ -14,10 +14,10 @@ class CardViewController: UIViewController {
         didSet {
             guard let model = model else { return }
             let frontLabel = UILabel()
-            frontLabel.text = model.front
+            frontLabel.text = model.data?.targetWord
             front.addArrangedSubview(frontLabel)
             let backLabel = UILabel()
-            backLabel.text = model.back
+            backLabel.text = model.data?.translation
             back.addArrangedSubview(backLabel)
         }
     }

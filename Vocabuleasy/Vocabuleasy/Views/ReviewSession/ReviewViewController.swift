@@ -130,9 +130,22 @@ extension ReviewViewController: ReviewDeckDelegate {
         }
     }
     
-    func reviewSessionShouldEnd(_ log: ReviewSessionLog) {
+    func reviewSessionShouldEnd() {
+        guard let session = reviewSession else { return }
         let notification = NotificationBanner(title: "session complete!")
         notification.show()
+        let log = session.complete()
         ShortReviewScheduler().schedule(session: log)
+        if let card = log.cardsReviewed.first, let context = card.card.managedObjectContext {
+            do {
+                try context.save()
+                let vc = PostReviewViewController()
+                vc.state = .loaded(log: log)
+                hero.replaceViewController(with: vc)
+            } catch {
+                print(error)
+                NotificationService.showErrorBanner(withText: "Error saving review session")
+            }
+        }
     }
 }
