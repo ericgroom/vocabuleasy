@@ -28,7 +28,9 @@ class DeckListViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationItem.title = "Decks"
+        NavigationStyler.applyTheme(to: navigationController)
         
+        fetchController.delegate = self
         performFetchRequest()
         
         view.addSubview(tableView)
@@ -65,6 +67,7 @@ class DeckListViewController: UIViewController {
         } catch {
             NotificationService.showErrorBanner(withText: "Unable to save deck")
         }
+        
     }
     
     private func performFetchRequest() {
@@ -96,5 +99,38 @@ extension DeckListViewController: UITableViewDelegate {
         let vc = DeckDetailViewController()
         vc.deck = deck
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let context = fetchController.managedObjectContext
+        let deck = fetchController.object(at: indexPath)
+        if editingStyle == .delete {
+            context.delete(deck)
+        }
+    }
+}
+
+extension DeckListViewController: NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        case .delete:
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+        default:
+            print(type)
+        }
     }
 }

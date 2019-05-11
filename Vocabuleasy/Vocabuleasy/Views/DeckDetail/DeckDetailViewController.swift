@@ -39,7 +39,6 @@ class DeckDetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
         navigationItem.title = "Deck Detail" // TODO update with deck name
-        setupNavbar()
         
         view.addSubview(card)
         card.center(on: view)
@@ -77,9 +76,5 @@ class DeckDetailViewController: UIViewController {
         let addNewVc = AddCardViewController()
         addNewVc.deck = deck
         navigationController?.pushViewController(addNewVc, animated: true)
-    }
-    
-    private func setupNavbar() {
-        NavigationStyler.applyTheme(to: navigationController)
     }
 }
