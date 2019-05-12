@@ -47,6 +47,7 @@
 		BAE438C822826472008F92DB /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE438C722826472008F92DB /* DeckListViewController.swift */; };
 		BAE438CC2286721D008F92DB /* ImageFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */; };
 		BAE438CE22879D40008F92DB /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE438CD22879D40008F92DB /* CGSize.swift */; };
+		BAE438D12287A204008F92DB /* ExampleSentenceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE438D02287A204008F92DB /* ExampleSentenceProvider.swift */; };
 		BAF4AC5F2268D9E700163D2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */; };
 		BAF4AC692268D9E700163D2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC682268D9E700163D2C /* Assets.xcassets */; };
 		BAF4AC6C2268D9E700163D2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAF4AC6A2268D9E700163D2C /* LaunchScreen.storyboard */; };
@@ -114,6 +115,7 @@
 		BAE438C722826472008F92DB /* DeckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
 		BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFieldViewController.swift; sourceTree = "<group>"; };
 		BAE438CD22879D40008F92DB /* CGSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
+		BAE438D02287A204008F92DB /* ExampleSentenceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleSentenceProvider.swift; sourceTree = "<group>"; };
 		BAF4AC5B2268D9E700163D2C /* Vocabuleasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vocabuleasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAF4AC5E2268D9E700163D2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAF4AC682268D9E700163D2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -269,6 +271,14 @@
 			path = DeckList;
 			sourceTree = "<group>";
 		};
+		BAE438CF2287A1EB008F92DB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BAE438D02287A204008F92DB /* ExampleSentenceProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		BAF4AC522268D9E700163D2C = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +302,7 @@
 		BAF4AC5D2268D9E700163D2C /* Vocabuleasy */ = {
 			isa = PBXGroup;
 			children = (
+				BAE438CF2287A1EB008F92DB /* Services */,
 				BAE438BD22820EF3008F92DB /* Vocabuleasy.xcdatamodeld */,
 				BA557223227FB85A00343713 /* Data Persistence */,
 				BA5E8437226BA5B100D5B6ED /* Model */,
@@ -575,6 +586,7 @@
 				BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */,
 				BAD9C598227E3AD200F1415D /* ShortReviewScheduler.swift in Sources */,
 				BAD9C58F227E009A00F1415D /* Rating.swift in Sources */,
+				BAE438D12287A204008F92DB /* ExampleSentenceProvider.swift in Sources */,
 				BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */,
 				BAF4AC8D2268E1B100163D2C /* CardBackgroundView.swift in Sources */,
 				BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */,

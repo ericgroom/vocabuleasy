@@ -203,7 +203,7 @@ extension UIView {
     @discardableResult
     func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true)  -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let c =  self.bottomAnchor.constraint(equalTo: anchor, constant: -offset)
+        let c = self.bottomAnchor.constraint(equalTo: anchor, constant: -offset)
         if let priority = priority {
             c.priority = priority
         }
@@ -216,7 +216,7 @@ extension UIView {
     @discardableResult
     func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let c =  self.leadingAnchor.constraint(equalTo: anchor, constant: offset)
+        let c = self.leadingAnchor.constraint(equalTo: anchor, constant: offset)
         if let priority = priority {
             c.priority = priority
         }
@@ -229,7 +229,7 @@ extension UIView {
     @discardableResult
     func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let c =  self.trailingAnchor.constraint(equalTo: anchor, constant: -offset)
+        let c = self.trailingAnchor.constraint(equalTo: anchor, constant: -offset)
         if let priority = priority {
             c.priority = priority
         }

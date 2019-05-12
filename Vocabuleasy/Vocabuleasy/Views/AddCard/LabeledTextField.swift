@@ -27,8 +27,8 @@ class LabeledTextField: UIView {
         }
     }
     
-    private let textField = PaddedTextField()
-    private let label = UILabel()
+    let textField = PaddedTextField()
+    let label = UILabel()
     private let stackView = UIStackView()
     
     

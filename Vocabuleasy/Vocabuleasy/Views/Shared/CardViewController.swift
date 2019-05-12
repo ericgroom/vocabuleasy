@@ -21,6 +21,10 @@ class CardViewController: UIViewController {
             backLabel.text = model.data?.translation
             back.addArrangedSubview(backLabel)
             
+            let exampleLabel = UILabel()
+            exampleLabel.text = model.data?.example
+            back.addArrangedSubview(exampleLabel)
+            
             if let imageData = model.data?.photo, let image = UIImage(data: imageData) {
                 let imageView = UIImageView(image: image)
                 imageView.contentMode = .scaleAspectFit
