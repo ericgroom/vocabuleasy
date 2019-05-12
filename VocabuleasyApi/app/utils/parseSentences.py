@@ -1,9 +1,9 @@
 import csv
 import sqlite3
 import time
+from app.settings import DB_PATH
 
 CSV_PATH = "./public/sentences.csv"
-DB_PATH = "./public/sentences.sqlite3"
 
 
 def getSentences():
@@ -42,6 +42,7 @@ def seed(conn):
 
 
 if __name__ == "__main__":
+    print(f"Attempting to connect to: {DB_PATH}")
     conn = sqlite3.connect(DB_PATH)
     seed(conn)
 
