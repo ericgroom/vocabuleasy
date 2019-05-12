@@ -37,7 +37,7 @@ extension UIView {
     // - MARK: size
     
     @discardableResult
-    func width(_ mode: Mode = .equal, to parent: UIView, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func width(_ mode: Mode = .equal, to parent: UIView, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -48,6 +48,9 @@ extension UIView {
         case .lessOrEqual:
             c = self.widthAnchor.constraint(lessThanOrEqualTo: parent.widthAnchor, constant: offset)
         }
+        if let priority = priority {
+            c.priority = priority
+        }
         if activate {
             c.isActive = true
         }
@@ -55,7 +58,7 @@ extension UIView {
     }
     
     @discardableResult
-    func width(_ mode: Mode = .equal, to constant: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
+    func width(_ mode: Mode = .equal, to constant: CGFloat, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -66,6 +69,9 @@ extension UIView {
         case .lessOrEqual:
             c = self.widthAnchor.constraint(lessThanOrEqualToConstant: constant)
         }
+        if let priority = priority {
+            c.priority = priority
+        }
         if activate {
             c.isActive = true
         }
@@ -74,7 +80,7 @@ extension UIView {
     }
     
     @discardableResult
-    func width(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func width(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -85,6 +91,9 @@ extension UIView {
         case .lessOrEqual:
             c = self.widthAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: offset)
         }
+        if let priority = priority {
+            c.priority = priority
+        }
         if activate {
             c.isActive = true
         }
@@ -93,7 +102,7 @@ extension UIView {
     
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to parent: UIView, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to parent: UIView, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -104,6 +113,9 @@ extension UIView {
         case .lessOrEqual:
             c = self.heightAnchor.constraint(lessThanOrEqualTo: parent.heightAnchor, constant: offset)
         }
+        if let priority = priority {
+            c.priority = priority
+        }
         if activate {
             c.isActive = true
         }
@@ -111,7 +123,7 @@ extension UIView {
     }
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to constant: CGFloat, activate: Bool = true) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to constant: CGFloat, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -122,6 +134,9 @@ extension UIView {
         case .lessOrEqual:
             c = self.heightAnchor.constraint(lessThanOrEqualToConstant: constant)
         }
+        if let priority = priority {
+            c.priority = priority
+        }
         if activate {
             c.isActive = true
         }
@@ -129,7 +144,7 @@ extension UIView {
     }
     
     @discardableResult
-    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func height(_ mode: Mode = .equal, to dimension: NSLayoutDimension, withMultiplier multiplier: CGFloat, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
         let c: NSLayoutConstraint
         switch mode {
@@ -140,6 +155,9 @@ extension UIView {
         case .lessOrEqual:
             c = self.heightAnchor.constraint(greaterThanOrEqualTo: dimension, multiplier: multiplier, constant: offset)
         }
+        if let priority = priority {
+            c.priority = priority
+        }
         if activate {
             c.isActive = true
         }
@@ -149,7 +167,7 @@ extension UIView {
     // - MARK: align
     
     @discardableResult
-    func center(on parent: UIView, axis: Axis = .both, activate: Bool = true) -> [NSLayoutConstraint] {
+    func center(on parent: UIView, axis: Axis = .both, priority: UILayoutPriority? = nil, activate: Bool = true) -> [NSLayoutConstraint] {
         self.translatesAutoresizingMaskIntoConstraints = false
         var constraints: [NSLayoutConstraint] = []
         if axis == .x || axis == .both {
@@ -160,6 +178,9 @@ extension UIView {
             let c = self.centerYAnchor.constraint(greaterThanOrEqualTo: parent.centerYAnchor)
             constraints.append(c)
         }
+        if let priority = priority {
+            constraints.forEach { $0.priority = priority }
+        }
         if activate {
             NSLayoutConstraint.activate(constraints)
         }
@@ -167,42 +188,54 @@ extension UIView {
     }
     
     @discardableResult
-    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func top(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = self.topAnchor.constraint(equalTo: anchor, constant: offset)
-        if activate {
-            constraint.isActive = true
+        let c = self.topAnchor.constraint(equalTo: anchor, constant: offset)
+        if let priority = priority {
+            c.priority = priority
         }
-        return constraint
+        if activate {
+            c.isActive = true
+        }
+        return c
     }
     
     @discardableResult
-    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true)  -> NSLayoutConstraint {
+    func bottom(to anchor: NSLayoutYAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true)  -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint =  self.bottomAnchor.constraint(equalTo: anchor, constant: -offset)
-        if activate {
-            constraint.isActive = true
+        let c =  self.bottomAnchor.constraint(equalTo: anchor, constant: -offset)
+        if let priority = priority {
+            c.priority = priority
         }
-        return constraint
+        if activate {
+            c.isActive = true
+        }
+        return c
     }
     
     @discardableResult
-    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func leading(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint =  self.leadingAnchor.constraint(equalTo: anchor, constant: offset)
-        if activate {
-            constraint.isActive = true
+        let c =  self.leadingAnchor.constraint(equalTo: anchor, constant: offset)
+        if let priority = priority {
+            c.priority = priority
         }
-        return constraint
+        if activate {
+            c.isActive = true
+        }
+        return c
     }
     
     @discardableResult
-    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, activate: Bool = true) -> NSLayoutConstraint {
+    func trailing(to anchor: NSLayoutXAxisAnchor, withOffset offset: CGFloat = 0.0, priority: UILayoutPriority? = nil, activate: Bool = true) -> NSLayoutConstraint {
         self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint =  self.trailingAnchor.constraint(equalTo: anchor, constant: -offset)
-        if activate {
-            constraint.isActive = true
+        let c =  self.trailingAnchor.constraint(equalTo: anchor, constant: -offset)
+        if let priority = priority {
+            c.priority = priority
         }
-        return constraint
+        if activate {
+            c.isActive = true
+        }
+        return c
     }
 }

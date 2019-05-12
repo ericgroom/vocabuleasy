@@ -43,6 +43,7 @@ class AddCardViewController: KeyboardViewController {
         let cardData = CardFieldData(context: context)
         cardData.targetWord = formVC.frontText
         cardData.translation = formVC.backText
+        cardData.photo = formVC.image?.pngData()
         card.data = cardData
         
         deck.addToCards(card)
