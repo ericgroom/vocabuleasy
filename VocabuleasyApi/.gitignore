@@ -1,1 +1,10 @@
+# Editor
+.vscode/
+
+# Python
+*.pyc
+__pycache__/
+venv/
+
+# App specific
 public/
