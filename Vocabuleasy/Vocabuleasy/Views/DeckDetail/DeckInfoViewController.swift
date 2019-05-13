@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SwiftDate
 
 class DeckInfoViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class DeckInfoViewController: UIViewController {
     
     enum State {
         case empty
-        case loaded(total: Int, upcoming: Int)
+        case loaded(total: Int, upcoming: Int, nextDate: Date?)
         case error(Error)
     }
     
@@ -44,6 +45,7 @@ class DeckInfoViewController: UIViewController {
 
         setupListener()
         update()
+        setUpdateTimer()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,7 +69,9 @@ class DeckInfoViewController: UIViewController {
         do {
             let allCount = try context.count(for: allRequest)
             let upcomingCount = try context.count(for: upcomingRequest)
-            state = .loaded(total: allCount, upcoming: upcomingCount)
+            let all = try context.fetch(allRequest)
+            let nextDate = all.first?.nextReview
+            state = .loaded(total: allCount, upcoming: upcomingCount, nextDate: nextDate)
         } catch {
             state = .error(error)
         }
@@ -78,8 +82,13 @@ class DeckInfoViewController: UIViewController {
         case .empty:
             upcomingLabel.text = nil
             totalLabel.text = nil
-        case .loaded(let total, let upcoming):
-            upcomingLabel.text = "\(upcoming) reviews ready"
+        case .loaded(let total, let upcoming, let nextDate):
+            if upcoming <= 0, let nextDate = nextDate {
+                let dateString = nextDate.toRelative(style: RelativeFormatter.defaultStyle(), locale: Locale.current)
+                upcomingLabel.text = "Next review: \(dateString)"
+            } else {
+                upcomingLabel.text = "\(upcoming) reviews ready"
+            }
             totalLabel.text = "\(total) total cards"
         case .error(_):
             upcomingLabel.text = nil
@@ -90,5 +99,18 @@ class DeckInfoViewController: UIViewController {
     private func setupListener() {
         let context = ContainerService.shared.persistentContainer.viewContext
         NotificationCenter.default.addObserver(self, selector: #selector(update), name: .NSManagedObjectContextObjectsDidChange, object: context)
+    }
+    
+    private var updateTimer: Timer!
+    
+    private func setUpdateTimer() {
+        updateTimer = Timer(timeInterval: 60, repeats: true) { [weak self] timer in
+            if self == nil {
+                timer.invalidate()
+                return
+            }
+            self!.update()
+        }
+        RunLoop.current.add(updateTimer, forMode: .default)
     }
 }

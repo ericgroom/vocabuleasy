@@ -33,11 +33,6 @@ class ShortReviewScheduler: ReviewScheduler {
         case .wrong:
             minutes = 1
         }
-        let now = Date()
-        card.lastReviewed = now
-        var components = DateComponents()
-        components.minute = minutes
-        let nextDate = Calendar.autoupdatingCurrent.date(byAdding: components, to: now)
-        card.nextReview = nextDate
+        self.setNextReview(for: card, in: minutes)
     }
 }

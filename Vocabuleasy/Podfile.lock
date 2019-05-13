@@ -5,10 +5,12 @@ PODS:
     - MarqueeLabel/Swift (~> 3.2.0)
     - SnapKit (~> 4.2.0)
   - SnapKit (4.2.0)
+  - SwiftDate (5.1.0)
 
 DEPENDENCIES:
   - Hero
   - NotificationBannerSwift
+  - SwiftDate (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - MarqueeLabel
     - NotificationBannerSwift
     - SnapKit
+    - SwiftDate
 
 SPEC CHECKSUMS:
   Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
   MarqueeLabel: 2daf039bf916937c8a4c9adfc13577cc5e51b4ce
   NotificationBannerSwift: 007774aa590cc9680647b92b2f217bef5c00c32c
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
 
-PODFILE CHECKSUM: ae444fcb0820e36d4218409301750f668c9f68a1
+PODFILE CHECKSUM: e56ee23ecc4ede889d2fc3f7251a79ecac9b4d76
 
 COCOAPODS: 1.6.1
