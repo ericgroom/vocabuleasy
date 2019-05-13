@@ -45,6 +45,7 @@ if __name__ == "__main__":
     print(f"Attempting to connect to: {DB_PATH}")
     conn = sqlite3.connect(DB_PATH)
     seed(conn)
+    conn.close()
 
 
 # example query `SELECT * FROM sentences WHERE instr(sentences.sentence, ' test ') > 0 AND lang='eng';`
