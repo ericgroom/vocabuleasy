@@ -15,6 +15,7 @@ class CardViewController: UIViewController {
             guard let model = model else { return }
             let frontLabel = UILabel()
             frontLabel.text = model.data?.targetWord
+            frontLabel.font = Theme.Fonts.largeWord
             front.addArrangedSubview(frontLabel)
             
             let backLabel = UILabel()
