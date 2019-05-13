@@ -14,6 +14,7 @@
 		BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */; };
 		BA39F46F22711AA400B5931D /* CardGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */; };
 		BA43F31222820BD10023DB8D /* CardFieldData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43F31122820BD10023DB8D /* CardFieldData.swift */; };
+		BA4863252289D0F400B3927D /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4863242289D0F400B3927D /* ReviewView.swift */; };
 		BA557227227FB99C00343713 /* ContainerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA557226227FB99C00343713 /* ContainerService.swift */; };
 		BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */; };
 		BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467C2269174F0037EE57 /* CardViewController.swift */; };
@@ -82,6 +83,7 @@
 		BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDPressButton.swift; sourceTree = "<group>"; };
 		BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGestureRecognizer.swift; sourceTree = "<group>"; };
 		BA43F31122820BD10023DB8D /* CardFieldData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldData.swift; sourceTree = "<group>"; };
+		BA4863242289D0F400B3927D /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		BA557226227FB99C00343713 /* ContainerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerService.swift; sourceTree = "<group>"; };
 		BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		BA5A467C2269174F0037EE57 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */,
 				BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */,
 				BAD9C59F227F936100F1415D /* ReviewControlsDelegate.swift */,
+				BA4863242289D0F400B3927D /* ReviewView.swift */,
 			);
 			path = ReviewSession;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				BAC5F728227A4EC800C5B2CD /* PaddedTextField.swift in Sources */,
 				BA24D196228098B20053A2A5 /* NotificationService.swift in Sources */,
 				BA5B33472274CB6400E06E81 /* DeckDetailViewController.swift in Sources */,
+				BA4863252289D0F400B3927D /* ReviewView.swift in Sources */,
 				BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
