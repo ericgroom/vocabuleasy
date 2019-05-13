@@ -14,6 +14,8 @@ struct Theme {
     static let darkGray = UIColor.sketch(h: 0, s: 0, b: 13)
     static let white = UIColor.sketch(h: 0, s: 0, b: 95)
     
+    static let iosBlue = UIColor(red: 0, green: 122.0/255.0, blue: 1, alpha: 1.0)
+    
     struct Ratings {
         static let good = UIColor.sketch(h: 130, s: 65, b: 85)
         static let warning = UIColor.sketch(h: 48, s: 100, b: 100)

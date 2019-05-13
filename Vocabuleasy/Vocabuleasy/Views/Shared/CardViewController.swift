@@ -16,9 +16,22 @@ class CardViewController: UIViewController {
             let frontLabel = UILabel()
             frontLabel.text = model.data?.targetWord
             front.addArrangedSubview(frontLabel)
+            
             let backLabel = UILabel()
             backLabel.text = model.data?.translation
             back.addArrangedSubview(backLabel)
+            
+            let exampleLabel = UILabel()
+            exampleLabel.text = model.data?.example
+            back.addArrangedSubview(exampleLabel)
+            
+            if let imageData = model.data?.photo, let image = UIImage(data: imageData) {
+                let imageView = UIImageView(image: image)
+                imageView.contentMode = .scaleAspectFit
+                back.addArrangedSubview(imageView)
+                imageView.width(to: view, withOffset: -2*Layout.Spacing.standard)
+                imageView.height(to: imageView.widthAnchor, withMultiplier: 1/image.size.aspectRatio)
+            }
         }
     }
     

@@ -35,7 +35,6 @@ class AddCardViewController: KeyboardViewController {
         guard let deck = deck else { return }
         let context = ContainerService.shared.persistentContainer.viewContext
         
-
         let card = Card(context: context)
         card.id = UUID()
         card.nextReview = Date()
@@ -43,6 +42,8 @@ class AddCardViewController: KeyboardViewController {
         let cardData = CardFieldData(context: context)
         cardData.targetWord = formVC.frontText
         cardData.translation = formVC.backText
+        cardData.example = formVC.exampleText
+        cardData.photo = formVC.image?.pngData()
         card.data = cardData
         
         deck.addToCards(card)
@@ -56,10 +57,7 @@ class AddCardViewController: KeyboardViewController {
         }
         
     }
-    
-    
-    
-    
+
     // - MARK: Resizing view for keyboard
     
     private func configureKeyboardListeners() {
