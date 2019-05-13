@@ -8,6 +8,7 @@ target 'Vocabuleasy' do
   # Pods for Vocabuleasy
   pod 'Hero'
   pod 'NotificationBannerSwift'
+  pod 'SwiftDate', '~> 5.0'
 
   target 'VocabuleasyTests' do
     inherit! :search_paths

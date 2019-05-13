@@ -32,6 +32,7 @@
 		BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */; };
 		BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403F226C273900762C79 /* CardFieldBuilder.swift */; };
 		BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */; };
+		BAC133DB2288FF2600EF74DA /* FibonacciReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC133DA2288FF2600EF74DA /* FibonacciReviewScheduler.swift */; };
 		BAC5F728227A4EC800C5B2CD /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */; };
 		BAD9C589227DFED800F1415D /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C588227DFED800F1415D /* Card.swift */; };
 		BAD9C58B227DFF1700F1415D /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD9C58A227DFF1700F1415D /* Deck.swift */; };
@@ -99,6 +100,7 @@
 		BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimationController.swift; sourceTree = "<group>"; };
 		BA67403F226C273900762C79 /* CardFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldBuilder.swift; sourceTree = "<group>"; };
 		BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReviewViewController.swift; sourceTree = "<group>"; };
+		BAC133DA2288FF2600EF74DA /* FibonacciReviewScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibonacciReviewScheduler.swift; sourceTree = "<group>"; };
 		BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		BAD9C588227DFED800F1415D /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Card.swift; path = Vocabuleasy/Card.swift; sourceTree = SOURCE_ROOT; };
 		BAD9C58A227DFF1700F1415D /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			children = (
 				BAD9C594227E3A1500F1415D /* ReviewScheduler.swift */,
 				BAD9C597227E3AD200F1415D /* ShortReviewScheduler.swift */,
+				BAC133DA2288FF2600EF74DA /* FibonacciReviewScheduler.swift */,
 			);
 			path = ReviewScheduler;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -535,6 +539,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NotificationBannerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -552,6 +557,7 @@
 				BA5B334E2274F6BE00E06E81 /* ButtonStyler.swift in Sources */,
 				BAE438C822826472008F92DB /* DeckListViewController.swift in Sources */,
 				BAF4AC8A2268E18500163D2C /* RootViewController.swift in Sources */,
+				BAC133DB2288FF2600EF74DA /* FibonacciReviewScheduler.swift in Sources */,
 				BAF4AC8F2268E28B00163D2C /* Constraints.swift in Sources */,
 				BAE438BF22820EF3008F92DB /* Vocabuleasy.xcdatamodeld in Sources */,
 				BA5B334C2274F2C600E06E81 /* NavigationStyler.swift in Sources */,

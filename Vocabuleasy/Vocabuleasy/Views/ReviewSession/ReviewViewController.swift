@@ -135,7 +135,7 @@ extension ReviewViewController: ReviewDeckDelegate {
         let notification = NotificationBanner(title: "session complete!")
         notification.show()
         let log = session.complete()
-        ShortReviewScheduler().schedule(session: log)
+        FibonacciReviewScheduler(baseInterval: 60).schedule(session: log)
         if let card = log.cardsReviewed.first, let context = card.card.managedObjectContext {
             do {
                 try context.save()
