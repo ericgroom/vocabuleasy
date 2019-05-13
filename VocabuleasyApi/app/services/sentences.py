@@ -9,9 +9,9 @@ def get_connection():
     return sqlite3.connect(DB_PATH)
 
 
-def get_sentences(word):
+def get_sentences(lang, word):
     conn = get_connection()
     c = conn.execute(
-        "SELECT * FROM sentences WHERE lang='eng' AND instr(sentences.sentence, ?) > 0;", (word,))
+        "SELECT * FROM sentences WHERE lang=? AND instr(sentences.sentence, ?) > 0;", (lang, word))
     sentences = c.fetchall()
     return [Sentence(*row) for row in sentences]
