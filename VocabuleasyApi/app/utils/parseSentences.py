@@ -25,7 +25,8 @@ def writeRow(conn: sqlite3.Connection, id, lang, sentence):
 
 
 def createLangIndex(conn):
-    conn.execute("CREATE INDEX")
+    conn.execute("CREATE INDEX lang_index ON sentences(lang);")
+    conn.commit()
 
 
 def seed(conn):
@@ -45,6 +46,7 @@ if __name__ == "__main__":
     print(f"Attempting to connect to: {DB_PATH}")
     conn = sqlite3.connect(DB_PATH)
     seed(conn)
+    createLangIndex(conn)
     conn.close()
 
 

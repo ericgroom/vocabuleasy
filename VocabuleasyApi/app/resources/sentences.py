@@ -1,4 +1,4 @@
-from random import choice
+from random import choices
 from flask_restful import Resource, reqparse
 from app.services import get_sentences
 
@@ -11,5 +11,5 @@ class SentenceResource(Resource):
         args = parser.parse_args()
         word = args["word"]
         sentences = get_sentences(word)
-        rsentence = choice(sentences).sentence
-        return rsentence
+        rsentences = choices(sentences, k=5)
+        return [sentence.sentence for sentence in rsentences]

@@ -12,6 +12,6 @@ def get_connection():
 def get_sentences(word):
     conn = get_connection()
     c = conn.execute(
-        "SELECT * FROM sentences WHERE instr(sentences.sentence, ?) > 0 AND lang='eng' LIMIT 10;", (word,))
+        "SELECT * FROM sentences WHERE lang='eng' AND instr(sentences.sentence, ?) > 0;", (word,))
     sentences = c.fetchall()
     return [Sentence(*row) for row in sentences]
