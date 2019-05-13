@@ -15,6 +15,7 @@
 		BA39F46F22711AA400B5931D /* CardGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */; };
 		BA43F31222820BD10023DB8D /* CardFieldData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43F31122820BD10023DB8D /* CardFieldData.swift */; };
 		BA4863252289D0F400B3927D /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4863242289D0F400B3927D /* ReviewView.swift */; };
+		BA48632A2289DD4600B3927D /* EditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4863292289DD4600B3927D /* EditCardViewController.swift */; };
 		BA557227227FB99C00343713 /* ContainerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA557226227FB99C00343713 /* ContainerService.swift */; };
 		BA5A467B2268F8340037EE57 /* ScrollableStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */; };
 		BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A467C2269174F0037EE57 /* CardViewController.swift */; };
@@ -25,7 +26,7 @@
 		BA5B33502274FA4D00E06E81 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */; };
 		BA5D5577227BD2C70024567A /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5576227BD2C70024567A /* KeyboardViewController.swift */; };
 		BA5D5579227BDBF10024567A /* TagTextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5578227BDBF10024567A /* TagTextViewDelegate.swift */; };
-		BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5581227DEB770024567A /* AddCardFormViewController.swift */; };
+		BA5D5582227DEB770024567A /* CardFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5581227DEB770024567A /* CardFormViewController.swift */; };
 		BA5D5584227DEBD60024567A /* LabeledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5D5583227DEBD60024567A /* LabeledTextField.swift */; };
 		BA5E8432226B8A3000D5B6ED /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8431226B8A3000D5B6ED /* UIViewController.swift */; };
 		BA5E8434226B90DC00D5B6ED /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8433226B90DC00D5B6ED /* Layout.swift */; };
@@ -84,6 +85,7 @@
 		BA39F46E22711AA400B5931D /* CardGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGestureRecognizer.swift; sourceTree = "<group>"; };
 		BA43F31122820BD10023DB8D /* CardFieldData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldData.swift; sourceTree = "<group>"; };
 		BA4863242289D0F400B3927D /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
+		BA4863292289DD4600B3927D /* EditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardViewController.swift; sourceTree = "<group>"; };
 		BA557226227FB99C00343713 /* ContainerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerService.swift; sourceTree = "<group>"; };
 		BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableStackView.swift; sourceTree = "<group>"; };
 		BA5A467C2269174F0037EE57 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
@@ -94,7 +96,7 @@
 		BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		BA5D5576227BD2C70024567A /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		BA5D5578227BDBF10024567A /* TagTextViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTextViewDelegate.swift; sourceTree = "<group>"; };
-		BA5D5581227DEB770024567A /* AddCardFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardFormViewController.swift; sourceTree = "<group>"; };
+		BA5D5581227DEB770024567A /* CardFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFormViewController.swift; sourceTree = "<group>"; };
 		BA5D5583227DEBD60024567A /* LabeledTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledTextField.swift; sourceTree = "<group>"; };
 		BA5E8431226B8A3000D5B6ED /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		BA5E8433226B90DC00D5B6ED /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
@@ -168,6 +170,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BA48632B2289DD4C00B3927D /* EditCard */ = {
+			isa = PBXGroup;
+			children = (
+				BA4863292289DD4600B3927D /* EditCardViewController.swift */,
+			);
+			path = EditCard;
+			sourceTree = "<group>";
+		};
 		BA557223227FB85A00343713 /* Data Persistence */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +205,7 @@
 			children = (
 				BA5B3354227A479600E06E81 /* FieldBuilder */,
 				BA5A467C2269174F0037EE57 /* CardViewController.swift */,
+				BA5D5581227DEB770024567A /* CardFormViewController.swift */,
 				BAF4AC8C2268E1B100163D2C /* CardBackgroundView.swift */,
 				BA5A467A2268F8340037EE57 /* ScrollableStackView.swift */,
 				BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */,
@@ -221,7 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */,
-				BA5D5581227DEB770024567A /* AddCardFormViewController.swift */,
 				BA5D5583227DEBD60024567A /* LabeledTextField.swift */,
 				BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */,
 			);
@@ -357,6 +367,7 @@
 		BAF4AC8B2268E19800163D2C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BA48632B2289DD4C00B3927D /* EditCard */,
 				BAE438C622826461008F92DB /* DeckList */,
 				BA9DD15D2281DC2200F52057 /* PostReview */,
 				BA5B33512274FA5000E06E81 /* AddCard */,
@@ -562,6 +573,7 @@
 				BAF4AC8A2268E18500163D2C /* RootViewController.swift in Sources */,
 				BAC133DB2288FF2600EF74DA /* FibonacciReviewScheduler.swift in Sources */,
 				BAF4AC8F2268E28B00163D2C /* Constraints.swift in Sources */,
+				BA48632A2289DD4600B3927D /* EditCardViewController.swift in Sources */,
 				BAE438BF22820EF3008F92DB /* Vocabuleasy.xcdatamodeld in Sources */,
 				BA5B334C2274F2C600E06E81 /* NavigationStyler.swift in Sources */,
 				BAD9C58D227DFFED00F1415D /* ReviewSession.swift in Sources */,
@@ -590,7 +602,7 @@
 				BA24D196228098B20053A2A5 /* NotificationService.swift in Sources */,
 				BA5B33472274CB6400E06E81 /* DeckDetailViewController.swift in Sources */,
 				BA4863252289D0F400B3927D /* ReviewView.swift in Sources */,
-				BA5D5582227DEB770024567A /* AddCardFormViewController.swift in Sources */,
+				BA5D5582227DEB770024567A /* CardFormViewController.swift in Sources */,
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
 				BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */,

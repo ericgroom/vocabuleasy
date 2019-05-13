@@ -12,29 +12,15 @@ class CardViewController: UIViewController {
     
     var model: Card? {
         didSet {
-            guard let model = model else { return }
-            let frontLabel = UILabel()
-            frontLabel.text = model.data?.targetWord
-            frontLabel.font = Theme.Fonts.largeWord
-            front.addArrangedSubview(frontLabel)
-            
-            let backLabel = UILabel()
-            backLabel.text = model.data?.translation
-            back.addArrangedSubview(backLabel)
-            
-            let exampleLabel = UILabel()
-            exampleLabel.text = model.data?.example
-            back.addArrangedSubview(exampleLabel)
-            
-            if let imageData = model.data?.photo, let image = UIImage(data: imageData) {
-                let imageView = UIImageView(image: image)
-                imageView.contentMode = .scaleAspectFit
-                back.addArrangedSubview(imageView)
-                imageView.width(to: view, withOffset: -2*Layout.Spacing.standard)
-                imageView.height(to: imageView.widthAnchor, withMultiplier: 1/image.size.aspectRatio)
-            }
+            updateView()
         }
     }
+    
+    private let frontLabel = UILabel()
+    private let backLabel = UILabel()
+    private let exampleLabel = UILabel()
+    private let imageView = UIImageView()
+    private var imageHeightConstraint: NSLayoutConstraint?
     
     private let front = CardBackgroundView()
     private let back = CardBackgroundView()
@@ -47,6 +33,10 @@ class CardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        front.addArrangedSubview(frontLabel)
+        back.addArrangedSubview(backLabel)
+        back.addArrangedSubview(exampleLabel)
+        back.addArrangedSubview(imageView)
         back.isHidden = true
 
         view.addSubview(front)
@@ -54,6 +44,9 @@ class CardViewController: UIViewController {
         
         front.fill(parent: view)
         back.fill(parent: view)
+        
+        imageView.contentMode = .scaleAspectFit
+        imageView.width(to: view, withOffset: -2*Layout.Spacing.standard)
     }
     
     func flipCard() {
@@ -69,6 +62,25 @@ class CardViewController: UIViewController {
             })
         }
         showingFront = !showingFront
+    }
+    
+    func updateView() {
+        guard let model = model else { return }
+        
+        frontLabel.text = model.data?.targetWord
+        frontLabel.font = Theme.Fonts.largeWord
+        backLabel.text = model.data?.translation
+        exampleLabel.text = model.data?.example
+        
+        if let imageData = model.data?.photo, let image = UIImage(data: imageData) {
+            imageView.image = image
+            let aspectRatio = 1/image.size.aspectRatio
+            if let constraint = imageHeightConstraint {
+                constraint.isActive = false
+            }
+            imageHeightConstraint = imageView.height(to: imageView.widthAnchor, withMultiplier: aspectRatio)
+            
+        }
     }
 
 }

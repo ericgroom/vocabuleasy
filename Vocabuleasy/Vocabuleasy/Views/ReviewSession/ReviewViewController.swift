@@ -31,7 +31,7 @@ class ReviewViewController: UIViewController {
         self.view = reviewView
         view.backgroundColor = Theme.green
         navigationItem.title = "Review"
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(showMenu))
         hero.isEnabled = true
         
         cardController.delegate = self
@@ -49,6 +49,16 @@ class ReviewViewController: UIViewController {
         reviewView.cardView = cardView
         reviewView.controls = controls
         reviewView.setupConstraints()
+    }
+    
+    @objc private func showMenu() {
+        guard let card = reviewSession?.currentCard?.card else { return }
+        let editVC = EditCardViewController()
+        editVC.card = card
+        editVC.delegate = self
+        let navVC = UINavigationController(rootViewController: editVC)
+        NavigationStyler.applyTheme(to: navVC)
+        self.present(navVC, animated: true, completion: nil)
     }
 }
 
@@ -103,5 +113,11 @@ extension ReviewViewController: ReviewDeckDelegate {
                 NotificationService.showErrorBanner(withText: "Error saving review session")
             }
         }
+    }
+}
+
+extension ReviewViewController: EditCardDelegate {
+    func didFinishEditing(_ card: Card?) {
+        cardController.currentCard?.updateView()
     }
 }
