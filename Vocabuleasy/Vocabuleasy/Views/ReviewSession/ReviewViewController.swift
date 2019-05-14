@@ -54,7 +54,7 @@ class ReviewViewController: UIViewController {
     @objc private func showMenu() {
         guard let card = reviewSession?.currentCard?.card else { return }
         let editVC = EditCardViewController()
-        editVC.card = card
+        editVC.mode = .edit(card)
         editVC.delegate = self
         let navVC = UINavigationController(rootViewController: editVC)
         NavigationStyler.applyTheme(to: navVC)
@@ -117,7 +117,7 @@ extension ReviewViewController: ReviewDeckDelegate {
 }
 
 extension ReviewViewController: EditCardDelegate {
-    func didFinishEditing(_ card: Card?) {
+    func didFinishEditing() {
         cardController.currentCard?.updateView()
     }
 }

@@ -74,7 +74,7 @@ class DeckDetailViewController: UIViewController {
     @objc func addNewButtonPressed() {
         guard let deck = deck else { return }
         let addNewVc = AddCardViewController()
-        addNewVc.deck = deck
+        addNewVc.mode = .add(deck)
         navigationController?.pushViewController(addNewVc, animated: true)
     }
 }

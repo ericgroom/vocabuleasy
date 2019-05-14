@@ -21,7 +21,7 @@ class EditCardViewController: AddCardViewController {
     
     @objc func goBack() {
         self.dismiss(animated: true, completion: nil)
-        delegate?.didFinishEditing(card)
+        delegate?.didFinishEditing()
     }
     
     @objc func save() {
@@ -32,5 +32,5 @@ class EditCardViewController: AddCardViewController {
 }
 
 protocol EditCardDelegate: class {
-    func didFinishEditing(_ card: Card?)
+    func didFinishEditing()
 }
