@@ -18,7 +18,7 @@ class ReviewDeckController: UIViewController {
     }
     
     weak var delegate: ReviewDeckDelegate?
-    private var currentCard: CardViewController?
+    var currentCard: CardViewController?
     
     var currentView: UIView? {
         return currentCard?.view

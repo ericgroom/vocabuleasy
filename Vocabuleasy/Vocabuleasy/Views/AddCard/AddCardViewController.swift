@@ -12,10 +12,20 @@ import CoreData
 
 class AddCardViewController: KeyboardViewController {
     
-    var deck: Deck?
+    enum Mode {
+        case add(Deck)
+        case edit(Card)
+    }
+    
+    var mode: Mode? {
+        didSet {
+            guard let mode = mode else { return }
+            updateView(for: mode)
+        }
+    }
 
     private var cardBottomConstraint: NSLayoutConstraint?
-    private let formVC = AddCardFormViewController()
+    private let formVC = CardFormViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,21 +42,29 @@ class AddCardViewController: KeyboardViewController {
     }
     
     @objc func saveCard() {
-        guard let deck = deck else { return }
         let context = ContainerService.shared.persistentContainer.viewContext
-        
-        let card = Card(context: context)
-        card.id = UUID()
-        card.nextReview = Date()
-        
-        let cardData = CardFieldData(context: context)
-        cardData.targetWord = formVC.frontText
-        cardData.translation = formVC.backText
-        cardData.example = formVC.exampleText
-        cardData.photo = formVC.image?.pngData()
-        card.data = cardData
-        
-        deck.addToCards(card)
+        guard let mode = mode else { return }
+        switch mode {
+        case .add(let deck):
+            let card = Card(context: context)
+            card.id = UUID()
+            card.nextReview = Date()
+            deck.addToCards(card)
+            card.data = CardFieldData(context: context)
+            card.data?.targetWord = formVC.frontText
+            card.data?.translation = formVC.backText
+            card.data?.example = formVC.exampleText
+            card.data?.photo = formVC.image?.pngData()
+        case .edit(let card):
+            if card.data == nil {
+                card.data = CardFieldData(context: context)
+            }
+            card.data!.targetWord = formVC.frontText
+            card.data!.translation = formVC.backText
+            card.data!.example = formVC.exampleText
+            card.data!.photo = formVC.image?.pngData()
+        }
+
         do {
             try context.save()
             self.formVC.clear()
@@ -56,6 +74,21 @@ class AddCardViewController: KeyboardViewController {
             NotificationService.showErrorBanner(withText: "Error saving card")
         }
         
+    }
+    
+    private func updateView(for mode: Mode) {
+        switch mode {
+        case .add(_):
+            formVC.clear()
+        case .edit(let card):
+            guard let data = card.data else { return }
+            formVC.frontText = data.targetWord
+            formVC.backText = data.translation
+            formVC.exampleText = data.example
+            if let imageData = data.photo {
+                formVC.image = UIImage(data: imageData)
+            }
+        }
     }
 
     // - MARK: Resizing view for keyboard

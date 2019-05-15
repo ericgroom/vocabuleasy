@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddCardFormViewController: UIViewController {
+class CardFormViewController: UIViewController {
     
     var frontText: String? {
         get {

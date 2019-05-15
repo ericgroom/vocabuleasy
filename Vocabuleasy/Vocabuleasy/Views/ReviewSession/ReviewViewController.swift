@@ -27,9 +27,11 @@ class ReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let reviewView = ReviewView()
+        self.view = reviewView
         view.backgroundColor = Theme.green
         navigationItem.title = "Review"
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(showMenu))
         hero.isEnabled = true
         
         cardController.delegate = self
@@ -41,58 +43,22 @@ class ReviewViewController: UIViewController {
         
         embed(cardController)
         embed(ratingController)
-        setupConstraints()
         
         cardView.hero.id = "cardBackground"
+        
+        reviewView.cardView = cardView
+        reviewView.controls = controls
+        reviewView.setupConstraints()
     }
     
-    // MARK: - Autolayout
-    
-    private var regularConstraints: [NSLayoutConstraint] = []
-    private var compactConstraints: [NSLayoutConstraint] = []
-    
-    private func setupConstraints() {
-        // universal
-        cardView.leading(to: view.leadingAnchor, withOffset: Layout.Spacing.standard)
-        cardView.height(to: cardView.widthAnchor, withMultiplier: 1.75/Layout.goldenRatio, priority: .defaultLow)
-        
-        // regular constraints
-        let cardTopRegular = cardView.top(to: view.topAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let cardTrailingRegular = cardView.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        
-        let buttonWidthRegular = controls.width(to: cardView, activate: false)
-        let buttonTopRegular = controls.top(to: cardView.bottomAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let buttonCenter = controls.center(on: view, axis: .x, activate: false)
-        regularConstraints = [cardTopRegular, cardTrailingRegular, buttonTopRegular, buttonWidthRegular]
-        regularConstraints.append(contentsOf: buttonCenter)
-        
-        let cardTrailingCompact = cardView.trailing(to: controls.leadingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let cardCenterCompact = cardView.center(on: view, axis: .y, activate: false)
-        
-        let buttonCenterCompact = controls.center(on: view, axis: .y, activate: false)
-        let buttonLeadingCompact = controls.leading(to: cardView.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let buttonTrailingCompact = controls.trailing(to: view.trailingAnchor, withOffset: Layout.Spacing.standard, activate: false)
-        let buttonWidthCompact = controls.width(to: 200, activate: false)
-        
-        compactConstraints = [cardTrailingCompact, buttonLeadingCompact, buttonTrailingCompact, buttonWidthCompact]
-        compactConstraints.append(contentsOf: buttonCenterCompact)
-        compactConstraints.append(contentsOf: cardCenterCompact)
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if let previous = previousTraitCollection, previous.verticalSizeClass == traitCollection.verticalSizeClass {
-            return
-        }
-        
-        if traitCollection.verticalSizeClass == .compact && previousTraitCollection?.verticalSizeClass != .compact {
-            NSLayoutConstraint.deactivate(regularConstraints)
-            NSLayoutConstraint.activate(compactConstraints)
-        } else {
-            NSLayoutConstraint.deactivate(compactConstraints)
-            NSLayoutConstraint.activate(regularConstraints)
-        }
-        view.layoutIfNeeded()
+    @objc private func showMenu() {
+        guard let card = reviewSession?.currentCard?.card else { return }
+        let editVC = EditCardViewController()
+        editVC.mode = .edit(card)
+        editVC.delegate = self
+        let navVC = UINavigationController(rootViewController: editVC)
+        NavigationStyler.applyTheme(to: navVC)
+        self.present(navVC, animated: true, completion: nil)
     }
 }
 
@@ -147,5 +113,11 @@ extension ReviewViewController: ReviewDeckDelegate {
                 NotificationService.showErrorBanner(withText: "Error saving review session")
             }
         }
+    }
+}
+
+extension ReviewViewController: EditCardDelegate {
+    func didFinishEditing() {
+        cardController.currentCard?.updateView()
     }
 }
