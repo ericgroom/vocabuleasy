@@ -40,7 +40,7 @@ class LabeledTextField: UIView {
         textField.layer.cornerRadius = 4.0
         textField.layer.masksToBounds = false
         textField.backgroundColor = Theme.white
-        textField.returnKeyType = .done
+        textField.returnKeyType = .default
         textField.isEditable = true
         textField.isScrollEnabled = false
         textField.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 16)

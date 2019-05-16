@@ -9,5 +9,5 @@
 import Foundation
 
 enum Network {
-    static let sentencesEndpoint = "http://10.0.0.224:5000/sentences"
+    static let sentencesEndpoint = "http://167.99.110.225:5000/sentences"
 }
