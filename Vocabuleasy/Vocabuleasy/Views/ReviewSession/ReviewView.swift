@@ -19,7 +19,7 @@ class ReviewView: UIView {
     func setupConstraints() {
         // universal
         cardView.leading(to: self.leadingAnchor, withOffset: Layout.Spacing.standard)
-        cardView.height(to: cardView.widthAnchor, withMultiplier: 1.75/Layout.goldenRatio, priority: .defaultLow)
+        cardView.height(.lessOrEqual, to: cardView.widthAnchor, withMultiplier: 1.75/Layout.goldenRatio, priority: .defaultLow)
         
         // regular constraints
         let cardTopRegular = cardView.top(to: self.topAnchor, withOffset: Layout.Spacing.standard, activate: false)
