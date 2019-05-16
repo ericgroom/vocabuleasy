@@ -86,15 +86,16 @@ class CardFormViewController: UIViewController {
     
     @objc private func generateExample() {
         guard let word = frontText, word.count > 0 else { return }
-        do {
-            try APIExampleSentenceProvider.shared.getExampleSentence(for: word) { example in
-                print(example)
-                self.exampleLabel.text = example.first
+
+        APIExampleSentenceProvider.shared.getExampleSentence(for: word) { result in
+            switch result {
+            case .success(let sentences):
+                self.exampleLabel.text = sentences.randomElement()
+            case .failure(_):
+                NotificationService.showErrorBanner(withText: "Unable to fetch examples")
             }
-        } catch {
-            NotificationService.showErrorBanner(withText: "Unable to fetch examples")
         }
-        
+ 
     }
     
     private func configureViews() {

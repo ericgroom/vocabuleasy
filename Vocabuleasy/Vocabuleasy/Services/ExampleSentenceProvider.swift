@@ -63,7 +63,7 @@ class APIExampleSentenceProvider: ExampleSentenceProvider {
         task.resume()
     }
     
-    var apiURL = URL(string: "http://10.0.0.224:5000/sentences")
+    var apiURL = URL(string: Network.sentencesEndpoint)
     
     struct RequestBody: Codable {
         let lang: String

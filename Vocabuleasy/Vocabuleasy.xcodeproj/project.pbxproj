@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A9AE851A66B4C8A82AD47E17 /* Pods_Vocabuleasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F665677F1D4FF10E028AC972 /* Pods_Vocabuleasy.framework */; };
 		BA1A50492280AFBF003F82F0 /* DeckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */; };
+		BA20971B228D03270095A021 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20971A228D03270095A021 /* Network.swift */; };
 		BA24D196228098B20053A2A5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA24D195228098B20053A2A5 /* NotificationService.swift */; };
 		BA39F458226E8E6F00B5931D /* ReviewRatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */; };
 		BA39F46D227018EA00B5931D /* ThreeDPressButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */; };
@@ -79,6 +80,7 @@
 		8836164974147DCF5AFCE490 /* Pods-Vocabuleasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.release.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.release.xcconfig"; sourceTree = "<group>"; };
 		B2ACA136365AF45A45370C29 /* Pods_VocabuleasyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VocabuleasyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckInfoViewController.swift; sourceTree = "<group>"; };
+		BA20971A228D03270095A021 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BA24D195228098B20053A2A5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		BA39F457226E8E6F00B5931D /* ReviewRatingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRatingViewController.swift; sourceTree = "<group>"; };
 		BA39F46C227018EA00B5931D /* ThreeDPressButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDPressButton.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 			children = (
 				BAF4AC842268DD6900163D2C /* Theme.swift */,
 				BA5E8433226B90DC00D5B6ED /* Layout.swift */,
+				BA20971A228D03270095A021 /* Network.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				BAD9C58D227DFFED00F1415D /* ReviewSession.swift in Sources */,
 				BA5A467F226926A30037EE57 /* ReviewViewController.swift in Sources */,
 				BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */,
+				BA20971B228D03270095A021 /* Network.swift in Sources */,
 				BAE438CC2286721D008F92DB /* ImageFieldViewController.swift in Sources */,
 				BAD9C595227E3A1600F1415D /* ReviewScheduler.swift in Sources */,
 				BAD9C59C227F8D8300F1415D /* RatedCard.swift in Sources */,
