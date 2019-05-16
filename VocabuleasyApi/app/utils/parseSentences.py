@@ -1,6 +1,4 @@
 import csv
-import sqlite3
-import time
 import pymongo
 from app.db import db
 
