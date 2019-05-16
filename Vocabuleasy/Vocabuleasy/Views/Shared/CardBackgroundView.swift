@@ -24,7 +24,7 @@ class CardBackgroundView: UIView {
     private func setup() {
         backgroundColor = Theme.white
         self.clipsToBounds = false
-        layer.cornerRadius = 4.0
+        layer.cornerRadius = 8.0
         layer.shadowColor = Theme.darkGray.cgColor
         layer.shadowOffset = CGSize(width: 2, height: 2)
         layer.shadowRadius = 4.0

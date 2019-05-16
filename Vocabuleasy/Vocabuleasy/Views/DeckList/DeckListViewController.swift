@@ -26,7 +26,7 @@ class DeckListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = Theme.green
         navigationItem.title = "Decks"
         NavigationStyler.applyTheme(to: navigationController)
         
@@ -34,10 +34,12 @@ class DeckListViewController: UIViewController {
         performFetchRequest()
         
         view.addSubview(tableView)
-        tableView.fill(parent: view)
+        tableView.fill(parent: view, withOffset: Layout.Spacing.standard)
+        tableView.layer.cornerRadius = 8.0
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseId)
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.hero.id = "cardBackground"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showNewDeckAlert))
     }

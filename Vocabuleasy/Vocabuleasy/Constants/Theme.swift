@@ -25,5 +25,6 @@ enum Theme {
     enum Fonts {
         static let largeWord = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .largeTitle), size: 32)
         static let bold = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 18)
+        static let semibold = UIFont.systemFont(ofSize: 16, weight: .semibold)
     }
 }
