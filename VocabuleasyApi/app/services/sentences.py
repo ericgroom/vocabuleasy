@@ -1,11 +1,13 @@
-from peewee import fn
-from app.models import Sentence
+from collections import namedtuple
+from app.db import db
+
+Sentence = namedtuple("Sentence", ["id", "lang", "sentence"])
 
 
 def get_sentences(lang, word):
+    match = {"$match": {
+        "$and": [{"lang": lang}, {"$text": {"$search": word}}]}}
+    sample = {"$sample": {"size": 15}}
+    sentences = db.sentences.aggregate([match, sample])
 
-    sentences = Sentence.select().where(
-        Sentence.lang == lang, Sentence.sentence.contains(word))
-    # sentences = Sentence.select().count()
-    # print([sentence.sentence for sentence in sentences])
     return sentences

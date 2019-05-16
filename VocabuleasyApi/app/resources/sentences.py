@@ -15,5 +15,5 @@ class SentenceResource(Resource):
 
         if not word or not lang:
             abort(400, message="Missing argument word or lang")
-        sentences = [entry.sentence for entry in get_sentences(lang, word)]
-        return {'sentences': sentences[:5]}
+        sentences = [entry["sentence"] for entry in get_sentences(lang, word)]
+        return {'sentences': sentences}
