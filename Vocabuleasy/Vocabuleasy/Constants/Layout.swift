@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct Layout {
+enum Layout {
     static let goldenRatio: CGFloat = 1.618
     
     struct Spacing {
