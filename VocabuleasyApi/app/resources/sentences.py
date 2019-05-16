@@ -11,12 +11,9 @@ parser.add_argument("word", help="word to search for")
 class SentenceResource(Resource):
     def get(self):
         args = parser.parse_args(strict=True)
-        word = args["word"]
-        lang = args["lang"]
+        word, lang = args["word"], args["lang"]
+
         if not word or not lang:
             abort(400, message="Missing argument word or lang")
-        sentences = get_sentences(lang, word)
-        if not sentences:
-            return []
-        rsentences = choices(sentences, k=5)
-        return [sentence.sentence for sentence in rsentences]
+        sentences = [entry.sentence for entry in get_sentences(lang, word)]
+        return {'sentences': sentences[:5]}

@@ -1,7 +1,9 @@
 import csv
 import sqlite3
 import time
-from app.settings import DB_PATH
+from peewee import chunked
+from app.db import db
+from app.models import Sentence
 
 CSV_PATH = "./public/sentences.csv"
 
@@ -13,41 +15,28 @@ def getSentences():
             yield row
 
 
-def setupDB(conn: sqlite3.Connection):
-    conn.execute("DROP TABLE IF EXISTS sentences")
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS sentences (id INTEGER PRIMARY KEY, lang TEXT, sentence TEXT);")
-
-
-def writeRow(conn: sqlite3.Connection, id, lang, sentence):
-    conn.execute("INSERT INTO sentences VALUES (?, ?, ?);",
-                 (id, lang, sentence))
-
-
-def createLangIndex(conn):
-    conn.execute("CREATE INDEX lang_index ON sentences(lang);")
-    conn.commit()
+# def createLangIndex(conn):
+#     conn.execute("CREATE INDEX lang_index ON sentences(lang);")
+#     conn.commit()
 
 
 def seed(conn):
-    setupDB(conn)
     sentencesGen = getSentences()
-    try:
-        for (i, line) in enumerate(sentencesGen):
+    with conn.atomic():
+        for (i, data) in enumerate(chunked(sentencesGen, 100)):
             if i % 10000 == 0:
-                print(f"writing entry {i}")
-            (id, lang, sentence) = line
-            writeRow(conn, id, lang, sentence)
-    finally:
-        conn.commit()
+                print(f"writing chunk {i}")
+            Sentence.insert_many(
+                data, fields=[Sentence.id, Sentence.lang, Sentence.sentence]).execute()
 
 
 if __name__ == "__main__":
-    print(f"Attempting to connect to: {DB_PATH}")
-    conn = sqlite3.connect(DB_PATH)
-    seed(conn)
-    createLangIndex(conn)
-    conn.close()
+    print("Attempting to connect to db")
+    db.connect()
+    db.create_tables([Sentence])
+    seed(db)
+    # createLangIndex(conn)
+    db.close()
 
 
 # example query `SELECT * FROM sentences WHERE instr(sentences.sentence, ' test ') > 0 AND lang='eng';`
