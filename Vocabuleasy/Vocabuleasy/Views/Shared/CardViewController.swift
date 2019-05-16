@@ -47,6 +47,12 @@ class CardViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         imageView.width(to: view, withOffset: -2*Layout.Spacing.standard)
+        
+        
+        
+        frontLabel.numberOfLines = 0
+        backLabel.numberOfLines = 0
+        exampleLabel.numberOfLines = 0
     }
     
     func flipCard() {

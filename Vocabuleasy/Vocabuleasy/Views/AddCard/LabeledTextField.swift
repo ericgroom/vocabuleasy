@@ -13,8 +13,7 @@ class LabeledTextField: UIView {
     var name: String? {
         didSet {
             guard let name = name else { return }
-            textField.placeholder = name
-            label.text = name
+            label.text = name + ":"
         }
     }
     
@@ -27,7 +26,7 @@ class LabeledTextField: UIView {
         }
     }
     
-    let textField = PaddedTextField()
+    let textField = UITextView()
     let label = UILabel()
     private let stackView = UIStackView()
     
@@ -40,13 +39,17 @@ class LabeledTextField: UIView {
         textField.layer.shadowOpacity = 0.5
         textField.layer.cornerRadius = 4.0
         textField.layer.masksToBounds = false
-        textField.textInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
         textField.backgroundColor = Theme.white
         textField.returnKeyType = .done
+        textField.isEditable = true
+        textField.isScrollEnabled = false
+        textField.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 16)
+        
+        label.font = Theme.Fonts.semibold
         
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = Layout.Spacing.standard
+        stackView.spacing = 4.0
         stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(textField)
 

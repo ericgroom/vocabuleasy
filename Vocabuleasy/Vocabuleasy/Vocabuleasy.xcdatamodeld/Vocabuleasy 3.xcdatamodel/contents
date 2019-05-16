@@ -19,7 +19,7 @@
     <entity name="Deck" representedClassName="Deck" syncable="YES" codeGenerationType="category">
         <attribute name="langCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Card" inverseName="deck" inverseEntity="Card" syncable="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Card" inverseName="deck" inverseEntity="Card" syncable="YES"/>
     </entity>
     <elements>
         <element name="Card" positionX="-77.35546875" positionY="-16.12890625" width="128" height="135"/>

@@ -51,15 +51,23 @@ class CardFormViewController: UIViewController {
     }
     
     private let card = CardBackgroundView()
-    private let generateButton = UIButton()
     private let frontLabel = LabeledTextField()
     private let backLabel = LabeledTextField()
     private let exampleLabel = LabeledTextField()
     private let imageField = ImageFieldViewController()
+    private let exampleStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.alignment = UIStackView.Alignment.bottom
+        stackView.spacing = Layout.Spacing.small
+        return stackView
+    }()
     
     private let autoFillExampleButton: UIButton = {
         let button = UIButton()
         button.setTitle("Auto-fill", for: .normal)
+        button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.setTitleColor(Theme.white, for: .normal)
         button.backgroundColor = Theme.purple
         button.addTarget(self, action: #selector(generateExample), for: .touchUpInside)
@@ -72,12 +80,15 @@ class CardFormViewController: UIViewController {
         
         configureViews()
         
+        exampleStackView.addArrangedSubview(exampleLabel)
+        exampleStackView.addArrangedSubview(autoFillExampleButton)
+        
+        card.stackView.stackView.spacing = Layout.Spacing.standard
         card.addArrangedSubview(frontLabel)
         card.addArrangedSubview(backLabel)
-        card.addArrangedSubview(exampleLabel)
+        card.addArrangedSubview(exampleStackView)
         addChild(imageField)
         card.addArrangedSubview(imageField.view)
-        card.addSubview(autoFillExampleButton)
         
         view.addSubview(card)
         setupContstraints()
@@ -109,15 +120,9 @@ class CardFormViewController: UIViewController {
         let cardInset = -Layout.Spacing.standard*2
         frontLabel.width(to: card, withOffset: cardInset)
         backLabel.width(to: card, withOffset: cardInset)
-        exampleLabel.width(to: card, withOffset: cardInset)
-        exampleLabel.textField.rightView = autoFillExampleButton
-        exampleLabel.textField.rightViewMode = .unlessEditing
+        exampleStackView.width(to: card, withOffset: cardInset)
+        autoFillExampleButton.height(to: exampleLabel.textField)
         imageField.view.height(.lessOrEqual, to: 250)
         imageField.view.width(to: card, withOffset: cardInset)
-    }
-    
-    override func viewWillLayoutSubviews() {
-        autoFillExampleButton.frame = CGRect(x: 0, y: 0, width: 70, height: exampleLabel.textField.frame.height)
-        backLabel.layoutIfNeeded()
     }
 }

@@ -58,7 +58,7 @@ class AddCardViewController: KeyboardViewController {
             card.data?.targetWord = formVC.frontText
             card.data?.translation = formVC.backText
             card.data?.example = formVC.exampleText
-            card.data?.photo = formVC.image?.pngData()
+            card.data?.photo = formVC.image?.jpegData(compressionQuality: 1.0)
         case .edit(let card):
             if card.data == nil {
                 card.data = CardFieldData(context: context)
@@ -66,7 +66,7 @@ class AddCardViewController: KeyboardViewController {
             card.data!.targetWord = formVC.frontText
             card.data!.translation = formVC.backText
             card.data!.example = formVC.exampleText
-            card.data!.photo = formVC.image?.pngData()
+            card.data!.photo = formVC.image?.jpegData(compressionQuality: 1.0)
         }
 
         do {
