@@ -29,7 +29,7 @@ def seed(table):
 
 
 def createLangIndex(table):
-    table.create_index(["sentence", pymongo.TEXT])
+    table.create_index([("sentence", pymongo.TEXT)])
 
 
 if __name__ == "__main__":
