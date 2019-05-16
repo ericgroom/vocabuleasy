@@ -17,6 +17,8 @@ class ReviewViewController: UIViewController {
         }
     }
     
+    var deck: Deck?
+    
     private var cardController = ReviewDeckController()
     private var ratingController = ReviewRatingViewController()
     
@@ -56,6 +58,7 @@ class ReviewViewController: UIViewController {
         let editVC = EditCardViewController()
         editVC.mode = .edit(card)
         editVC.delegate = self
+        editVC.deck = deck
         let navVC = UINavigationController(rootViewController: editVC)
         NavigationStyler.applyTheme(to: navVC)
         self.present(navVC, animated: true, completion: nil)

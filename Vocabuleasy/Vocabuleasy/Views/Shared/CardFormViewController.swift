@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol CardFormDelegate: class {
+    func generateExampleTapped(for targetWord: String)
+}
+
 class CardFormViewController: UIViewController {
+    
+    weak var delegate: CardFormDelegate?
     
     var frontText: String? {
         get {
@@ -86,15 +92,8 @@ class CardFormViewController: UIViewController {
     
     @objc private func generateExample() {
         guard let word = frontText, word.count > 0 else { return }
-
-        APIExampleSentenceProvider.shared.getExampleSentence(for: word) { result in
-            switch result {
-            case .success(let sentences):
-                self.exampleLabel.text = sentences.randomElement()
-            case .failure(_):
-                NotificationService.showErrorBanner(withText: "Unable to fetch examples")
-            }
-        }
+        delegate?.generateExampleTapped(for: word)
+        
  
     }
     

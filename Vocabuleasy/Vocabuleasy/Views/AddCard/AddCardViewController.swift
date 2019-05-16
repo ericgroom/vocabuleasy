@@ -13,9 +13,11 @@ import CoreData
 class AddCardViewController: KeyboardViewController {
     
     enum Mode {
-        case add(Deck)
+        case add
         case edit(Card)
     }
+    
+    var deck: Deck?
     
     var mode: Mode? {
         didSet {
@@ -31,6 +33,8 @@ class AddCardViewController: KeyboardViewController {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveCard))
+        
+        formVC.delegate = self
 
         embed(formVC)
         formVC.view.top(to: view.topAnchor)
@@ -43,9 +47,9 @@ class AddCardViewController: KeyboardViewController {
     
     @objc func saveCard() {
         let context = ContainerService.shared.persistentContainer.viewContext
-        guard let mode = mode else { return }
+        guard let mode = mode, let deck = deck else { return }
         switch mode {
-        case .add(let deck):
+        case .add:
             let card = Card(context: context)
             card.id = UUID()
             card.nextReview = Date()
@@ -78,7 +82,7 @@ class AddCardViewController: KeyboardViewController {
     
     private func updateView(for mode: Mode) {
         switch mode {
-        case .add(_):
+        case .add:
             formVC.clear()
         case .edit(let card):
             guard let data = card.data else { return }
@@ -111,6 +115,21 @@ class AddCardViewController: KeyboardViewController {
         cardBottomConstraint?.constant = 0
         if let animationDuration = info["UIKeyboardAnimationDurationUserInfoKey"] as? TimeInterval {
             UIView.animate(withDuration: animationDuration) { self.view.layoutIfNeeded() }
+        }
+    }
+}
+
+extension AddCardViewController: CardFormDelegate {
+    func generateExampleTapped(for targetWord: String) {
+        let langCode = deck?.langCode ?? "eng"
+        APIExampleSentenceProvider.shared.getExampleSentence(for: targetWord, lang: langCode) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let sentences):
+                self.formVC.exampleText = sentences.randomElement()
+            case .failure(_):
+                NotificationService.showErrorBanner(withText: "Unable to fetch examples")
+            }
         }
     }
 }

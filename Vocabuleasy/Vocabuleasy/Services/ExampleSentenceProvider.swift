@@ -11,7 +11,7 @@ import Foundation
 protocol ExampleSentenceProvider {
     static var shared: ExampleSentenceProvider { get }
     
-    func getExampleSentence(for word: String, onCompletion:  @escaping (Result<[String], ExampleSentenceFetchError>) -> Void)
+    func getExampleSentence(for word: String, lang: String, onCompletion:  @escaping (Result<[String], ExampleSentenceFetchError>) -> Void)
 }
 
 enum ExampleSentenceFetchError: Error {
@@ -24,7 +24,7 @@ class APIExampleSentenceProvider: ExampleSentenceProvider {
     
     private(set) static var shared: ExampleSentenceProvider = APIExampleSentenceProvider()
     
-    func getExampleSentence(for word: String, onCompletion:  @escaping (Result<[String], ExampleSentenceFetchError>) -> Void) {
+    func getExampleSentence(for word: String, lang: String, onCompletion:  @escaping (Result<[String], ExampleSentenceFetchError>) -> Void) {
         guard let url = apiURL else {
             onCompletion(.failure(.malformedURL))
             return
@@ -34,7 +34,7 @@ class APIExampleSentenceProvider: ExampleSentenceProvider {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
         
-        let body = RequestBody(lang: "eng", word: word)
+        let body = RequestBody(lang: lang, word: word)
         request.httpBody = try? JSONEncoder().encode(body)
         request.httpMethod = "POST"
         
