@@ -34,6 +34,7 @@
 		BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */; };
 		BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */; };
 		BA674040226C273900762C79 /* CardFieldBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA67403F226C273900762C79 /* CardFieldBuilder.swift */; };
+		BA78D1A3228D18790056EE77 /* DeckSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA78D1A2228D18790056EE77 /* DeckSettingsViewController.swift */; };
 		BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */; };
 		BAC133DB2288FF2600EF74DA /* FibonacciReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC133DA2288FF2600EF74DA /* FibonacciReviewScheduler.swift */; };
 		BAC5F728227A4EC800C5B2CD /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */; };
@@ -105,6 +106,8 @@
 		BA5E8435226BA51B00D5B6ED /* ReviewDeckController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDeckController.swift; sourceTree = "<group>"; };
 		BA67403D226C0FA600762C79 /* ShakeAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeAnimationController.swift; sourceTree = "<group>"; };
 		BA67403F226C273900762C79 /* CardFieldBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardFieldBuilder.swift; sourceTree = "<group>"; };
+		BA78D1A1228D15420056EE77 /* Vocabuleasy 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Vocabuleasy 3.xcdatamodel"; sourceTree = "<group>"; };
+		BA78D1A2228D18790056EE77 /* DeckSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckSettingsViewController.swift; sourceTree = "<group>"; };
 		BA9DD15E2281DC3300F52057 /* PostReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostReviewViewController.swift; sourceTree = "<group>"; };
 		BAC133DA2288FF2600EF74DA /* FibonacciReviewScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FibonacciReviewScheduler.swift; sourceTree = "<group>"; };
 		BAC5F727227A4EC800C5B2CD /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
@@ -226,6 +229,7 @@
 			children = (
 				BA5B33462274CB6400E06E81 /* DeckDetailViewController.swift */,
 				BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */,
+				BA78D1A2228D18790056EE77 /* DeckSettingsViewController.swift */,
 			);
 			path = DeckDetail;
 			sourceTree = "<group>";
@@ -610,6 +614,7 @@
 				BA5A467D2269174F0037EE57 /* CardViewController.swift in Sources */,
 				BA5E8436226BA51B00D5B6ED /* ReviewDeckController.swift in Sources */,
 				BA9DD15F2281DC3300F52057 /* PostReviewViewController.swift in Sources */,
+				BA78D1A3228D18790056EE77 /* DeckSettingsViewController.swift in Sources */,
 				BAD9C598227E3AD200F1415D /* ShortReviewScheduler.swift in Sources */,
 				BAD9C58F227E009A00F1415D /* Rating.swift in Sources */,
 				BAE438D12287A204008F92DB /* ExampleSentenceProvider.swift in Sources */,
@@ -887,10 +892,11 @@
 		BAE438BD22820EF3008F92DB /* Vocabuleasy.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BA78D1A1228D15420056EE77 /* Vocabuleasy 3.xcdatamodel */,
 				BAE438C322825BA4008F92DB /* Vocabuleasy 2.xcdatamodel */,
 				BAE438BE22820EF3008F92DB /* Vocabuleasy.xcdatamodel */,
 			);
-			currentVersion = BAE438C322825BA4008F92DB /* Vocabuleasy 2.xcdatamodel */;
+			currentVersion = BA78D1A1228D15420056EE77 /* Vocabuleasy 3.xcdatamodel */;
 			path = Vocabuleasy.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

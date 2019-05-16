@@ -32,13 +32,21 @@ class DeckDetailViewController: UIViewController {
         return button
     }()
     
+    private let settingsButton: UIButton = {
+        let button = UIButton()
+        ButtonStyler.outline(button, foreground: Theme.purple)
+        button.setTitle("Settings", for: .normal)
+        button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     private let card = CardBackgroundView()
     private let deckInfoVC = DeckInfoViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Theme.green
-        navigationItem.title = "Deck Detail" // TODO update with deck name
+        navigationItem.title = deck?.name
         
         view.addSubview(card)
         card.center(on: view)
@@ -50,6 +58,8 @@ class DeckDetailViewController: UIViewController {
         reviewButton.width(to: card, withOffset: -Layout.Spacing.standard*2)
         card.addArrangedSubview(addButton)
         addButton.width(to: card, withOffset: -Layout.Spacing.standard*2)
+        card.addArrangedSubview(settingsButton)
+        settingsButton.width(to: card, withOffset: -Layout.Spacing.standard*2)
         
         embed(deckInfoVC)
         deckInfoVC.view.bottom(to: card.topAnchor, withOffset: Layout.Spacing.standard)
@@ -65,6 +75,7 @@ class DeckDetailViewController: UIViewController {
             let cards = try context.fetch(request)
             let reviewVC = ReviewViewController()
             reviewVC.reviewSession = deck.generateReviewSession(cards: cards)
+            reviewVC.deck = deck
             navigationController?.pushViewController(reviewVC, animated: true)
         } catch {
             NotificationService.showErrorBanner(withText: "Error fetching cards")
@@ -74,7 +85,15 @@ class DeckDetailViewController: UIViewController {
     @objc func addNewButtonPressed() {
         guard let deck = deck else { return }
         let addNewVc = AddCardViewController()
-        addNewVc.mode = .add(deck)
+        addNewVc.mode = .add
+        addNewVc.deck = deck
         navigationController?.pushViewController(addNewVc, animated: true)
+    }
+    
+    @objc func settingsButtonPressed() {
+        guard let deck = deck else { return }
+        let settingsVC = DeckSettingsViewController()
+        settingsVC.deck = deck
+        navigationController?.pushViewController(settingsVC, animated: true)
     }
 }
