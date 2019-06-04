@@ -14,8 +14,21 @@ protocol ExampleSentenceProvider {
     func getExampleSentence(for word: String, lang: String, onCompletion:  @escaping (Result<[String], ExampleSentenceFetchError>) -> Void)
 }
 
-enum ExampleSentenceFetchError: Error {
+enum ExampleSentenceFetchError: LocalizedError, CustomStringConvertible {
     case malformedURL, invalidRequest, networkError, unexpectedResponse
+    
+    var description: String {
+        switch self {
+        case .malformedURL:
+            return "Incorrect URL format"
+        case .invalidRequest:
+            return "Server rejected request"
+        case .networkError:
+            return "Unable to connect to server"
+        case .unexpectedResponse:
+            return "Unexpected server response"
+        }
+    }
 }
 
 class APIExampleSentenceProvider: ExampleSentenceProvider {
@@ -50,9 +63,8 @@ class APIExampleSentenceProvider: ExampleSentenceProvider {
                 let body = try decoder.decode(ResponseBody.self, from: data)
                 let sentences = body.sentences
                 
-                DispatchQueue.main.async {
-                    onCompletion(.success(sentences))
-                }
+                onCompletion(.success(sentences))
+                
             } catch {
                 onCompletion(.failure(.unexpectedResponse))
                 print(error)

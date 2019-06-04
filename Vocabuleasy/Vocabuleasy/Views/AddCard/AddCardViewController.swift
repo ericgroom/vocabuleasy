@@ -71,13 +71,18 @@ class AddCardViewController: KeyboardViewController {
 
         do {
             try context.save()
-            self.formVC.clear()
+            self.didSave()
             NotificationService.showSuccessBanner(withText: "Card Saved!")
         } catch let error {
             print("Error saving card: \(error)")
             NotificationService.showErrorBanner(withText: "Error saving card")
         }
         
+    }
+    
+    private func didSave() {
+        formVC.clear()
+        self.formVC.view.endEditing(true)
     }
     
     private func updateView(for mode: Mode) {
@@ -124,11 +129,13 @@ extension AddCardViewController: CardFormDelegate {
         let langCode = deck?.langCode ?? "eng"
         APIExampleSentenceProvider.shared.getExampleSentence(for: targetWord, lang: langCode) { [weak self] result in
             guard let self = self else { return }
-            switch result {
-            case .success(let sentences):
-                self.formVC.exampleText = sentences.randomElement()
-            case .failure(_):
-                NotificationService.showErrorBanner(withText: "Unable to fetch examples")
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let sentences):
+                    self.formVC.exampleText = sentences.randomElement()
+                case .failure(let error):
+                    NotificationService.showErrorBanner(withText: error.localizedDescription)
+                }
             }
         }
     }
