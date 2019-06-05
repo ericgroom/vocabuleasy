@@ -81,4 +81,21 @@ class ReviewSession {
     func complete() -> ReviewSessionLog {
         return ReviewSessionLog(of: self)
     }
+    
+    func delete(_ card: Card) {
+        for (index, ratedCard) in cards.enumerated().reversed() {
+            if ratedCard.card == card {
+                cards.remove(at: index)
+                print("deleting card at index \(index)")
+                if index < currentIndex {
+                    currentIndex -= 1 // decrement current index to keep same position
+                }
+            }
+        }
+        NotificationCenter.default.post(name: .reviewSessionDidRemoveCard, object: self)
+    }
+}
+
+extension Notification.Name {
+    static let reviewSessionDidRemoveCard = Notification.Name("reviewSessionDidRemoveCard")
 }

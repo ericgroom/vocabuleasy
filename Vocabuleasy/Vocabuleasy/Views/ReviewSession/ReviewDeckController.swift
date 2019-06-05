@@ -34,8 +34,13 @@ class ReviewDeckController: UIViewController {
         hero.isEnabled = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     private func setupSession() {
         guard let reviewSession = reviewSession else { return }
+        NotificationCenter.default.addObserver(self, selector: #selector(cardDeleted), name: .reviewSessionDidRemoveCard, object: reviewSession)
         if reviewSession.count > 0 {
             let card = reviewSession.get(atIndex: reviewSession.currentIndex)
             currentCard = CardViewController()
@@ -76,6 +81,16 @@ class ReviewDeckController: UIViewController {
         guard let current = currentCard else { return }
         current.flipCard()
         delegate?.displayedCardUpdated(showingFront: current.showingFront)
+    }
+    
+    @objc func cardDeleted() {
+        guard let reviewSession = reviewSession else { return }
+        if let card = reviewSession.currentCard {
+            self.transition(to: card, direction: .forward)
+        }
+        if reviewSession.isCompleted {
+            delegate?.reviewSessionShouldEnd()
+        }
     }
     
     // MARK: - Animations
