@@ -24,7 +24,6 @@ class PostReviewViewController: UIViewController {
     
     private let infoLabel: UILabel = {
         let label = UILabel()
-        label.text = "works"
         label.font = Theme.Fonts.bold
         label.textColor = Theme.white
         label.numberOfLines = 0
