@@ -77,8 +77,12 @@ class ReviewViewController: UIViewController {
         let alert = UIAlertController(title: "Are you sure you want to delete this card", message: "This will also delete the reverse card if it exists", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] alert in
             let context = ContainerService.shared.persistentContainer.viewContext
-            context.delete(card)
-            self?.reviewSession?.delete(card)
+            if let cardsToDelete = card.associatedCards() {
+                cardsToDelete.forEach { card in
+                    context.delete(card)
+                }
+                self?.reviewSession?.delete(cardsToDelete)
+            }
             do {
                 try context.save()
                 NotificationService.showSuccessBanner(withText: "Card Deleted")

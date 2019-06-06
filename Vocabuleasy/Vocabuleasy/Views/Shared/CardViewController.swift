@@ -72,10 +72,15 @@ class CardViewController: UIViewController {
     
     func updateView() {
         guard let model = model else { return }
-        
-        frontLabel.text = model.data?.targetWord
+        if model.reversed {
+            frontLabel.text = model.data?.translation
+            backLabel.text = model.data?.targetWord
+        } else {
+            frontLabel.text = model.data?.targetWord
+            backLabel.text = model.data?.translation
+        }
         frontLabel.font = Theme.Fonts.largeWord
-        backLabel.text = model.data?.translation
+        backLabel.font = Theme.Fonts.semibold
         exampleLabel.text = model.data?.example
         
         if let imageData = model.data?.photo, let image = UIImage(data: imageData) {
