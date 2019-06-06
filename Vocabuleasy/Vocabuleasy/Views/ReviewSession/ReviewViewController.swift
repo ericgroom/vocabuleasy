@@ -55,13 +55,40 @@ class ReviewViewController: UIViewController {
     
     @objc private func showMenu() {
         guard let card = reviewSession?.currentCard?.card else { return }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Edit", style: .default) { _ in self.edit(card: card
+            )})
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive) { _ in self.delete(card: card) })
+        present(alert, animated: true)
+    }
+    
+    private func edit(card: Card) {
         let editVC = EditCardViewController()
         editVC.mode = .edit(card)
         editVC.delegate = self
         editVC.deck = deck
         let navVC = UINavigationController(rootViewController: editVC)
         NavigationStyler.applyTheme(to: navVC)
-        self.present(navVC, animated: true, completion: nil)
+        present(navVC, animated: true)
+    }
+    
+    private func delete(card: Card) {
+        let alert = UIAlertController(title: "Are you sure you want to delete this card", message: "This will also delete the reverse card if it exists", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] alert in
+            let context = ContainerService.shared.persistentContainer.viewContext
+            context.delete(card)
+            self?.reviewSession?.delete(card)
+            do {
+                try context.save()
+                NotificationService.showSuccessBanner(withText: "Card Deleted")
+            } catch {
+                print(error)
+                NotificationService.showErrorBanner(withText: "Unable to delete card")
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alert, animated: true)
     }
 }
 
@@ -105,17 +132,17 @@ extension ReviewViewController: ReviewDeckDelegate {
         notification.show()
         let log = session.complete()
         FibonacciReviewScheduler(baseInterval: 60).schedule(session: log)
-        if let card = log.cardsReviewed.first, let context = card.card.managedObjectContext {
-            do {
-                try context.save()
-                let vc = PostReviewViewController()
-                vc.state = .loaded(log: log)
-                hero.replaceViewController(with: vc)
-            } catch {
-                print(error)
-                NotificationService.showErrorBanner(withText: "Error saving review session")
-            }
+        let context = ContainerService.shared.persistentContainer.viewContext
+        do {
+            try context.save()
+            let vc = PostReviewViewController()
+            vc.state = .loaded(log: log)
+            hero.replaceViewController(with: vc)
+        } catch {
+            print(error)
+            NotificationService.showErrorBanner(withText: "Error saving review session")
         }
+        
     }
 }
 
