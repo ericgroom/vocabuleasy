@@ -82,11 +82,10 @@ class ReviewSession {
         return ReviewSessionLog(of: self)
     }
     
-    func delete(_ card: Card) {
+    func delete(_ cardsToDelete: [Card]) {
         for (index, ratedCard) in cards.enumerated().reversed() {
-            if ratedCard.card == card {
+            if cardsToDelete.contains(ratedCard.card) {
                 cards.remove(at: index)
-                print("deleting card at index \(index)")
                 if index < currentIndex {
                     currentIndex -= 1 // decrement current index to keep same position
                 }

@@ -11,5 +11,7 @@ import CoreData
 
 @objc(Card)
 class Card: NSManagedObject {
-    
+    func associatedCards() -> [Card]? {
+        return self.data?.cards?.allObjects as? [Card]
+    }
 }

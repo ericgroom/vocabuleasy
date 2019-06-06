@@ -6,7 +6,7 @@
         <attribute name="nextReview" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="reversed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timesCorrect" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="data" maxCount="1" deletionRule="Cascade" destinationEntity="CardFieldData" inverseName="card" inverseEntity="CardFieldData" syncable="YES"/>
+        <relationship name="data" maxCount="1" deletionRule="Cascade" destinationEntity="CardFieldData" inverseName="cards" inverseEntity="CardFieldData" syncable="YES"/>
         <relationship name="deck" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Deck" inverseName="cards" inverseEntity="Deck" syncable="YES"/>
     </entity>
     <entity name="CardFieldData" representedClassName="CardFieldData" syncable="YES" codeGenerationType="category">
@@ -15,7 +15,7 @@
         <attribute name="photo" optional="YES" attributeType="Binary" valueTransformerName="" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="targetWord" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="card" toMany="YES" minCount="1" maxCount="2" deletionRule="Cascade" destinationEntity="Card" inverseName="data" inverseEntity="Card" syncable="YES"/>
+        <relationship name="cards" toMany="YES" minCount="1" maxCount="2" deletionRule="Cascade" destinationEntity="Card" inverseName="data" inverseEntity="Card" syncable="YES"/>
     </entity>
     <entity name="Deck" representedClassName="Deck" syncable="YES" codeGenerationType="category">
         <attribute name="langCode" optional="YES" attributeType="String" syncable="YES"/>

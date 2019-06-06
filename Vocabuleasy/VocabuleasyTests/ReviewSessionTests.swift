@@ -58,23 +58,35 @@ class ReviewSessionTests: XCTestCase {
         let card = Card()
         let session = ReviewSession(cards: [card])
         XCTAssertEqual(session.currentCard!.card, card)
-        session.delete(card)
+        session.delete([card])
         XCTAssertNil(session.currentCard)
         XCTAssertTrue(session.isCompleted)
         
     }
     
-    func testMultipleDeletions() {
+    func testDeletionWithDuplicates() {
         let session = mockSession!
         let countBeforeAdd = session.count
         let expectedCardAfterDeletion = session.cards[1].card
         session.cardRated(atIndex: 0, withRating: .wrong)
         let countAfterAdd = session.count
         XCTAssertEqual(countAfterAdd, countBeforeAdd+1)
-        session.delete(session.cards.first!.card)
+        session.delete([session.cards.first!.card])
         let countAfterDelete = session.count
         XCTAssertEqual(countAfterDelete, countBeforeAdd-1)
         XCTAssertEqual(session.currentIndex, 0)
         XCTAssertEqual(session.currentCard!.card, expectedCardAfterDeletion)
+    }
+    
+    func testMultipleDeletion() {
+        let session = mockSession!
+        let initialCount = session.count
+        var cardsToDelete: [Card] = []
+        for i in stride(from: session.cards.startIndex, to: session.cards.endIndex, by: 2) {
+            cardsToDelete.append(session.cards[i].card)
+        }
+        let deletedCount = cardsToDelete.count
+        session.delete(cardsToDelete)
+        XCTAssertEqual(session.count, initialCount-deletedCount)
     }
 }
