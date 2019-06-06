@@ -28,6 +28,7 @@ class AddCardViewController: KeyboardViewController {
 
     private var cardBottomConstraint: NSLayoutConstraint?
     private let formVC = CardFormViewController()
+    private let reverseVC = GenerateReverseViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +38,20 @@ class AddCardViewController: KeyboardViewController {
         formVC.delegate = self
 
         embed(formVC)
+        embed(reverseVC)
+
         formVC.view.top(to: view.topAnchor)
         formVC.view.leading(to: view.leadingAnchor)
         formVC.view.trailing(to: view.trailingAnchor)
-        cardBottomConstraint = formVC.view.bottom(to: view.bottomAnchor)
+        formVC.view.setContentHuggingPriority(.defaultLow, for: .vertical)
+        formVC.view.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        cardBottomConstraint = formVC.view.bottom(to: reverseVC.view.topAnchor)
         
+        reverseVC.view.leading(to: view.leadingAnchor)
+        reverseVC.view.trailing(to: view.trailingAnchor)
+        reverseVC.view.bottom(to: view.bottomAnchor)
+        reverseVC.view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        reverseVC.view.setContentHuggingPriority(.defaultHigh, for: .vertical)
         configureKeyboardListeners()
     }
     
@@ -51,14 +61,26 @@ class AddCardViewController: KeyboardViewController {
         switch mode {
         case .add:
             let card = Card(context: context)
+            let reversed: Card?
             card.id = UUID()
             card.nextReview = Date()
             deck.addToCards(card)
-            card.data = CardFieldData(context: context)
-            card.data?.targetWord = formVC.frontText
-            card.data?.translation = formVC.backText
-            card.data?.example = formVC.exampleText
-            card.data?.photo = formVC.image?.jpegData(compressionQuality: 1.0)
+            let data = CardFieldData(context: context)
+            data.targetWord = formVC.frontText
+            data.translation = formVC.backText
+            data.example = formVC.exampleText
+            data.photo = formVC.image?.jpegData(compressionQuality: 1.0)
+            card.data = data
+            if reverseVC.prefersReverseGeneration {
+                reversed = Card(context: context)
+                if let reversed = reversed {
+                    reversed.id = UUID()
+                    reversed.nextReview = Date()
+                    deck.addToCards(reversed)
+                    reversed.reversed = true
+                    reversed.data = data
+                }
+            }
         case .edit(let card):
             if card.data == nil {
                 card.data = CardFieldData(context: context)
@@ -109,7 +131,7 @@ class AddCardViewController: KeyboardViewController {
     
     @objc private func keyboardWillShow(sender: Notification) {
         guard let info = sender.userInfo, let keyboardRect = info["UIKeyboardFrameBeginUserInfoKey"] as? CGRect else { return }
-        cardBottomConstraint?.constant = -keyboardRect.height
+        cardBottomConstraint?.constant = -keyboardRect.height + reverseVC.view.frame.height
         if let animationDuration = info["UIKeyboardAnimationDurationUserInfoKey"] as? TimeInterval {
             UIView.animate(withDuration: animationDuration) { self.view.layoutIfNeeded() }
         }

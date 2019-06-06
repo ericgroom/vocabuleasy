@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A9AE851A66B4C8A82AD47E17 /* Pods_Vocabuleasy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F665677F1D4FF10E028AC972 /* Pods_Vocabuleasy.framework */; };
+		BA0A8EE122A97DED00780B2D /* GenerateReverseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0A8EE022A97DED00780B2D /* GenerateReverseViewController.swift */; };
+		BA0A8EE322A97F6500780B2D /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0A8EE222A97F6500780B2D /* UserDefaults.swift */; };
 		BA1A50492280AFBF003F82F0 /* DeckInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */; };
 		BA20971B228D03270095A021 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA20971A228D03270095A021 /* Network.swift */; };
 		BA24D196228098B20053A2A5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA24D195228098B20053A2A5 /* NotificationService.swift */; };
@@ -79,6 +81,9 @@
 		33485D05581F4117A95FF0DE /* Pods-Vocabuleasy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.debug.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.debug.xcconfig"; sourceTree = "<group>"; };
 		8836164974147DCF5AFCE490 /* Pods-Vocabuleasy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Vocabuleasy.release.xcconfig"; path = "Target Support Files/Pods-Vocabuleasy/Pods-Vocabuleasy.release.xcconfig"; sourceTree = "<group>"; };
 		B2ACA136365AF45A45370C29 /* Pods_VocabuleasyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VocabuleasyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0A8EDF22A97A8100780B2D /* Vocabuleasy 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Vocabuleasy 4.xcdatamodel"; sourceTree = "<group>"; };
+		BA0A8EE022A97DED00780B2D /* GenerateReverseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateReverseViewController.swift; sourceTree = "<group>"; };
+		BA0A8EE222A97F6500780B2D /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		BA1A50482280AFBF003F82F0 /* DeckInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckInfoViewController.swift; sourceTree = "<group>"; };
 		BA20971A228D03270095A021 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		BA24D195228098B20053A2A5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -236,6 +241,7 @@
 				BA5B334F2274FA4D00E06E81 /* AddCardViewController.swift */,
 				BA5D5583227DEBD60024567A /* LabeledTextField.swift */,
 				BAE438CB2286721D008F92DB /* ImageFieldViewController.swift */,
+				BA0A8EE022A97DED00780B2D /* GenerateReverseViewController.swift */,
 			);
 			path = AddCard;
 			sourceTree = "<group>";
@@ -356,6 +362,7 @@
 				BA5E8431226B8A3000D5B6ED /* UIViewController.swift */,
 				BAE438CD22879D40008F92DB /* CGSize.swift */,
 				BAC1F89A22A6F36B0001A65E /* LocalizedError.swift */,
+				BA0A8EE222A97F6500780B2D /* UserDefaults.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -568,6 +575,7 @@
 				BAE438C822826472008F92DB /* DeckListViewController.swift in Sources */,
 				BAF4AC8A2268E18500163D2C /* RootViewController.swift in Sources */,
 				BAC133DB2288FF2600EF74DA /* FibonacciReviewScheduler.swift in Sources */,
+				BA0A8EE322A97F6500780B2D /* UserDefaults.swift in Sources */,
 				BAF4AC8F2268E28B00163D2C /* Constraints.swift in Sources */,
 				BA48632A2289DD4600B3927D /* EditCardViewController.swift in Sources */,
 				BAE438BF22820EF3008F92DB /* Vocabuleasy.xcdatamodeld in Sources */,
@@ -577,6 +585,7 @@
 				BA20971B228D03270095A021 /* Network.swift in Sources */,
 				BAE438CC2286721D008F92DB /* ImageFieldViewController.swift in Sources */,
 				BAD9C595227E3A1600F1415D /* ReviewScheduler.swift in Sources */,
+				BA0A8EE122A97DED00780B2D /* GenerateReverseViewController.swift in Sources */,
 				BAD9C59C227F8D8300F1415D /* RatedCard.swift in Sources */,
 				BA1A50492280AFBF003F82F0 /* DeckInfoViewController.swift in Sources */,
 				BA67403E226C0FA600762C79 /* ShakeAnimationController.swift in Sources */,
@@ -880,11 +889,12 @@
 		BAE438BD22820EF3008F92DB /* Vocabuleasy.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BA0A8EDF22A97A8100780B2D /* Vocabuleasy 4.xcdatamodel */,
 				BA78D1A1228D15420056EE77 /* Vocabuleasy 3.xcdatamodel */,
 				BAE438C322825BA4008F92DB /* Vocabuleasy 2.xcdatamodel */,
 				BAE438BE22820EF3008F92DB /* Vocabuleasy.xcdatamodel */,
 			);
-			currentVersion = BA78D1A1228D15420056EE77 /* Vocabuleasy 3.xcdatamodel */;
+			currentVersion = BA0A8EDF22A97A8100780B2D /* Vocabuleasy 4.xcdatamodel */;
 			path = Vocabuleasy.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
