@@ -15,8 +15,8 @@ class ReviewSessionTests: XCTestCase {
 
     override func setUp() {
         var cards: [Card] = []
-        for i in 0..<20 {
-            let card = Card(front: "front \(i)", back: "back \(i)")
+        for _ in 0..<20 {
+            let card = Card()
             cards.append(card)
         }
         mockSession = ReviewSession(cards: cards)
@@ -53,5 +53,28 @@ class ReviewSessionTests: XCTestCase {
         XCTAssertNotNil(session.goBack(), "Session should return previous card")
         XCTAssertEqual(session.currentIndex, initialIndex, "Session index should be the initial value after advancing and going back")
     }
-
+    
+    func testDeletionOneCard() {
+        let card = Card()
+        let session = ReviewSession(cards: [card])
+        XCTAssertEqual(session.currentCard!.card, card)
+        session.delete(card)
+        XCTAssertNil(session.currentCard)
+        XCTAssertTrue(session.isCompleted)
+        
+    }
+    
+    func testMultipleDeletions() {
+        let session = mockSession!
+        let countBeforeAdd = session.count
+        let expectedCardAfterDeletion = session.cards[1].card
+        session.cardRated(atIndex: 0, withRating: .wrong)
+        let countAfterAdd = session.count
+        XCTAssertEqual(countAfterAdd, countBeforeAdd+1)
+        session.delete(session.cards.first!.card)
+        let countAfterDelete = session.count
+        XCTAssertEqual(countAfterDelete, countBeforeAdd-1)
+        XCTAssertEqual(session.currentIndex, 0)
+        XCTAssertEqual(session.currentCard!.card, expectedCardAfterDeletion)
+    }
 }
